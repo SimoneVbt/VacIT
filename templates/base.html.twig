@@ -2,11 +2,16 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>VacIT{% block title %}{% endblock %}</title>
+
+        <link rel="stylesheet" href="assets/css/vacit-main.css">
         {% block stylesheets %}{% endblock %}
+
+        <script src="assets/jquery/jquery-3.5.1.js"></script>
+        {% block javascripts %}{% endblock %}
+
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        
     </body>
 </html>

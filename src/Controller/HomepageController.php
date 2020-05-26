@@ -2,18 +2,26 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use App\Entity\Vacature;
 
-class HomepageController extends AbstractController
+class HomepageController extends BaseController
+/**
+ * @Route("/")
+ */
 {
     /**
-     * @Route("/homepage", name="homepage")
+     * @Route("/", name="homepage")
+     * @Template()
      */
     public function index()
     {
-        return $this->render('homepage/index.html.twig', [
-            'controller_name' => 'HomepageController',
-        ]);
+        $rep = $this->getDoctrine()->getRepository(Vacature::class);
+        $vacatures = $rep->findAll();
+
+        return [
+            'vacatures' => $vacatures,
+        ];
     }
 }

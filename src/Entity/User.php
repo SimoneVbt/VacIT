@@ -223,23 +223,23 @@ class User extends BaseUser
         return $this->sollicitaties;
     }
 
-    public function addSollicitaty(Sollicitatie $sollicitaty): self
+    public function addSollicitatie(Sollicitatie $sollicitatie): self
     {
-        if (!$this->sollicitaties->contains($sollicitaty)) {
-            $this->sollicitaties[] = $sollicitaty;
-            $sollicitaty->setUser($this);
+        if (!$this->sollicitaties->contains($sollicitatie)) {
+            $this->sollicitaties[] = $sollicitatie;
+            $sollicitatie->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeSollicitaty(Sollicitatie $sollicitaty): self
+    public function removeSollicitatie(Sollicitatie $sollicitatie): self
     {
-        if ($this->sollicitaties->contains($sollicitaty)) {
-            $this->sollicitaties->removeElement($sollicitaty);
+        if ($this->sollicitaties->contains($sollicitatie)) {
+            $this->sollicitaties->removeElement($sollicitatie);
             // set the owning side to null (unless already changed)
-            if ($sollicitaty->getUser() === $this) {
-                $sollicitaty->setUser(null);
+            if ($sollicitatie->getUser() === $this) {
+                $sollicitatie->setUser(null);
             }
         }
 

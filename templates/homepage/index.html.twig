@@ -1,11 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}VacIT :: Home{% endblock %}
+{% block title %} :: Home{% endblock %}
 
-{% block stylesheets %}{% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="/js/vegas/vegas.min.css">
+{% endblock %}
+
+{% block javascripts %}
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="/js/vegas/vegas.min.js"></script>
+{% endblock %}
+
+
 
 {% block body %}
 
+<!-- content -->
+
+<script>
+$(document).ready( function() {
+
+
+// Datatables om dynamisch vacatures te laten zien
+    // $('#myTable').DataTable();
+
+// Vegas om dynamisch langs de vacatures te sliden
+    // $("#example, body").vegas({
+    //     slides: [
+    //         { src: "/img/slide1.jpg" },
+    //         { src: "/img/slide2.jpg" },
+    //         { src: "/img/slide3.jpg" },
+    //         { src: "/img/slide4.jpg" }
+    //     ]
+    // });
+    
+});
+</script>
 {% endblock %}
 
-{% block javascripts %}{% endblock %}
+

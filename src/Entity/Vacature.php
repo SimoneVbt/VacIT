@@ -20,7 +20,7 @@ class Vacature
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="vacatures")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="vacatures")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -145,23 +145,23 @@ class Vacature
         return $this->sollicitaties;
     }
 
-    public function addSollicitaty(Sollicitatie $sollicitaty): self
+    public function addSollicitatie(Sollicitatie $sollicitatie): self
     {
-        if (!$this->sollicitaties->contains($sollicitaty)) {
-            $this->sollicitaties[] = $sollicitaty;
-            $sollicitaty->setVacature($this);
+        if (!$this->sollicitaties->contains($sollicitatie)) {
+            $this->sollicitaties[] = $sollicitatie;
+            $sollicitatie->setVacature($this);
         }
 
         return $this;
     }
 
-    public function removeSollicitaty(Sollicitatie $sollicitaty): self
+    public function removeSollicitatie(Sollicitatie $sollicitatie): self
     {
-        if ($this->sollicitaties->contains($sollicitaty)) {
-            $this->sollicitaties->removeElement($sollicitaty);
+        if ($this->sollicitaties->contains($sollicitatie)) {
+            $this->sollicitaties->removeElement($sollicitatie);
             // set the owning side to null (unless already changed)
-            if ($sollicitaty->getVacature() === $this) {
-                $sollicitaty->setVacature(null);
+            if ($sollicitatie->getVacature() === $this) {
+                $sollicitatie->setVacature(null);
             }
         }
 
