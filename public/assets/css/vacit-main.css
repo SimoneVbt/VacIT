@@ -1,15 +1,109 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url("../fonts/BebasNeue.otf") format("opentype");
+}
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url("../fonts/Roboto-Condensed.ttf") format("truetype");
+}
+
+h1 {
+    color: #F15A24;
+    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif !important;
+    padding: 0;
+    margin: 0;
+}
+
+h2 {
+    color: #F15A24;
+    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif !important;
+    padding: 0;
+    margin: 0;
+}
+
+
+.logo {
+    width:120px;
+}
+
+.footer-logo {
+    float:right;
+}
+
+
 .title-bar {
     background-color: #333333 !important;
-    /* background: url("../img/vacit-logo-black.png"); */
-    color: white;
+    color: white !important;
+    height: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
 }
+
+/* button.menu-icon {
+    height: 200%;
+} */
 
 main {
     background-color: #F15A24;
     color: #333333;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-height:65vh;
+    padding-top:30px;
+}
+
+
+.line1 {
+    width: 100%;
+    border-bottom: 1px solid #333333;
+    transform:
+        translateY(10px)
+        rotate(-2deg); 
+    position: absolute;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+/* probleem 1: main moet maar tot aan de footer komen en niet verder
+probleem 2: line2 staat onder main en wordt zo naar beneden geduwd */
+
+
+.line2 {
+    width: 100%;
+    border-bottom: 1px solid #333333;
+    transform:
+        translateY(10px)
+        rotate(-2deg); 
+    position: absolute;
+}
+
+
+.footer {
+    background-color: #F15A24;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: hidden;
 }
 
 footer {
-    background-color: #333333;
-    color: white;
+    background-color: #333333 !important;
+    color: white !important;
+    height:auto;
+}
+
+footer p {
+    font-size: 0.8em;
+    font-style: italic;
+    margin-top:-10px;
 }

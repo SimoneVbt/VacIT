@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,21 +13,58 @@
         <script src="assets/jquery/jquery-3.5.1.js"></script>
         <script src="assets/foundation/assets/js/foundation.js"></script>
         {% block javascripts %}{% endblock %}
-
     </head>
+
     <body>
-        <header>
-            <div class="title-bar">
-                <div class="title-bar-right">
-                    <button class="menu-icon" type="button"></button>
-                </div>
+        <div class="grid-container full">
+            <div class="grid-y grid-frame">
+
+            <div class="cell shrink header">
+                <header>
+                    <div class="title-bar">
+                        <div class="title-bar-left">
+                            <img class="logo" src="assets/img/vacit-logo-white.png">
+                        </div>
+                        <div class="title-bar-right">
+                            <button class="menu-icon" type="button"></button>
+                        </div>
+                    </div>
+                </header>
+                <span class="line1"></span>
             </div>
-        </header>
-        <main>
-            {% block body %}{% endblock %}
-        </main>
-        <footer>
-            Hier komt de footer
-        </footer>
+
+
+            <div class="cell auto body">
+                <main>
+                    
+                    {% block body %}{% endblock %}
+                    
+                </main>
+            </div>
+
+            
+            <div class="cell shrink footer">
+                <span class="line2"></span>
+                <footer>
+                    <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-6">
+                            <h2>Adres</h2>
+                            <p>Poststraat 2B<br>
+                            6135 KR Sittard</p>
+                        </div>
+                        <div class="cell small-6">
+                            <img class="logo footer-logo" src="assets/img/vacit-logo-white.png">
+                        </div>
+                    </div>
+                    <div class="grid-x grid-padding-x grid-padding-y">
+                        <div class="cell small-6">
+                            <h2>Privacy</h2>
+                            <p>Lees hier onze<a href=""><br>privacy-richtlijnen</a></p>
+                        </div>
+                    </div>
+                </footer>
+            </div>   
+        </div>
     </body>
+
 </html>
