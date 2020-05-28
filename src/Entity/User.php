@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="user")
  */
 class User extends BaseUser
@@ -21,7 +22,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $naam;
 
@@ -41,17 +42,17 @@ class User extends BaseUser
     private $telefoonnummer;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $adres;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $postcode;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $plaats;
 
@@ -61,7 +62,7 @@ class User extends BaseUser
     private $afbeelding;
 
     /**
-     * @ORM\Column(type="string", length=2000)
+     * @ORM\Column(type="string", length=2000, nullable=true)
      */
     private $motivatie;
 
@@ -93,7 +94,7 @@ class User extends BaseUser
         return $this->naam;
     }
 
-    public function setNaam(string $naam): self
+    public function setNaam(?string $naam): self
     {
         $this->naam = $naam;
 
@@ -129,7 +130,7 @@ class User extends BaseUser
         return $this->telefoonnummer;
     }
 
-    public function setTelefoonnummer(string $telefoonnummer): self
+    public function setTelefoonnummer(?string $telefoonnummer): self
     {
         $this->telefoonnummer = $telefoonnummer;
 
@@ -141,7 +142,7 @@ class User extends BaseUser
         return $this->adres;
     }
 
-    public function setAdres(string $adres): self
+    public function setAdres(?string $adres): self
     {
         $this->adres = $adres;
 
@@ -153,7 +154,7 @@ class User extends BaseUser
         return $this->postcode;
     }
 
-    public function setPostcode(string $postcode): self
+    public function setPostcode(?string $postcode): self
     {
         $this->postcode = $postcode;
 
@@ -165,7 +166,7 @@ class User extends BaseUser
         return $this->plaats;
     }
 
-    public function setPlaats(string $plaats): self
+    public function setPlaats(?string $plaats): self
     {
         $this->plaats = $plaats;
 
@@ -180,6 +181,30 @@ class User extends BaseUser
     public function setAfbeelding(?string $afbeelding): self
     {
         $this->afbeelding = $afbeelding;
+
+        return $this;
+    }
+
+    public function getMotivatie(): ?string
+    {
+        return $this->motivatie;
+    }
+
+    public function setMotivatie(?string $motivatie): self
+    {
+        $this->motivatie = $motivatie;
+
+        return $this;
+    }
+
+    public function getCv(): ?string
+    {
+        return $this->cv;
+    }
+
+    public function setCv(?string $cv): self
+    {
+        $this->cv = $cv;
 
         return $this;
     }

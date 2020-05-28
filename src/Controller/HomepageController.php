@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use App\Entity\User;
 use App\Entity\Vacature;
+use App\Entity\Sollicitatie;
 
 class HomepageController extends BaseController
 /**
@@ -17,11 +19,11 @@ class HomepageController extends BaseController
      */
     public function index()
     {
-        $rep = $this->getDoctrine()->getRepository(Vacature::class);
-        $vacatures = $rep->findAll();
+        $vacRep = $this->getDoctrine()->getRepository(Vacature::class);
+        $vacatures = $vacRep->findall();
 
         return [
-            'vacatures' => $vacatures,
+            'data' => $vacatures,
         ];
     }
 }

@@ -34,6 +34,11 @@ class Sollicitatie
      */
     private $uitnodiging;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $datum_uitgenodigd;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -63,30 +68,6 @@ class Sollicitatie
         return $this;
     }
 
-    public function getMotivatie(): ?string
-    {
-        return $this->motivatie;
-    }
-
-    public function setMotivatie(string $motivatie): self
-    {
-        $this->motivatie = $motivatie;
-
-        return $this;
-    }
-
-    public function getCv(): ?string
-    {
-        return $this->cv;
-    }
-
-    public function setCv(string $cv): self
-    {
-        $this->cv = $cv;
-
-        return $this;
-    }
-
     public function getUitnodiging(): ?bool
     {
         return $this->uitnodiging;
@@ -95,6 +76,18 @@ class Sollicitatie
     public function setUitnodiging(?bool $uitnodiging): self
     {
         $this->uitnodiging = $uitnodiging;
+
+        return $this;
+    }
+
+    public function getDatumUitgenodigd(): ?\DateTimeInterface
+    {
+        return $this->datum_uitgenodigd;
+    }
+
+    public function setDatumUitgenodigd(?\DateTimeInterface $datum_uitgenodigd): self
+    {
+        $this->datum_uitgenodigd = $datum_uitgenodigd;
 
         return $this;
     }

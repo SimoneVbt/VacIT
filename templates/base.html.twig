@@ -2,16 +2,31 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>VacIT{% block title %}{% endblock %}</title>
 
         <link rel="stylesheet" href="assets/css/vacit-main.css">
+        <link rel="stylesheet" href="assets/foundation/assets/css/foundation.css">
         {% block stylesheets %}{% endblock %}
 
         <script src="assets/jquery/jquery-3.5.1.js"></script>
+        <script src="assets/foundation/assets/js/foundation.js"></script>
         {% block javascripts %}{% endblock %}
 
     </head>
     <body>
-        
+        <header>
+            <div class="title-bar">
+                <div class="title-bar-right">
+                    <button class="menu-icon" type="button"></button>
+                </div>
+            </div>
+        </header>
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+        <footer>
+            Hier komt de footer
+        </footer>
     </body>
 </html>

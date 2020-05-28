@@ -19,6 +19,42 @@ class VacatureRepository extends ServiceEntityRepository
         parent::__construct($registry, Vacature::class);
     }
 
+    public function saveVacature($params) {
+        if (isset($params['id'])) {
+            $vacature = $this->find($params['id']);
+        } else {
+            $vacature = new Vacature();
+        }
+
+        $vacature->setUser($params['user']); //moet user-object zijn, niet id
+
+        date_default_timezone_set('Europe/Amsterdam');
+        $vacature->setPlaatsingsdatum(isset($params['datum']) ? $params['datum'] : new \Datetime (date_default_timezone_get()) );
+        $vacature->setPlaatsingsdatum(isset($params['datum_bijgewerkt']) ? new \Datetime (date_default_timezone_get()) : null);
+
+        $vacature->setVacaturetitel($params['titel']);
+        $vacature->setVacaturetekst($params['tekst']);
+        $vacature->setAfbeelding(isset($params['afbeelding']) ? $params['afbeelding'] : null);
+        $vacature->setWerkniveau($params['niveau']);
+
+        $em = $this->getEntityManager();
+        $em->persist($vacature);
+        $em->flush();
+
+        return $vacature;
+    }
+
+    public function removeVacature($id) {
+        $vacature = $this->find($id);
+        if($vacature) {
+            $em = $this->getEntityManager();
+            $em->remove($vacature);
+            $em->flush();
+            return true;
+        }
+        return false;
+    }
+
     // /**
     //  * @return Vacature[] Returns an array of Vacature objects
     //  */

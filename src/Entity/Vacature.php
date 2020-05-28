@@ -26,7 +26,7 @@ class Vacature
     private $user;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $plaatsingsdatum;
 
@@ -54,6 +54,11 @@ class Vacature
      * @ORM\OneToMany(targetEntity=Sollicitatie::class, mappedBy="vacature")
      */
     private $sollicitaties;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $datum_bijgewerkt;
 
     public function __construct()
     {
@@ -164,6 +169,18 @@ class Vacature
                 $sollicitatie->setVacature(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDatumBijgewerkt(): ?\DateTimeInterface
+    {
+        return $this->datum_bijgewerkt;
+    }
+
+    public function setDatumBijgewerkt(?\DateTimeInterface $datum_bijgewerkt): self
+    {
+        $this->datum_bijgewerkt = $datum_bijgewerkt;
 
         return $this;
     }

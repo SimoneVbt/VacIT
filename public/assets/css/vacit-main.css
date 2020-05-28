@@ -1,0 +1,15 @@
+.title-bar {
+    background-color: #333333 !important;
+    /* background: url("../img/vacit-logo-black.png"); */
+    color: white;
+}
+
+main {
+    background-color: #F15A24;
+    color: #333333;
+}
+
+footer {
+    background-color: #333333;
+    color: white;
+}
