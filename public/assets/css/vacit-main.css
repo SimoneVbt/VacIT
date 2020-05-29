@@ -27,7 +27,43 @@ h2 {
     margin: 0;
 }
 
+/* homepage */
 
+.homepage-body {
+    height: 100%;
+    background-color: #F15A24 !important;
+    padding: 10px 30px 10px 30px;
+}
+
+
+div.home-date {
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif !important;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+h2.home-titel {
+    font-family: Arial, Helvetica, sans-serif !important;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+p.home-text {
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif !important;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.fa-arrow-right {
+    color: white;
+    padding-bottom: 10px;
+}
+
+
+/* base.html.twig */
 .logo {
     width:120px;
 }
@@ -37,6 +73,10 @@ h2 {
 }
 
 
+.header {
+    overflow: hidden;
+}
+
 .title-bar {
     background-color: #333333 !important;
     color: white !important;
@@ -44,51 +84,61 @@ h2 {
     top: 0;
     left: 0;
     right: 0;
-    overflow: hidden;
 }
 
-/* button.menu-icon {
-    height: 200%;
-} */
+button.menu-icon {
+    width:40px;
+    height:40px;
+}
+button.menu-icon::after {
+    height: 6px;
+    -webkit-box-shadow: 0 14px 0 #fefefe, 0 28px 0 #fefefe;
+            box-shadow: 0 14px 0 #fefefe, 0 28px 0 #fefefe;
+}
+
+.triangle-top {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 3vh 105vw 0 0;
+    border-color: #F15A24 transparent transparent transparent;
+    display: inline-block;
+    /* filter: drop-shadow(0 8px 10px #333333); */
+}
+
 
 main {
-    background-color: #F15A24;
     color: #333333;
+    height:100%;
     left: 0;
     right: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    min-height:65vh;
-    padding-top:30px;
 }
 
 
-.line1 {
-    width: 100%;
-    border-bottom: 1px solid #333333;
+.triangle-bottom {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 3vh 105vw;
+    border-color: transparent transparent #F15A24 transparent;
+    display: inline-block;
+    margin-bottom:-6px;
+
+    /* width: 105vw;
+    height: 2vh;
     transform:
-        translateY(10px)
+        translateY(0.2vh)
         rotate(-2deg); 
-    position: absolute;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
-
-/* probleem 1: main moet maar tot aan de footer komen en niet verder
-probleem 2: line2 staat onder main en wordt zo naar beneden geduwd */
-
-
-.line2 {
-    width: 100%;
-    border-bottom: 1px solid #333333;
-    transform:
-        translateY(10px)
-        rotate(-2deg); 
-    position: absolute;
+    position: fixed;
+    margin-top: -20px;
+    border-bottom: #333333 thin hidden;
+    box-shadow: 0 -8px 10px -5px #333333; */
 }
 
 
 .footer {
-    background-color: #F15A24;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -103,7 +153,17 @@ footer {
 }
 
 footer p {
-    font-size: 0.8em;
+    font-size: 0.7em;
     font-style: italic;
     margin-top:-10px;
+}
+
+.address {
+    padding-left:10px;
+    padding-top: 10px;
+}
+
+.privacy {
+    padding-left: 10px;
+    padding-bottom:10px;
 }

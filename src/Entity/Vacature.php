@@ -142,6 +142,18 @@ class Vacature
         return $this;
     }
 
+    public function getDatumBijgewerkt(): ?\DateTimeInterface
+    {
+        return $this->datum_bijgewerkt;
+    }
+
+    public function setDatumBijgewerkt(?\DateTimeInterface $datum_bijgewerkt): self
+    {
+        $this->datum_bijgewerkt = $datum_bijgewerkt;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Sollicitatie[]
      */
@@ -173,15 +185,4 @@ class Vacature
         return $this;
     }
 
-    public function getDatumBijgewerkt(): ?\DateTimeInterface
-    {
-        return $this->datum_bijgewerkt;
-    }
-
-    public function setDatumBijgewerkt(?\DateTimeInterface $datum_bijgewerkt): self
-    {
-        $this->datum_bijgewerkt = $datum_bijgewerkt;
-
-        return $this;
-    }
 }
