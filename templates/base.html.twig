@@ -6,13 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>VacIT{% block title %}{% endblock %}</title>
 
-        <link rel="stylesheet" href="assets/css/vacit-main.css">
-        <link rel="stylesheet" href="assets/foundation/assets/css/foundation.css">
-        <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+        <link rel="stylesheet" href="{{ asset('assets/css/vacit-main.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/foundation/assets/css/foundation.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
         {% block stylesheets %}{% endblock %}
 
-        <script src="assets/jquery/jquery-3.5.1.js"></script>
-        <script src="assets/foundation/assets/js/foundation.js"></script>
+        <script src="{{ asset('assets/jquery/jquery-3.5.1.js') }}"></script>
+        <script src="{{ asset('assets/foundation/assets/js/foundation.js') }}"></script>
         {% block javascripts %}{% endblock %}
     </head>
 
@@ -24,7 +24,7 @@
                     <header>
                         <div class="title-bar">
                             <div class="title-bar-left">
-                                <img class="logo" src="assets/img/vacit-logo-white.png">
+                                <img class="logo" src="{{ asset('assets/img/vacit-logo-white.png') }}">
                             </div>
                             <div class="title-bar-right">
                                 <button class="menu-icon" type="button"></button>
@@ -54,7 +54,7 @@
                                 6135 KR Sittard</p>
                             </div>
                             <div class="cell small-6">
-                                <img class="logo footer-logo" src="assets/img/vacit-logo-white.png">
+                                <img class="logo footer-logo" src="{{ asset('assets/img/vacit-logo-white.png') }}">
                             </div>
                         </div>
                         <div class="grid-x grid-padding-x privacy">

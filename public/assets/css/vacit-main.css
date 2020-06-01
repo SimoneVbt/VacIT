@@ -32,9 +32,33 @@ h2 {
 .homepage-body {
     height: 100%;
     background-color: #F15A24 !important;
-    padding: 10px 30px 10px 30px;
+    padding: 50px 20px 50px 20px;
 }
 
+.hexagon {
+    padding-top: 10px;
+}
+
+.hex-left {
+    float: left;
+    border-right: 20px solid #333333;
+    border-top: 35px solid transparent;
+    border-bottom: 35px solid transparent;
+}
+
+.hex-middle {
+    float: left;
+    width: 40px;
+    height: 70px;
+    background-color: #333333;
+}
+
+.hex-right {
+    float: left;
+    border-left: 20px solid #333333;
+    border-top: 35px solid transparent;
+    border-bottom: 35px solid transparent;
+}
 
 div.home-date {
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif !important;
@@ -46,7 +70,8 @@ h2.home-titel {
     font-family: Arial, Helvetica, sans-serif !important;
     color: white;
     font-size: 16px;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
+    line-height: 1.4em;
 }
 
 p.home-text {
@@ -55,17 +80,25 @@ p.home-text {
     font-weight: 600;
     font-size: 13px;
     margin-bottom: 5px;
+    line-height: 1.4em;
 }
 
 .fa-arrow-right {
     color: white;
-    padding-bottom: 10px;
+    padding: 10px;
+}
+
+button.all-vacancies {
+    background-color: #333333;
+    color: white;
+    border: solid #333333 10px;
+    border-radius: 5px;
 }
 
 
 /* base.html.twig */
 .logo {
-    width:120px;
+    width:130px;
 }
 
 .footer-logo {
@@ -74,6 +107,7 @@ p.home-text {
 
 
 .header {
+    position: fixed;
     overflow: hidden;
 }
 
@@ -114,6 +148,8 @@ main {
     right: 0;
     overflow-x: hidden;
     overflow-y: auto;
+    padding-top: 10vh;
+    padding-bottom: 20vh;
 }
 
 

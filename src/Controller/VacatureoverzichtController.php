@@ -5,17 +5,15 @@ namespace App\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-use App\Entity\User;
 use App\Entity\Vacature;
-use App\Entity\Sollicitatie;
 
-class HomepageController extends BaseController
+class VacatureoverzichtController extends BaseController
 /**
- * @Route("/")
+ * @Route("/vacatures", name="vacatures")
  */
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="vacatureoverzicht")
      * @Template()
      */
     public function index()
@@ -24,7 +22,7 @@ class HomepageController extends BaseController
         $vacatures = $vacRep->getAllVacaturesByDate();
 
         return [
-            'data' => $vacatures,
+            'vacatures' => $vacatures,
         ];
     }
 }

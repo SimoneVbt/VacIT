@@ -14,59 +14,68 @@
 
 {% block body %}
 
-<!-- Data gesorteerd op datum! -->
-
 <div class="grid-y homepage-body">
 
-    <div class="grid-x">
-        <div class="cell small-3"> logo
-            {# <div class="hexagon"></div> #}
+    <div class="grid-x grid-padding-y">
+        <div class="cell small-3">
+            <div class="hexagon">
+                <div class="hex-left"></div>
+                <div class="hex-middle"></div>
+                <div class="hex-right"></div>
+            </div>
         </div>
         <div class="cell small-9">
-            <div class="home-date">{{ data.0.plaatsingsdatum|date("d-m-Y") }}</div>
+            <div class="home-date">{{ data.0.plaatsingsdatum|date("d M Y") }}</div>
             <h2 class="home-titel">{{ data.0.vacaturetitel }}</h2>
             <p class="home-text">{{ data.0.vacaturetekst|slice(0, 90) }}...</p>
             <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
         </div>
     </div>
 
-    <div class="grid-x">
+    <div class="grid-x grid-padding-y">
         <div class="cell small-3">logo</div>
         <div class="cell small-9">
-            <div class="home-date">{{ data.1.plaatsingsdatum|date("d-m-Y") }}</div>
+            <div class="home-date">{{ data.1.plaatsingsdatum|date("d M Y") }}</div>
             <h2 class="home-titel">{{ data.1.vacaturetitel }}</h2>
             <p class="home-text">{{ data.1.vacaturetekst|slice(0, 90) }}...</p>
             <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
         </div>
     </div>
 
-    <div class="grid-x">
+    <div class="grid-x grid-padding-y">
         <div class="cell small-3">logo</div>
         <div class="cell small-9">
-            <div class="home-date">{{ data.2.plaatsingsdatum|date("d-m-Y") }}</div>
+            <div class="home-date">{{ data.2.plaatsingsdatum|date("d M Y") }}</div>
             <h2 class="home-titel">{{ data.2.vacaturetitel }}</h2>
             <p class="home-text">{{ data.2.vacaturetekst|slice(0, 90) }}...</p>
             <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
         </div>
     </div>
 
-    <div class="grid-x">
+    <div class="grid-x grid-padding-y">
         <div class="cell small-3">logo</div>
         <div class="cell small-9">
-            <div class="home-date">{{ data.3.plaatsingsdatum|date("d-m-Y") }}</div>
+            <div class="home-date">{{ data.3.plaatsingsdatum|date("d M Y") }}</div>
             <h2 class="home-titel">{{ data.3.vacaturetitel }}</h2>
             <p class="home-text">{{ data.3.vacaturetekst|slice(0, 90) }}...</p>
             <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
         </div>
     </div>
 
-    <div class="grid-x">
+    <div class="grid-x grid-padding-y">
         <div class="cell small-3">logo</div>
         <div class="cell small-9">
-            <div class="home-date">{{ data.4.plaatsingsdatum|date("d-m-Y") }}</div>
+            <div class="home-date">{{ data.4.plaatsingsdatum|date("d M Y") }}</div>
             <h2 class="home-titel">{{ data.4.vacaturetitel }}</h2>
             <p class="home-text">{{ data.4.vacaturetekst|slice(0, 90) }}...</p>
             <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
+        </div>
+    </div>
+
+    <div class="grid-x grid-padding-y">
+        <div class="cell small-3"></div>
+        <div class="cell small-9">
+            <button class="all-vacancies" href="">Bekijk alle vacatures</button>
         </div>
     </div>
     
@@ -77,15 +86,15 @@
 <script>
 // $(document).ready( function() {
 
-// // Vegas om dynamisch langs de vacatures te sliden
-//     // $("#example, body").vegas({
-//     //     slides: [
-//     //         { src: "/img/slide1.jpg" },
-//     //         { src: "/img/slide2.jpg" },
-//     //         { src: "/img/slide3.jpg" },
-//     //         { src: "/img/slide4.jpg" }
-//     //     ]
-//     // });
+// Vegas om dynamisch langs de vacatures te sliden
+//     $("#example, body").vegas({
+//         slides: [
+//             { src: "/img/slide1.jpg" },
+//             { src: "/img/slide2.jpg" },
+//             { src: "/img/slide3.jpg" },
+//             { src: "/img/slide4.jpg" }
+//         ]
+//     });
     
 // });
 </script>

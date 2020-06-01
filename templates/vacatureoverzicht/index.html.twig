@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} :: Vacatures{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block javascripts %}
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+{% endblock %}
+
+
+{% block body %}
+
+<div class="grid-y homepage-body">
+
+    <table id="tabel-vacatures" class="display">
+        <thead>
+            <th>logo</th>
+            <th>vacature</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>logo 1</td>
+                <td>vacature 1</td>
+            </tr>
+            <tr>
+                <td>logo 2</td>
+                <td>vacature 2</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {# {% for vacature in vacatures %}
+
+        <div class="grid-x grid-padding-y">
+            <div class="cell small-3">logo</div>
+            <div class="cell small-9">
+                {{ vacature.vacaturetitel }}
+            </div>
+        </div>
+        
+    {% endfor %} #}
+ </div>   
+
+    
+    <script>
+    $(document).ready( function() {
+    
+        $('#tabel-vacatures').DataTable();
+    
+    });
+    </script>
+
+{% endblock %}

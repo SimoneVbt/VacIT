@@ -19,6 +19,18 @@ class VacatureRepository extends ServiceEntityRepository
         parent::__construct($registry, Vacature::class);
     }
 
+
+    public function getAllVacaturesByDate() 
+    {
+        $vacatures = $this->createQueryBuilder('v')
+                    ->orderBy('v.plaatsingsdatum', 'DESC')
+                    ->getQuery()
+                    ->getResult();
+
+        return $vacatures;
+    }
+
+
     public function saveVacature($params) {
         if (isset($params['id'])) {
             $vacature = $this->find($params['id']);
@@ -44,6 +56,7 @@ class VacatureRepository extends ServiceEntityRepository
         return $vacature;
     }
 
+
     public function removeVacature($id) {
         $vacature = $this->find($id);
         if($vacature) {
@@ -54,33 +67,4 @@ class VacatureRepository extends ServiceEntityRepository
         }
         return false;
     }
-
-    // /**
-    //  * @return Vacature[] Returns an array of Vacature objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('v.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Vacature
-    {
-        return $this->createQueryBuilder('v')
-            ->andWhere('v.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
