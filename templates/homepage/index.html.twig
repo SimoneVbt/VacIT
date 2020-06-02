@@ -1,10 +1,33 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %} :: Home{% endblock %}
 
+
+
 {% block stylesheets %}
+
 <link rel="stylesheet" href="assets/vegas/vegas.min.css">
+<style>
+    main {
+        background-color: #F15A24;
+    }
+    
+    @media (min-width: 640px) {
+
+        main {
+            padding-bottom: 50px;
+        }
+
+        .footer {
+            display: none;
+        }
+    }
+</style>
+
 {% endblock %}
+
+
 
 {% block javascripts %}
 <script src="assets/vegas/vegas.min.js"></script>
@@ -12,79 +35,104 @@
 
 
 
+
 {% block body %}
 
-<div class="grid-y homepage-body">
+<div class="grid-x grid-padding-y">
 
-    <div class="grid-x grid-padding-y">
-        <div class="cell small-3">
-            <div class="hexagon">
-                <div class="hex-left"></div>
-                <div class="hex-middle"></div>
-                <div class="hex-right"></div>
+    <div class="cell show-for-large large-4">
+        Vegas Baby!
+    </div>
+
+    <div class="cell large-8">
+
+        <div class="grid-x grid-padding-y">
+            <div class="cell small-3 large-2">
+                <div class="hexagon"></div> 
+                {# <i class="fab fa-{{ data.0.afbeelding }}"></i> #}
+            </div>
+            <div class="cell small-9 large-8">
+                <div class="home-date">{{ data.0.plaatsingsdatum|date("d M Y") }}</div>
+                <h2 class="home-titel">{{ data.0.vacaturetitel }}</h2>
+                <p class="home-text">{{ data.0.vacaturetekst }}</p>
+                <a href="" class="hide-for-large"><i class="fas fa-arrow-right fa-3x"></i></a>
+            </div>
+            <div class="cell large-2 show-for-large">
+                <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
             </div>
         </div>
-        <div class="cell small-9">
-            <div class="home-date">{{ data.0.plaatsingsdatum|date("d M Y") }}</div>
-            <h2 class="home-titel">{{ data.0.vacaturetitel }}</h2>
-            <p class="home-text">{{ data.0.vacaturetekst|slice(0, 90) }}...</p>
-            <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
+
+        <div class="grid-x grid-padding-y">
+            <div class="cell small-3 large-2">
+                <div class="hexagon"></div>
+            </div>
+            <div class="cell small-9 large-8">
+                <div class="home-date">{{ data.1.plaatsingsdatum|date("d M Y") }}</div>
+                <h2 class="home-titel">{{ data.1.vacaturetitel }}</h2>
+                <p class="home-text">{{ data.1.vacaturetekst }}</p>
+                <a href="" class="hide-for-large"><i class="fas fa-arrow-right fa-3x"></i></a>
+            </div>
+            <div class="cell large-2 show-for-large">
+                <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
+            </div>
+        </div>
+
+        <div class="grid-x grid-padding-y">
+            <div class="cell small-3 large-2">
+                <div class="hexagon"></div>
+            </div>
+            <div class="cell small-9 large-8">
+                <div class="home-date">{{ data.2.plaatsingsdatum|date("d M Y") }}</div>
+                <h2 class="home-titel">{{ data.2.vacaturetitel }}</h2>
+                <p class="home-text">{{ data.2.vacaturetekst }}</p>
+                <a href="" class="hide-for-large"><i class="fas fa-arrow-right fa-3x"></i></a>
+            </div>
+            <div class="cell large-2 show-for-large">
+                <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
+            </div>
+        </div>
+
+        <div class="grid-x grid-padding-y">
+            <div class="cell small-3 large-2">
+                <div class="hexagon"></div>
+            </div>
+            <div class="cell small-9 large-8">
+                <div class="home-date">{{ data.3.plaatsingsdatum|date("d M Y") }}</div>
+                <h2 class="home-titel">{{ data.3.vacaturetitel }}</h2>
+                <p class="home-text">{{ data.3.vacaturetekst }}</p>
+                <a href="" class="hide-for-large"><i class="fas fa-arrow-right fa-3x"></i></a>
+            </div>
+            <div class="cell large-2 show-for-large">
+                <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
+            </div>
+        </div>
+
+        <div class="grid-x grid-padding-y">
+            <div class="cell small-3 large-2">
+                <div class="hexagon"></div>
+            </div>
+            <div class="cell small-9 large-8">
+                <div class="home-date">{{ data.4.plaatsingsdatum|date("d M Y") }}</div>
+                <h2 class="home-titel">{{ data.4.vacaturetitel }}</h2>
+                <p class="home-text">{{ data.4.vacaturetekst }}</p>
+                <a href="" class="hide-for-large"><i class="fas fa-arrow-right fa-3x"></i></a>
+            </div>
+            <div class="cell large-2 show-for-large">
+                <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
+            </div>
+        </div>
+
+        <div class="grid-x grid-padding-y">
+            <div class="cell small-3 large-1"></div>
+            <div class="cell small-9 large-11">
+                <button class="all-vacancies" href="{{ path('vacatureoverzicht') }}">Bekijk alle vacatures</button>
+            </div>
         </div>
     </div>
-
-    <div class="grid-x grid-padding-y">
-        <div class="cell small-3">logo</div>
-        <div class="cell small-9">
-            <div class="home-date">{{ data.1.plaatsingsdatum|date("d M Y") }}</div>
-            <h2 class="home-titel">{{ data.1.vacaturetitel }}</h2>
-            <p class="home-text">{{ data.1.vacaturetekst|slice(0, 90) }}...</p>
-            <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
-        </div>
-    </div>
-
-    <div class="grid-x grid-padding-y">
-        <div class="cell small-3">logo</div>
-        <div class="cell small-9">
-            <div class="home-date">{{ data.2.plaatsingsdatum|date("d M Y") }}</div>
-            <h2 class="home-titel">{{ data.2.vacaturetitel }}</h2>
-            <p class="home-text">{{ data.2.vacaturetekst|slice(0, 90) }}...</p>
-            <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
-        </div>
-    </div>
-
-    <div class="grid-x grid-padding-y">
-        <div class="cell small-3">logo</div>
-        <div class="cell small-9">
-            <div class="home-date">{{ data.3.plaatsingsdatum|date("d M Y") }}</div>
-            <h2 class="home-titel">{{ data.3.vacaturetitel }}</h2>
-            <p class="home-text">{{ data.3.vacaturetekst|slice(0, 90) }}...</p>
-            <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
-        </div>
-    </div>
-
-    <div class="grid-x grid-padding-y">
-        <div class="cell small-3">logo</div>
-        <div class="cell small-9">
-            <div class="home-date">{{ data.4.plaatsingsdatum|date("d M Y") }}</div>
-            <h2 class="home-titel">{{ data.4.vacaturetitel }}</h2>
-            <p class="home-text">{{ data.4.vacaturetekst|slice(0, 90) }}...</p>
-            <a href=""><i class="fas fa-arrow-right fa-3x"></i></a>
-        </div>
-    </div>
-
-    <div class="grid-x grid-padding-y">
-        <div class="cell small-3"></div>
-        <div class="cell small-9">
-            <button class="all-vacancies" href="">Bekijk alle vacatures</button>
-        </div>
-    </div>
-    
-</div>
-
-
 
 <script>
 // $(document).ready( function() {
+
 
 // Vegas om dynamisch langs de vacatures te sliden
 //     $("#example, body").vegas({

@@ -20,9 +20,23 @@ class HomepageController extends BaseController
      */
     public function index()
     {
-        $vacRep = $this->getDoctrine()->getRepository(Vacature::class);
-        $vacatures = $vacRep->getAllVacaturesByDate();
+        $vacatureRepository = $this->getDoctrine()->getRepository(Vacature::class);
+        $vacatures = $vacatureRepository->getAllVacaturesByDate();
 
+        return [
+            'data' => $vacatures,
+        ];
+    }
+
+    /**
+     * @Route("/vacatures",  name="vacatureoverzicht")
+     * @Template()
+     */
+    public function vacatures()
+    {
+        $vacatureRepository = $this->getDoctrine()->getRepository(Vacature::class);
+        $vacatures = $vacatureRepository->getAllVacaturesByDate();
+        
         return [
             'data' => $vacatures,
         ];

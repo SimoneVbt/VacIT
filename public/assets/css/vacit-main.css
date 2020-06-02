@@ -29,35 +29,18 @@ h2 {
 
 /* homepage */
 
-.homepage-body {
-    height: 100%;
-    background-color: #F15A24 !important;
-    padding: 50px 20px 50px 20px;
+.hexagon::before {
+    content: "\2B23";
+    font-size: 24vw;
+    position: relative;
+    bottom: 5vh;
 }
 
-.hexagon {
-    padding-top: 10px;
-}
-
-.hex-left {
-    float: left;
-    border-right: 20px solid #333333;
-    border-top: 35px solid transparent;
-    border-bottom: 35px solid transparent;
-}
-
-.hex-middle {
-    float: left;
-    width: 40px;
-    height: 70px;
-    background-color: #333333;
-}
-
-.hex-right {
-    float: left;
-    border-left: 20px solid #333333;
-    border-top: 35px solid transparent;
-    border-bottom: 35px solid transparent;
+.fab {
+    filter: invert(100%);
+    position: absolute;
+    bottom: 5vh;
+    z-index: 1;
 }
 
 div.home-date {
@@ -81,6 +64,11 @@ p.home-text {
     font-size: 13px;
     margin-bottom: 5px;
     line-height: 1.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
 }
 
 .fa-arrow-right {
@@ -95,13 +83,30 @@ button.all-vacancies {
     border-radius: 5px;
 }
 
+@media (min-width: 640px) {
+    
+    p.home-text {
+        line-height: 1.6em;
+    }
+    button.all-vacancies {
+        width: 50%;
+        height: 150%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hexagon::before {
+        font-size: 12vw;
+    }
+}
+
 
 /* base.html.twig */
 .logo {
     width:130px;
 }
 
-.footer-logo {
+.footer-logo-small {
     float:right;
 }
 
@@ -109,6 +114,7 @@ button.all-vacancies {
 .header {
     position: fixed;
     overflow: hidden;
+    z-index: 999;
 }
 
 .title-bar {
@@ -120,9 +126,23 @@ button.all-vacancies {
     right: 0;
 }
 
+.top-bar {
+    background-color: #333333 !important;
+}
+
+.top-bar-right .dropdown {
+    background-color: #333333 !important;
+    padding-top: 40px;
+}
+
+.top-bar-right .dropdown a {
+    color: white !important;
+    text-transform: uppercase;
+}
+
 button.menu-icon {
-    width:40px;
-    height:40px;
+    width: 40px;
+    height: 40px;
 }
 button.menu-icon::after {
     height: 6px;
@@ -137,7 +157,7 @@ button.menu-icon::after {
     border-width: 3vh 105vw 0 0;
     border-color: #F15A24 transparent transparent transparent;
     display: inline-block;
-    /* filter: drop-shadow(0 8px 10px #333333); */
+    filter: drop-shadow(0 1px 4px #333333);
 }
 
 
@@ -148,8 +168,7 @@ main {
     right: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-top: 10vh;
-    padding-bottom: 20vh;
+    padding: 16vh 10px 27vh 10px;
 }
 
 
@@ -161,16 +180,7 @@ main {
     border-color: transparent transparent #F15A24 transparent;
     display: inline-block;
     margin-bottom:-6px;
-
-    /* width: 105vw;
-    height: 2vh;
-    transform:
-        translateY(0.2vh)
-        rotate(-2deg); 
-    position: fixed;
-    margin-top: -20px;
-    border-bottom: #333333 thin hidden;
-    box-shadow: 0 -8px 10px -5px #333333; */
+    filter: drop-shadow(0 -1px 4px #333333);
 }
 
 
@@ -180,18 +190,24 @@ main {
     left: 0;
     right: 0;
     overflow: hidden;
+    z-index: 999;
 }
 
 footer {
     background-color: #333333 !important;
     color: white !important;
-    height:auto;
+    height: auto;
+    position: relative;
 }
 
 footer p {
     font-size: 0.7em;
     font-style: italic;
     margin-top:-10px;
+}
+
+footer h2 {
+    font-size: 1.5em;
 }
 
 .address {
@@ -202,4 +218,18 @@ footer p {
 .privacy {
     padding-left: 10px;
     padding-bottom:10px;
+}
+
+
+@media (min-width: 640px) {
+
+    footer p {
+        position: absolute;
+        bottom: 5px;
+    }
+    
+    footer h2 {
+        position: absolute;
+        bottom: 45px;
+    }
 }
