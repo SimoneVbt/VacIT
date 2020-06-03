@@ -23,7 +23,7 @@
                 <div class="cell shrink header">
                     <header>
 
-                        <div class="title-bar hide-for-medium" data-responsive-toggle="header-menu">
+                        <div class="title-bar" data-responsive-toggle="header-menu" data-hide-for="medium">
                             <div class="title-bar-left">
                                 <div class="title-bar-title">
                                     <img class="logo" src="{{ asset('assets/img/vacit-logo-white.png') }}">
@@ -34,8 +34,8 @@
                             </div>
                         </div>
 
-                        <div class="top-bar show-for-medium" id="header-menu">
-                            <div class="top-bar-left">
+                        <div class="top-bar" id="header-menu">
+                            <div class="top-bar-left show-for-medium">
                                 <img class="logo" src="{{ asset('assets/img/vacit-logo-white.png') }}">
                             </div>
                             <div class="top-bar-right">
@@ -106,5 +106,14 @@
             </div>
         </div>
     </body>
+    
+
+    <script>
+    $(document).ready(function() {
+
+        $(document).foundation()
+
+    })
+    </script>
 
 </html>

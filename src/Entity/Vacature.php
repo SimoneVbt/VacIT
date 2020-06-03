@@ -41,9 +41,9 @@ class Vacature
     private $vacaturetekst;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(type="string", length=50)
      */
-    private $afbeelding;
+    private $afbeelding = "default";
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -59,6 +59,11 @@ class Vacature
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $datum_bijgewerkt;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $standplaats;
 
     public function __construct()
     {
@@ -181,6 +186,18 @@ class Vacature
                 $sollicitatie->setVacature(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStandplaats(): ?string
+    {
+        return $this->standplaats;
+    }
+
+    public function setStandplaats(string $standplaats): self
+    {
+        $this->standplaats = $standplaats;
 
         return $this;
     }

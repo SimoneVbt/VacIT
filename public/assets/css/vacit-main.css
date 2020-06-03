@@ -1,16 +1,14 @@
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url("../fonts/BebasNeue.otf") format("opentype"); }
+@font-face {
+    font-family: 'Roboto Condensed';
+    src: url("../fonts/Roboto-Condensed.ttf") format("truetype"); }
+
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif !important;
-}
-
-
-@font-face {
-    font-family: 'Bebas Neue';
-    src: url("../fonts/BebasNeue.otf") format("opentype");
-}
-@font-face {
-    font-family: 'Roboto Condensed';
-    src: url("../fonts/Roboto-Condensed.ttf") format("truetype");
 }
 
 h1 {
@@ -27,36 +25,24 @@ h2 {
     margin: 0;
 }
 
-/* homepage */
+/**************************** 
+        HOMEPAGE
+*************************** */
 
-.hexagon::before {
-    content: "\2B23";
-    font-size: 24vw;
-    position: relative;
-    bottom: 5vh;
-}
-
-.fab {
-    filter: invert(100%);
-    position: absolute;
-    bottom: 5vh;
-    z-index: 1;
+.icon {
+    padding-right: 10px;
 }
 
 div.home-date {
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif !important;
     font-weight: 600;
-    font-size: 12px;
-}
-
+    font-size: 12px; }
 h2.home-titel {
     font-family: Arial, Helvetica, sans-serif !important;
     color: white;
     font-size: 16px;
     margin-bottom: 5px;
-    line-height: 1.4em;
-}
-
+    line-height: 1.4em; }
 p.home-text {
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif !important;
     font-style: italic;
@@ -66,17 +52,16 @@ p.home-text {
     line-height: 1.4em;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
+    display:-webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; }
 
 .fa-arrow-right {
     color: white;
     padding: 10px;
 }
 
-button.all-vacancies {
+a.all-vacancies {
     background-color: #333333;
     color: white;
     border: solid #333333 10px;
@@ -84,28 +69,55 @@ button.all-vacancies {
 }
 
 @media (min-width: 640px) {
-    
-    p.home-text {
-        line-height: 1.6em;
+
+    .vacancy {
+        padding-bottom: 40px; }
+        .icon img {
+            transform: scale(0.8); }
+        div.home-date {
+            font-size: 18px; }
+        h2.home-titel {
+            font-size: 24px; }
+        p.home-text {
+            font-size: 20px;
+            line-height: 1.6em; }
+
+    .fa-arrow-right {
+        transform: scale(1.4);
     }
-    button.all-vacancies {
-        width: 50%;
-        height: 150%;
-    }
+
+    a.all-vacancies {
+        font-size: 1.5em;
+        padding: 10px;
+    } 
 }
 
 @media (min-width: 1024px) {
-    .hexagon::before {
-        font-size: 12vw;
-    }
+
+    .icon img {
+        transform: scale(0.9); }
+    div.home-date{
+        font-size: 16px; }
+    p.home-text {
+        font-size: 18px; }
+
+    .arrow {
+        text-align: center;
+        position: relative;
+        padding-right: 50px; }
+        .fa-arrow-right {
+            position: absolute;
+            top: 50%;
+            transform: scale(1.5); }
 }
 
 
-/* base.html.twig */
+/**************************** 
+            BASE
+*************************** */
 .logo {
     width:130px;
 }
-
 .footer-logo-small {
     float:right;
 }
@@ -127,28 +139,24 @@ button.all-vacancies {
 }
 
 .top-bar {
-    background-color: #333333 !important;
-}
-
-.top-bar-right .dropdown {
-    background-color: #333333 !important;
-    padding-top: 40px;
-}
-
-.top-bar-right .dropdown a {
-    color: white !important;
-    text-transform: uppercase;
-}
+    background-color: #333333 !important; }
+    .top-bar-right .dropdown {
+        background-color: #333333 !important;
+        padding-top: 40px; }
+        .top-bar-right .dropdown a {
+            color: white !important;
+            text-transform: uppercase; }
 
 button.menu-icon {
     width: 40px;
-    height: 40px;
-}
-button.menu-icon::after {
-    height: 6px;
-    -webkit-box-shadow: 0 14px 0 #fefefe, 0 28px 0 #fefefe;
-            box-shadow: 0 14px 0 #fefefe, 0 28px 0 #fefefe;
-}
+    height: 40px; }
+    button.menu-icon::after {
+        height: 6px;
+        -webkit-box-shadow: 0 14px 0 #fefefe, 0 28px 0 #fefefe;
+                box-shadow: 0 14px 0 #fefefe, 0 28px 0 #fefefe; }
+    button.menu-icon:hover::after {
+        -webkit-box-shadow: 0 14px 0 #cacaca, 0 28px 0 #cacaca;
+                box-shadow: 0 14px 0 #cacaca, 0 28px 0 #cacaca; }
 
 .triangle-top {
     width: 0;
@@ -161,27 +169,17 @@ button.menu-icon::after {
 }
 
 
+
 main {
     color: #333333;
-    height:100%;
+    height: 100%;
     left: 0;
     right: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 16vh 10px 27vh 10px;
+    padding: 18vh 10px 32vh 10px;
 }
 
-
-.triangle-bottom {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0 0 3vh 105vw;
-    border-color: transparent transparent #F15A24 transparent;
-    display: inline-block;
-    margin-bottom:-6px;
-    filter: drop-shadow(0 -1px 4px #333333);
-}
 
 
 .footer {
@@ -193,43 +191,70 @@ main {
     z-index: 999;
 }
 
+.triangle-bottom {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 3vh 105vw;
+    border-color: transparent transparent #F15A24 transparent;
+    display: inline-block;
+    margin-bottom: -6px;
+    filter: drop-shadow(0 -1px 4px #333333);
+}
+
 footer {
     background-color: #333333 !important;
     color: white !important;
     height: auto;
-    position: relative;
+    position: relative; }
+    footer p {
+        font-size: 0.7em;
+        font-style: italic;
+        margin-top: -10px; }
+    footer h2 {
+        font-size: 1.5em; }
+    .address {
+        padding-left: 10px;
+        padding-top: 10px; }
+    .privacy {
+        padding-left: 10px;
+        padding-bottom: 10px; }
+
+
+        
+@media (max-width: 360px) {
+
+    main {
+        padding-top: 20vh;
+        padding-bottom: 39vh;
+    }
 }
 
-footer p {
-    font-size: 0.7em;
-    font-style: italic;
-    margin-top:-10px;
-}
+@media (max-width: 640px) {
 
-footer h2 {
-    font-size: 1.5em;
+    .top-bar-right .dropdown {
+        padding: 0;
+        float: right;
+    }
 }
-
-.address {
-    padding-left:10px;
-    padding-top: 10px;
-}
-
-.privacy {
-    padding-left: 10px;
-    padding-bottom:10px;
-}
-
 
 @media (min-width: 640px) {
 
+    main {
+        padding: 15vh 20px 20vh 20px;
+    }
+
     footer p {
         position: absolute;
-        bottom: 5px;
-    }
-    
+        bottom: 5px; }
     footer h2 {
         position: absolute;
-        bottom: 45px;
+        bottom: 45px; }
+}
+
+@media (min-width: 1050px) {
+    main {
+        padding-top: 150px;
+        padding-bottom: 15vh;
     }
 }
