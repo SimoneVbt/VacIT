@@ -159,6 +159,18 @@ class Vacature
         return $this;
     }
 
+    public function getStandplaats(): ?string
+    {
+        return $this->standplaats;
+    }
+
+    public function setStandplaats(string $standplaats): self
+    {
+        $this->standplaats = $standplaats;
+
+        return $this;
+    }
+
     /**
      * @return Collection|Sollicitatie[]
      */
@@ -189,17 +201,4 @@ class Vacature
 
         return $this;
     }
-
-    public function getStandplaats(): ?string
-    {
-        return $this->standplaats;
-    }
-
-    public function setStandplaats(string $standplaats): self
-    {
-        $this->standplaats = $standplaats;
-
-        return $this;
-    }
-
 }

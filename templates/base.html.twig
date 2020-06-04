@@ -26,7 +26,9 @@
                         <div class="title-bar" data-responsive-toggle="header-menu" data-hide-for="medium">
                             <div class="title-bar-left">
                                 <div class="title-bar-title">
-                                    <img class="logo" src="{{ asset('assets/img/vacit-logo-white.png') }}">
+                                    <a href="{{ path('homepage') }}">
+                                        <img class="logo" src="{{ asset('assets/img/vacit-logo-white.png') }}">
+                                    </a>
                                 </div>
                             </div>
                             <div class="title-bar-right">
@@ -36,12 +38,14 @@
 
                         <div class="top-bar" id="header-menu">
                             <div class="top-bar-left show-for-medium">
-                                <img class="logo" src="{{ asset('assets/img/vacit-logo-white.png') }}">
+                                <a href="{{ path('homepage') }}">
+                                    <img class="logo" src="{{ asset('assets/img/vacit-logo-white.png') }}">
+                                </a>
                             </div>
                             <div class="top-bar-right">
                                 <ul class="dropdown menu" data-dropdown-menu>
-                                    <li><a href="">Registreren</a></li>
-                                    <li><a href="">Inloggen</a></li> 
+                                    <li><a href="{{ path('registreren') }}">Registreren</a></li>
+                                    <li><a href="{{ path('inloggen') }}">Inloggen</a></li> 
                                 </ul>
                             </div>
                         </div>

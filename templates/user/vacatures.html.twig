@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} :: Mijn Vacatures{% endblock %}
+
+{% block body %}
+
+Vacatures voor {{ user.naam }}:
+
+    {% for vacature in user.vacatures %}
+
+
+    <pre>
+        {{ vacature.vacaturetitel }}
+    </pre>
+        
+{% endfor %}
+
+{% endblock %}

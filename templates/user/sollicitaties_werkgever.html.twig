@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} :: Sollicitaties{% endblock %}
+
+
+
+{% block body %}
+
+
+    Sollicitaties bij {{ user.naam }}
+
+    {% for vacature in user.vacatures %}
+
+        <pre>
+            {{ vacature.vacaturetitel }}
+
+            <pre>
+
+                {% for sollicitatie in vacature.sollicitaties %}
+
+                {{ sollicitatie.user.naam }} heeft hierop gesolliciteerd!
+                    
+                {% endfor %}
+            
+            </pre>
+            
+
+        </pre>
+    
+    {% endfor %}
+
+
+{% endblock %}

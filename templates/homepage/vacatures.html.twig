@@ -4,33 +4,86 @@
 
 {% block stylesheets %}
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css">
 {% endblock %}
 
 {% block javascripts %}
 <script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
 {% endblock %}
 
 
 {% block body %}
 
 <div class="grid-y homepage-body">
+    <div class="tabel-container">
 
-    <table id="tabel-vacatures" class="display">
-        <thead>
-            <th></th>
-            <th>Niveau</th>
-            <th>Vacature</th>
-        </thead>
-        <tbody></tbody>
-    </table>
+        <table id="tabel-vacatures" class="hover stripe">
+            <thead>
+                <th></th>
+                <th>Vacature</th>
+                <th>Geplaatst</th>
+                <th class="show-for-small hide-for-medium">Omschrijving</th>
+                <th>Niveau</th>
+                <th>Bedrijf</th>
+                <th>Standplaats</th>
+            </thead>
+            <tbody>
+                
+                {% for vacature in data %}
+                <tr>
+                    <td class="overview-icon-container">
+                        <img class="overview-icon" src="assets/img/icons/{{ vacature.afbeelding }}.png">
+                    </td>
+                    <td class="overview-text-container">
+                        <h2 class="overview-title">{{ vacature.vacaturetitel }}</h2>
+                        <p class="overview-text show-for-medium">{{ vacature.vacaturetekst }}</p>
+                    </td>
+                    <td>{{ vacature.plaatsingsdatum|date("d M Y") }}</td>
+                    <td class="show-for-small hide-for-medium"><p class="overview-text">{{ vacature.vacaturetekst }}</p></td>
+                    <td>{{ vacature.werkniveau }}</td>
+                    <td>{{ vacature.user.naam }}</td>
+                    <td>{{vacature.standplaats }}</td>
+                </tr>    
 
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
  </div>   
 
     
     <script>
+
+    let vacancies = [];
+
     $(document).ready( function() {
     
-        $('#tabel-vacatures').DataTable();
+        $('#tabel-vacatures').DataTable({
+            scrollX: true,
+            responsive: true,
+            order: [[2, "asc"]],
+            "row-border": false,
+            language: {
+                "emptyTable":     "Geen vacatures beschikbaar",
+                "info":           "Resultaten _START_ t/m _END_ uit _TOTAL_ vacatures",
+                "infoEmpty":      "0 t/m 0 uit 0 resultaten",
+                "infoFiltered":   "(gefilterd uit _MAX_ resultaten)",
+                "lengthMenu":     "Aantal resultaten: _MENU_",
+                "loadingRecords": "Laden...",
+                "processing":     "Verwerken...",
+                "search":         "Zoeken",
+                "zeroRecords":    "Geen vacatures gevonden op basis van deze zoekresultaten",
+                "paginate": {
+                    "first":      "Eerste",
+                    "last":       "Laatste",
+                    "next":       "Volgende",
+                    "previous":   "Vorige"
+                },
+            }
+        }).responsive.recalc();
     
     });
     </script>
