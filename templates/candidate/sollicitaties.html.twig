@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} :: Mijn Sollicitaties{% endblock %}
+
+{% block body %}
+
+    {% if user.sollicitaties is empty %}
+
+    Je hebt nog niet gesolliciteerd!
+    
+    <div class="button-container">
+        <a class="button-small" href="{{ path('vacatureoverzicht') }}">Bekijk de meest recente vacatures</a>
+    </div>
+
+    {% else %}
+    
+        
+        <pre>
+
+            {% for sollicitatie in user.sollicitaties %}
+
+                {{ user.naam }} heeft gesolliciteerd op {{ sollicitatie.vacature.vacaturetitel }}
+                
+            {% endfor %}
+
+        </pre>
+
+
+    {% endif %}
+
+{% endblock %}

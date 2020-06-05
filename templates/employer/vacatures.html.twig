@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} :: Mijn Vacatures{% endblock %}
+
+{% block body %}
+
+    {% if user.vacatures is empty %}
+
+    Uw bedrijf heeft nog geen vacatures uitstaan.
+
+    {% else %}
+        
+
+    Vacatures voor {{ user.naam }}:
+
+    {% for vacature in user.vacatures %}
+
+        <pre>
+            {{ vacature.vacaturetitel }}
+        </pre>
+            
+    {% endfor %}
+
+
+{% endif %}
+
+<div class="button-container">
+    <a class="button-small" href="">Voeg vacatures toe</a>
+</div>
+
+{% endblock %}

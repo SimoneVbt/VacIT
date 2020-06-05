@@ -23,9 +23,7 @@ class HomepageController extends BaseController
         $vacatureRepository = $this->getDoctrine()->getRepository(Vacature::class);
         $vacatures = $vacatureRepository->getAllVacaturesByDate();
 
-        return [
-            'data' => $vacatures,
-        ];
+        return ['data' => $vacatures];
     }
 
     /**
@@ -37,8 +35,6 @@ class HomepageController extends BaseController
         $vacatureRepository = $this->getDoctrine()->getRepository(Vacature::class);
         $vacatures = $vacatureRepository->getAllVacaturesByDate();
         
-        return [
-            'data' => $vacatures,
-        ];
+        return ['data' => $vacatures];
     }
 }

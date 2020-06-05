@@ -22,6 +22,8 @@ security:
 
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: ROLE_CANDIDATE }
-        # - { path: ^/resetting, role: ROLE_USER }
-        # - { path: ^/ }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/kandidaat, role: ROLE_CANDIDATE }
+        - { path: ^/werkgever, role: ROLE_EMPLOYER }
+        - { path: ^/admin, role: ROLE_ADMIN }

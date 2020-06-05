@@ -25,6 +25,29 @@ h2 {
     margin: 0;
 }
 
+.button-container {
+    margin-top: 20px;
+    margin-bottom: 20px; }
+a.button-small,
+a.button-large {
+    background-color: #333333;
+    color: white;
+    border: solid #333333 10px;
+    border-radius: 5px;}
+
+@media (min-width: 640px) {
+    a.button-large {
+        font-size: 1.5em;
+        padding: 10px;
+    } 
+}
+
+/****************************
+        MIJN PROFIEL
+****************************/
+
+
+
 /****************************
         VACATUREOVERZICHT
 *****************************/
@@ -60,17 +83,18 @@ img.overview-icon {
 #slideshow {
     height: 40%;
     position: relative; }
-    #text-block {
-        color: white;
-        transform: rotate(-10deg);
-        position: absolute;
-        bottom: 20px;
-        right: 10px;
-        text-align: right; }
-        .slideshow-text {
-            display: inline-block;
-            white-space: nowrap;
-            background-color: #333333; }
+#text-block {
+    color: white;
+    transform: rotate(-10deg);
+    position: absolute;
+    bottom: 35px;
+    right: 10px;
+    text-align: right;
+    overflow: hidden; }
+    .slideshow-text {
+        display: inline-block;
+        white-space: nowrap;
+        background-color: #333333; }
 
 .icon {
     padding-right: 10px;
@@ -104,12 +128,7 @@ p.home-text {
     padding: 10px;
 }
 
-a.all-vacancies {
-    background-color: #333333;
-    color: white;
-    border: solid #333333 10px;
-    border-radius: 5px;
-}
+
 
 @media (min-width: 640px) {
 
@@ -128,11 +147,6 @@ a.all-vacancies {
     .fa-arrow-right {
         transform: scale(1.4);
     }
-
-    a.all-vacancies {
-        font-size: 1.5em;
-        padding: 10px;
-    } 
 }
 
 @media (min-width: 1024px) {
@@ -205,7 +219,7 @@ button.menu-icon {
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 3vh 105vw 0 0;
+    border-width: 2.5vh 105vw 0 0;
     border-color: #F15A24 transparent transparent transparent;
     display: inline-block;
     filter: drop-shadow(0 1px 4px #333333);
@@ -220,7 +234,7 @@ main {
     right: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 18vh 10px 32vh 10px;
+    padding: 120px 10px 220px 10px;
 }
 
 
@@ -284,7 +298,7 @@ footer {
 @media (min-width: 640px) {
 
     main {
-        padding: 15vh 20px 22vh 20px;
+        padding: 120px 20px 150px 20px;
     }
 
     footer p {

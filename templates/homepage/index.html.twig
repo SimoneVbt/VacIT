@@ -6,13 +6,13 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('assets/vegas/vegas.min.css') }}">
 <style>
-    main {
+    body {
         background-color: #F15A24;
     }
 
     @media (min-width: 1050px) {
         main {
-            padding-bottom: 15vh;
+            padding-bottom: 100px;
         }
         .footer {
             display: none;
@@ -74,9 +74,9 @@
         {% endfor %}
 
         <div class="grid-x grid-padding-y">
-            <div class="cell small-3 large-1"></div>
-            <div class="cell small-9 large-11">
-                <a class="all-vacancies" href="{{ path('vacatureoverzicht') }}">Bekijk alle vacatures</a>
+            <div class="cell small-3 large-2"></div>
+            <div class="cell small-9 large-10">
+                <a class="button-large" href="{{ path('vacatureoverzicht') }}">Bekijk alle vacatures</a>
             </div>
         </div>
     </div>
@@ -85,6 +85,8 @@
 <script>
 //kan een stuk mooier!
 $(document).ready( function() {
+
+
 
     let image1 = $("#img1").attr("src");
     let title1 = $("#img1").data("title");
@@ -113,19 +115,19 @@ $(document).ready( function() {
 
     let recentVacancies = [
         { src: image1,
-                title: (title1 + " voor " + company1).slice(0, 25),
+                title: title1,
                 subtitle: company1 + ", " + place1 },
         { src: image2,
-                title: (title2 + " voor " + company2).slice(0, 25),
+                title: title2,
                 subtitle: company2 + ", " + place2 },
         { src: image3,
-                title: (title3 + " voor " + company3).slice(0, 25),
+                title: title3,
                 subtitle: company3 + ", " + place3 },
         { src: image4,
-                title: (title4 + " voor " + company4).slice(0, 25),
+                title: title4,
                 subtitle: company4 + ", " + place4 },
         { src: image5,
-                title: (title5 + " voor " + company5).slice(0, 25),
+                title: title5,
                 subtitle: company5 + ", " + place5 },
     ];
 

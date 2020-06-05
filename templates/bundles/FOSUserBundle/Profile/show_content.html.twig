@@ -1,6 +1,15 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
+
+<!-- check userdetails: als nog niet alle essentiële gegevens ingevuld zijn, aanmoedigen deze in te vullen -->
+
+
+<div>
+    <div class="button-container">
+        <a class="button-small" href={{ path('fos_user_profile_edit') }}>Bewerk je profiel</a>
+    </div>
+    <div class="button-container">
+        <a class="button-small" href={{ path('fos_user_resetting_request') }}>Verander je wachtwoord</a>
+    </div>
 </div>
+
