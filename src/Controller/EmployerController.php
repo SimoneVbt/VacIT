@@ -20,7 +20,9 @@ class EmployerController extends BaseController
         $userRep = $this->getDoctrine()->getRepository(User::class);
         $user = $userRep->find($id);
 
-        return ['user' => $user];
+        if ($this->checkUser($user, $id)) {
+            return ['user' => $user];
+        }
     }
 
     /**
@@ -32,7 +34,9 @@ class EmployerController extends BaseController
         $userRep = $this->getDoctrine()->getRepository(User::class);
         $user = $userRep->find($id);
 
-        return ['user' => $user];
+        if ($this->checkUser($user, $id)) {
+            return ['user' => $user];
+        }
     }
 
 }

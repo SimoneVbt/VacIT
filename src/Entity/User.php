@@ -57,14 +57,14 @@ class User extends BaseUser
     private $plaats;
 
     /**
-     * @ORM\Column(type="string", length=50, nullable=true)
+     * @ORM\Column(type="string", length=50)
      */
-    private $afbeelding;
+    private $afbeelding = "default";
 
     /**
      * @ORM\Column(type="string", length=2000, nullable=true)
      */
-    private $motivatie;
+    private $tekst;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
@@ -87,6 +87,7 @@ class User extends BaseUser
         parent::__construct();
         $this->vacatures = new ArrayCollection();
         $this->sollicitaties = new ArrayCollection();
+        $this->roles = array('ROLE_CANDIDATE');
     }
 
     public function getNaam(): ?string
@@ -178,21 +179,21 @@ class User extends BaseUser
         return $this->afbeelding;
     }
 
-    public function setAfbeelding(?string $afbeelding): self
+    public function setAfbeelding(string $afbeelding): self
     {
         $this->afbeelding = $afbeelding;
 
         return $this;
     }
 
-    public function getMotivatie(): ?string
+    public function getTekst(): ?string
     {
-        return $this->motivatie;
+        return $this->tekst;
     }
 
-    public function setMotivatie(?string $motivatie): self
+    public function setTekst(?string $tekst): self
     {
-        $this->motivatie = $motivatie;
+        $this->tekst = $tekst;
 
         return $this;
     }

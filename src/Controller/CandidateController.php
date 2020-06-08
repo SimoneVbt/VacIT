@@ -17,9 +17,12 @@ class CandidateController extends BaseController
     */
    public function sollicitaties($id)
    {
-       $userRep = $this->getDoctrine()->getRepository(User::class);
-       $user = $userRep->find($id);
+        $userRep = $this->getDoctrine()->getRepository(User::class);
+        $user = $userRep->find($id);
 
-       return ['user' => $user];
+        if ($this->checkUser($user, $id)) {
+            return ['user' => $user];
+        }
+       
    }
 }

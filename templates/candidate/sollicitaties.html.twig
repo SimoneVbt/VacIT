@@ -6,11 +6,7 @@
 
     {% if user.sollicitaties is empty %}
 
-    Je hebt nog niet gesolliciteerd!
-    
-    <div class="button-container">
-        <a class="button-small" href="{{ path('vacatureoverzicht') }}">Bekijk de meest recente vacatures</a>
-    </div>
+        Je hebt nog niet gesolliciteerd!
 
     {% else %}
     
@@ -27,5 +23,9 @@
 
 
     {% endif %}
+
+    <div class="button-container">
+        <a class="button-small" href="{{ path('vacatureoverzicht') }}">Bekijk de meest recente vacatures</a>
+    </div>
 
 {% endblock %}

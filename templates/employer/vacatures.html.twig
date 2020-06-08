@@ -6,26 +6,26 @@
 
     {% if user.vacatures is empty %}
 
-    Uw bedrijf heeft nog geen vacatures uitstaan.
+        Uw bedrijf heeft nog geen vacatures uitstaan.
 
     {% else %}
         
 
-    Vacatures voor {{ user.naam }}:
+        Vacatures voor {{ user.naam }}:
 
-    {% for vacature in user.vacatures %}
+        {% for vacature in user.vacatures %}
 
-        <pre>
-            {{ vacature.vacaturetitel }}
-        </pre>
-            
-    {% endfor %}
+            <pre>
+                {{ vacature.vacaturetitel }}
+            </pre>
+                
+        {% endfor %}
 
 
-{% endif %}
+    {% endif %}
 
-<div class="button-container">
-    <a class="button-small" href="">Voeg vacatures toe</a>
-</div>
+    <div class="button-container">
+        <a class="button-small" href="">Voeg vacatures toe</a>
+    </div>
 
 {% endblock %}

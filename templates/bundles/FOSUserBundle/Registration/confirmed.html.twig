@@ -3,8 +3,16 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
     {% if targetUrl %}
     <p><a href="{{ path('fos_user_profile_show') }}">{{ 'registration.back'|trans }}</a></p>
     {% endif %}
+
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    
+    <br>
+    <p>Zodra je je gegevens hebt ingevuld, kun je beginnen met solliciteren op vacatures:</p>
+    <div class="button-container">
+        <a class="button-small" href={{ path('fos_user_profile_edit') }}>Bewerk je profiel</a>
+    </div>
+
 {% endblock fos_user_content %}

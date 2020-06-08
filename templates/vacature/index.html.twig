@@ -2,10 +2,109 @@
 
 {% block title %} :: Detail{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block javascripts %}
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+{% endblock %}
+
+
 {% block body %}
 
-<pre>
-    {{ dump(data) }}
-</pre>
+<div class="grid-x grid-padding-y">
+    <div class="cell small-12 medium-3 large-2 detail-logos-container">
+        <img class="detail-logos" src="{{ asset('assets/img/icons/') ~ data.afbeelding ~ ('.png') }}">
+        {% if data.user.afbeelding == "default" %}
+            <img class="detail-logos" src="{{ asset('assets/img/users/defaultbedrijf.png') }}">
+        {% else %}
+            <img class="detail-logos" src="{{ asset('assets/img/users/') ~ data.user.afbeelding ~ ('.png') }}">
+        {% endif %}
+    </div>
+    <div class="cell small-12 medium-9 large-10 detail-text-container">
+        <div class="detail-date">{{ data.plaatsingsdatum|date("d M Y") }}</div>
+        {% if data.datumBijgewerkt %}
+        <div> Laatst bijgewerkt op: {{ data.datumBijgewerkt|date("d M Y") }}</div>
+        {% endif %}
 
+        <h1 class="detail-titel">{{ data.vacaturetitel }} voor {{ data.user.naam }} </h1>
+
+        <div class="grid-x bebas detail-subheading">
+            <div class="cell small-6 medium-6">
+                <div><span class="orange">niveau:</span> {{data.werkniveau}}</div>
+            </div>
+            <div class="cell small-6 medium-6">
+                <div class="detail-location">
+                    <i class="fas fa-map-marker-alt orange"></i>
+                    {{ data.standplaats }}
+                </div>
+            </div>
+        </div>
+        
+        <p class="detail-text">{{ data.vacaturetekst|nl2br }}</p>
+        <h2 class="detail-about">Over {{ data.user.naam }}</h2>
+        <p class="detail-text">{{ data.user.tekst|nl2br }}</p>
+
+    </div>
+</div>
+
+<div class="grid-x grid-padding-y">
+    <div class="cell medium-3 large-2 hide-for-small-only med-arrow-cell">
+        <a href=""><i class="fas fa-arrow-right detail-arrow-medium"></i></a>
+    </div>
+    <div class="cell small-12 medium-9 large-10">
+        <a class="bebas solliciteer-direct" href="">
+            <i class="fas fa-arrow-right detail-arrow hide-for-medium"></i>
+            Solliciteer direct
+        </a>
+    </div>
+</div>
+
+<div class="grid-x grid-padding-y">
+    <div class="cell medium-3 large-2 hide-for-small-only"></div>
+    <div class="cell small-12 medium-9 large-10">
+        <p class="bebas meer-vacatures" href="">Meer vacatures van <a href="">{{ data.user.naam }}:</a></p>
+    </div>
+</div>
+<div class="grid-x">
+    <div class="cell medium-3 large-2 hide-for-small-only"></div>
+    <div class="cell small-12 medium-9 large-10">
+        <table id="tabel-meer-vacatures">
+            <thead>
+                <th>Datum</th>
+                <th>Vacature</th>
+                <th>Niveau</th>
+            </thead>
+            <tbody>
+            {% for vacature in data.user.vacatures %}
+                <tr>
+                    <td>{{ vacature.plaatsingsdatum|date("d-m-Y") }}</td>
+                    <td><a href="{{ path('vacature_detail', {'id': vacature.id }) }}">
+                        {{ vacature.vacaturetitel }}</a>
+                    </td>
+                    <td><span style="text-transform: uppercase;">{{ vacature.werkniveau }}</span></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script>
+
+$(document).ready( function() {
+
+    $('#tabel-meer-vacatures').DataTable({
+        paging: false,
+        ordering: false,
+        searching: false,
+        info: false,
+        pageLength: 5,
+        order: [[0, "desc"]],
+    });
+
+});
+</script>
 {% endblock %}
