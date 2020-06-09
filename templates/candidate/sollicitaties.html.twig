@@ -2,30 +2,107 @@
 
 {% block title %} :: Mijn Sollicitaties{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block javascripts %}
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+{% endblock %}
+
+
 {% block body %}
 
-    {% if user.sollicitaties is empty %}
-
-        Je hebt nog niet gesolliciteerd!
-
-    {% else %}
-    
-        
-        <pre>
-
-            {% for sollicitatie in user.sollicitaties %}
-
-                {{ user.naam }} heeft gesolliciteerd op {{ sollicitatie.vacature.vacaturetitel }}
-                
-            {% endfor %}
-
-        </pre>
-
-
-    {% endif %}
-
-    <div class="button-container">
-        <a class="button-small" href="{{ path('vacatureoverzicht') }}">Bekijk de meest recente vacatures</a>
+<div class="grid-x">
+    <div class="cell medium-3 show-for-medium photo-container">
+        {% if user.afbeelding == "default" %}
+        <img class="photo" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+        {% else %}
+        <img class="photo" src="{{ asset('assets/img/users') ~ user.afbeelding ~ ('.png') }}">
+        {% endif %}
     </div>
+    <div class="cell small-12 medium-9">
+        <h1 class="overview-title orange">Mijn sollicitaties</h1>
+
+        {% if user.sollicitaties is empty %}
+
+        <p>Je hebt nog niet gesolliciteerd!</p>
+
+        {% else %}
+
+        <table id="tabel-sollicitaties-kandidaat" class="tables-layout">
+            <thead>
+                <th class="candidate-soll-date show-for-medium">Datum</th>
+                <th class="candidate-soll-vacancy">Vacature</th>
+                <th class="candidate-soll-company">Bedrijf</th>
+                <th class="hide-for-medium">Uitg.</th>
+                <th class="show-for-medium uitnodiging">Uitgenodigd</th>
+                <th class="candidate-soll-date">Sinds</th>
+            </thead>
+            <tbody>
+            {% for soll in user.sollicitaties %}
+                <tr>
+                    <td class="candidate-soll-date show-for-medium">{{ soll.vacature.plaatsingsdatum|date("d-m-Y") }}</td>
+                    <td class="candidate-soll-vacancy"><a href="{{ path('vacature_detail', {'id': soll.vacature.id }) }}">
+                        {{ soll.vacature.vacaturetitel }}</a></td>
+                    <td class="candidate-soll-company">{{ soll.vacature.user.naam }}</td>
+                    <td class="uitnodiging hide-for-medium">
+                        {% if soll.uitnodiging %}
+                        <i class="fas fa-check fa-2x orange" data-order="1"></i>{% endif %}</td>
+                    <td class="uitnodiging show-for-medium">
+                        {% if soll.uitnodiging %}<i class="fas fa-check fa-2x orange" data-order="1"></i>{% endif %}</td>
+                    <td class="candidate-soll-date">
+                        {% if soll.uitnodiging %} {{ soll.datumUitgenodigd|date("d-m-Y") }}
+                        {% else %} <span class="hide">n.v.t.</span>{% endif %} </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+            
+
+
+        {% endif %}
+
+        <div class="button-container overview-button-container cand-soll-button-container">
+            <a class="button-small" href="{{ path('vacatureoverzicht') }}">Bekijk de meest recente vacatures</a>
+        </div>
+            
+    </div>
+</div>
+
+
+<script>
+
+    $(document).ready( function() {
+
+        $('#tabel-sollicitaties-kandidaat').DataTable({
+            order: [[3, "desc"]],
+            pageLength: 8,
+            lengthChange: false,
+            searching: false,
+            language: {
+                "info":           "Resultaten _START_ t/m _END_ (_TOTAL_ sollicitaties)",
+                "infoFiltered":   "(gefilterd uit _MAX_ resultaten)",
+                "loadingRecords": "Laden...",
+                "processing":     "Verwerken...",
+                "search":         "Zoeken",
+                "zeroRecords":    "Geen sollicitaties gevonden op basis van deze zoekresultaten",
+                "paginate": {
+                    "first":      "Eerste",
+                    "last":       "Laatste",
+                    "next":       "Volgende",
+                    "previous":   "Vorige"
+                }
+            },
+            "fnDrawCallback": function(oSettings) {
+                if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
+                    $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+                }
+            },
+        });
+
+    });
+
+</script>
 
 {% endblock %}

@@ -2,30 +2,95 @@
 
 {% block title %} :: Mijn Vacatures{% endblock %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block javascripts %}
+<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+{% endblock %}
+
+
 {% block body %}
 
-    {% if user.vacatures is empty %}
-
-        Uw bedrijf heeft nog geen vacatures uitstaan.
-
-    {% else %}
-        
-
-        Vacatures voor {{ user.naam }}:
-
-        {% for vacature in user.vacatures %}
-
-            <pre>
-                {{ vacature.vacaturetitel }}
-            </pre>
-                
-        {% endfor %}
-
-
-    {% endif %}
-
-    <div class="button-container">
-        <a class="button-small" href="">Voeg vacatures toe</a>
+<div class="grid-x">
+    <div class="cell medium-3 show-for-medium photo-container">
+        {% if user.afbeelding == "default" %}
+        <img class="photo" src="{{ asset('assets/img/users/defaultbedrijf.png') }}">
+        {% else %}
+        <img class="photo" src="{{ asset('assets/img/users/') ~ user.afbeelding }}">
+        {% endif %}
     </div>
+    <div class="cell small-12 medium-9">
+        <h1 class="overview-title">Vacatures bij <span class="orange">{{ user.naam }}</span></h1>
 
+        {% if user.vacatures is empty %}
+
+        <p>Uw bedrijf heeft nog geen vacatures uitstaan.</p>
+
+        {% else %}
+
+        <table id="tabel-vacatures-werkgever" class="tables-layout">
+            <thead>
+                <th>Datum</th>
+                <th>Vacature</th>
+                <th class="sollicitanten">Sollicitanten</th>
+            </thead>
+            <tbody>
+            {% for vacature in user.vacatures %}
+                <tr>
+                    <td>{{ vacature.plaatsingsdatum|date("d-m-Y") }}</td>
+                    <td><a href="{{ path('vacature_detail', {'id': vacature.id }) }}">
+                        {{ vacature.vacaturetitel }}</a></td>
+                    <td class="sollicitanten">{{ vacature.sollicitaties|length }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% endif %}
+
+        <div class="button-container voeg-vacatures-toe">
+            <a class="button-small" href="">Voeg vacatures toe</a>
+        </div>
+        <div class="button-container">
+            <a class="button-small" href="{{ path('sollicitaties_werkgever', {'id': app.user.id}) }}">Bekijk alle sollicitaties</a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+
+    $(document).ready( function() {
+
+        $('#tabel-vacatures-werkgever').DataTable({
+            dom: 'rtifp',
+            pagingType: "numbers",
+            pageLength: 8,
+            lengthChange: false,
+            language: {
+                "info":           "Resultaten _START_ t/m _END_ (_TOTAL_ vacatures)",
+                "infoFiltered":   "(gefilterd uit _MAX_ resultaten)",
+                "loadingRecords": "Laden...",
+                "processing":     "Verwerken...",
+                "search":         "Zoeken",
+                "zeroRecords":    "Geen vacatures gevonden op basis van deze zoekresultaten",
+                "paginate": {
+                    "first":      "Eerste",
+                    "last":       "Laatste",
+                    "next":       "Volgende",
+                    "previous":   "Vorige"
+                }
+            },
+            // "fnDrawCallback": function(oSettings) {
+            //     if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
+            //         $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+            //     }
+            // },
+        });
+        
+    });
+
+</script>
 {% endblock %}

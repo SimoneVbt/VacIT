@@ -39,6 +39,11 @@ class Sollicitatie
      */
     private $datum_uitgenodigd;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $datum;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +93,18 @@ class Sollicitatie
     public function setDatumUitgenodigd(?\DateTimeInterface $datum_uitgenodigd): self
     {
         $this->datum_uitgenodigd = $datum_uitgenodigd;
+
+        return $this;
+    }
+
+    public function getDatum(): ?\DateTimeInterface
+    {
+        return $this->datum;
+    }
+
+    public function setDatum(\DateTimeInterface $datum): self
+    {
+        $this->datum = $datum;
 
         return $this;
     }

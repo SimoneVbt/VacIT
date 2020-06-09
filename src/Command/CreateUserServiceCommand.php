@@ -9,13 +9,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\ArrayInput;
 
-use App\Service\CreateUserService;
+use App\Service\UserService;
 
 class CreateUserServiceCommand extends Command
 {
     private $us;
 
-    public function __construct(CreateUserService $us)
+    public function __construct(UserService $us)
     {
         parent::__construct();
         $this->us = $us;

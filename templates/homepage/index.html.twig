@@ -37,7 +37,7 @@
         <div id="slideshow">
             <div id="text-block">
                 <h1 class="slideshow-text"></h1><br>
-                <h4 class="slideshow-text"></h4>
+                <h2 class="slideshow-text"></h2>
             </div>
         </div>
     </div>
@@ -137,7 +137,7 @@ $(document).ready( function() {
         transition: "slideLeft",
         walk: function(index, slideSettings) {
             $("#text-block h1").html(recentVacancies[index].title);
-            $("#text-block h4").html(recentVacancies[index].subtitle);
+            $("#text-block h2").html(recentVacancies[index].subtitle);
         }
     }) ;
 

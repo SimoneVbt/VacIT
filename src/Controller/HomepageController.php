@@ -4,25 +4,20 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use App\Service\VacatureService;
 
-use App\Entity\User;
-use App\Entity\Vacature;
-use App\Entity\Sollicitatie;
-
-class HomepageController extends BaseController
 /**
  * @Route("/")
  */
+class HomepageController extends BaseController
 {
     /**
      * @Route("/", name="homepage")
      * @Template()
      */
-    public function index()
+    public function index(VacatureService $vs)
     {
-        $vacatureRepository = $this->getDoctrine()->getRepository(Vacature::class);
-        $vacatures = $vacatureRepository->getAllVacaturesByDate();
-
+        $vacatures = $vs->getAllVacaturesByDate();
         return ['data' => $vacatures];
     }
 
@@ -30,11 +25,9 @@ class HomepageController extends BaseController
      * @Route("/vacatures",  name="vacatureoverzicht")
      * @Template()
      */
-    public function vacatures()
+    public function vacatures(VacatureService $vs)
     {
-        $vacatureRepository = $this->getDoctrine()->getRepository(Vacature::class);
-        $vacatures = $vacatureRepository->getAllVacaturesByDate();
-        
+        $vacatures = $vs->getAllVacaturesByDate();
         return ['data' => $vacatures];
     }
 }

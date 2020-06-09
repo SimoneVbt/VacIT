@@ -4,25 +4,20 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-
-use App\Entity\Vacature;
-use App\Entity\User;
-
-class VacatureController extends BaseController
+use App\Service\VacatureService;
 
 /**
  * @Route("/vacature/{id}")
  */
+class VacatureController extends BaseController
 {
     /**
      * @Route("/", name="vacature_detail")
      * @Template()
      */
-    public function index($id)
+    public function index(VacatureService $vs, $id)
     {
-        $vacatureRepository = $this->getDoctrine()->getRepository(Vacature::class);
-        $vacature = $vacatureRepository->find($id);
-
+        $vacature = $vs->findVacature($id);
         return ['data' => $vacature];
     }
 }

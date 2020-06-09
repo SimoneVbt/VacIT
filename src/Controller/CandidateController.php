@@ -4,21 +4,20 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use App\Entity\User;
+use App\Service\UserService;
 
-class CandidateController extends BaseController
 /**
  * @Route("/kandidaat")
  */
+class CandidateController extends BaseController
 {
     /**
     * @Route("/{id}/sollicitaties", name="sollicitaties_kandidaat")
     * @Template()
     */
-   public function sollicitaties($id)
+   public function sollicitaties(UserService $us, $id)
    {
-        $userRep = $this->getDoctrine()->getRepository(User::class);
-        $user = $userRep->find($id);
+        $user = $us->findUser($id);
 
         if ($this->checkUser($user, $id)) {
             return ['user' => $user];

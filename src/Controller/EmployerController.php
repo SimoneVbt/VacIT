@@ -4,21 +4,20 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use App\Entity\User;
+use App\Service\UserService;
 
-class EmployerController extends BaseController
 /**
  * @Route("/werkgever")
  */
+class EmployerController extends BaseController
 {
     /**
      * @Route("/{id}/vacatures/sollicitaties", name="sollicitaties_werkgever")
      * @Template()
      */
-    public function sollicitaties($id)
+    public function sollicitaties(UserService $us, $id)
     {
-        $userRep = $this->getDoctrine()->getRepository(User::class);
-        $user = $userRep->find($id);
+        $user = $us->findUser($id);
 
         if ($this->checkUser($user, $id)) {
             return ['user' => $user];
@@ -29,10 +28,9 @@ class EmployerController extends BaseController
      * @Route("/{id}/vacatures", name="vacatures_werkgever")
      * @Template()
      */
-    public function vacatures($id)
+    public function vacatures(UserService $us, $id)
     {
-        $userRep = $this->getDoctrine()->getRepository(User::class);
-        $user = $userRep->find($id);
+        $user = $us->findUser($id);
 
         if ($this->checkUser($user, $id)) {
             return ['user' => $user];

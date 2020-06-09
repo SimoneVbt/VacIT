@@ -12,27 +12,23 @@ body {
 }
 
 h1 {
-    color: #F15A24;
-    padding: 0;
-    margin: 0;
-}
-
+    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif !important;
+    font-size: 2rem !important; }
 h2 {
-    color: #F15A24;
-    padding: 0;
-    margin: 0;
-}
+    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif !important;
+    font-size: 1.5rem !important; }
 
 a {
-    color: #F15A24 !important;
-}
+    color: #F15A24 !important; }
+label {
+    color: #333333 !important; 
+    font-size: 0.9rem !important}
 
-.bebas {
-    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif !important;
-}
 .orange {
-    color: #F15A24;
-}
+    color: #F15A24; }
+.bebas {
+    font-family: 'Bebas Neue', Arial, Helvetica, sans-serif !important; }
+
 
 .button-container {
     margin-top: 20px;
@@ -42,13 +38,135 @@ a.button-large {
     background-color: #333333;
     color: white !important;
     border: solid #333333 10px;
-    border-radius: 5px;}
+    border-radius: 5px; }
 
+
+.tables-layout thead {
+    border: none; }
+    .tables-layout thead th {
+        background-color: white;
+        font-size: 14px;
+        text-transform: uppercase;
+        padding: 0 0 0 8px !important; }
+.tables-layout tbody {
+    border: none; }
+    .tables-layout tr td {
+        font-size: 14px;
+        height: 40px;
+        background-color: white;
+        border-bottom: 1px solid #333333;
+        vertical-align: bottom; }
+        .tables-layout td.level {
+            text-transform: uppercase;
+        } 
+.dataTables_filter input {
+    margin-left: 0 !important;
+} 
+
+    
 @media (min-width: 640px) {
+
     a.button-large {
         font-size: 1.5em;
         padding: 10px;
-    } 
+    }
+        .tables-layout tr td {
+            height: 30px; }
+}
+
+@media (min-width: 1024px) {
+    .tables-layout thead th {
+        font-size: 16px;
+        font-weight: 700; }
+    .tables-layout tr td {
+        height: 40px;
+        font-size: 16px; }
+}
+
+/****************************
+    OVERZICHTPAGINA'S
+****************************/
+.photo-container {
+    text-align: center; }
+    img.photo {
+        max-width: 20%; }
+
+h1.overview-title {
+    font-size: 2.5rem !important;
+    text-transform: uppercase;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.overview-button-container {
+    text-align: center;
+}
+
+@media (min-width: 640px) {
+
+    img.photo {
+        max-width: 40%;
+    }
+
+    .overview-button-container {
+        text-align: initial;
+    }
+}
+
+/****************************
+    VACATURES WERKGEVER
+****************************/
+#tabel-vacatures-werkgever {
+    border-bottom: none; }
+    #tabel-vacatures-werkgever thead th {
+        border-bottom: none; }
+    .sollicitanten {
+        width: 20%;
+        text-align: center; }
+
+.voeg-vacatures-toe {
+    margin-top: 30px;
+}
+
+/****************************
+    SOLLICITATIES KANDIDAAT
+*****************************/
+
+#tabel-sollicitaties-kandidaat {
+    border-bottom: none; }
+    #tabel-sollicitaties-kandidaat thead th {
+        border-bottom: none; }
+    .candidate-soll-date {
+        width: 80px; }
+    .candidate-soll-company {
+        width: 100px; }
+    .uitnodiging {
+        text-align: center; }
+
+.cand-soll-button-container {
+    margin-top: 30px;
+}
+
+@media (min-width: 640px) {
+
+    #tabel-sollicitaties-kandidaat {
+        margin-bottom: 10px; }
+        .candidate-soll-date {
+            width: auto; }
+        .candidate-soll-company {
+            width: 110px;
+        }
+
+    .cand-soll-button-container {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .candidate-soll-company {
+        width: auto;
+    }
 }
 
 /****************************
@@ -72,7 +190,8 @@ div.detail-date {
     font-size: 12px; }
 h1.detail-titel {
     font-size: 20px;
-    font-weight: 600; }
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif !important; }
 .detail-subheading {
     padding-bottom: 10px; }
     .detail-location {
@@ -83,6 +202,7 @@ h2.detail-about {
     padding-top: 20px;
     font-size: 18px;
     font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif !important;
 }
 
 i.detail-arrow {
@@ -108,22 +228,12 @@ a.solliciteer-direct {
     font-size: 20px;
     padding-top: 15px;
 }
+
 #tabel-meer-vacatures {
     border-bottom: none; }
     #tabel-meer-vacatures thead th {
-        background-color: white;
-        font-size: 14px;
-        text-transform: uppercase;
         border-bottom: none;
-        padding: 0 0 0 8px; }
-    #tabel-meer-vacatures tr td {
-        font-size: 14px;
-        height: 40px;
-        border-bottom: 1px solid #333333;
-        vertical-align: bottom; }
-        #tabel-meer-vacatures td.level {
-            text-transform: uppercase;
-        }
+    }
 
 @media (min-width: 640px) {
 
@@ -140,6 +250,9 @@ a.solliciteer-direct {
         font-size: 18px;
         padding-top: 10px;
     }
+    .detail-location {
+        padding-right: 20px;
+    }
 
     h2.detail-about {
         font-size: 20px;
@@ -153,15 +266,20 @@ a.solliciteer-direct {
     .meer-vacatures {
         padding-top: 0;
     }
-    #tabel-meer-vacatures tr td {
-        height: 30px;
-    }
 }
 
 @media (min-width: 1024px) {
     img.detail-logos {
         max-width: 160px;
     }
+
+    .detail-level,
+    .detail-location {
+        font-size: 22px; }
+        .detail-location {
+            padding-right: 30px;
+        }
+
     i.detail-arrow-medium {
         font-size: 32px;
     }
@@ -172,12 +290,6 @@ a.solliciteer-direct {
     .meer-vacatures {
         font-size: 24px;
     }
-    #tabel-meer-vacatures thead th {
-        font-size: 16px;
-        font-weight: 700; }
-    #tabel-meer-vacatures tr td {
-        height: 40px;
-        font-size: 16px; }
 }
 
 /****************************
@@ -200,12 +312,6 @@ img.overview-icon {
     display:-webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
-}
-
-@media (max-width: 640px) {
-    /* div.dataTables_filter input {
-        width: 50%;
-    } */
 }
 
 /**************************** 
@@ -237,6 +343,7 @@ div.home-date {
     font-size: 12px; }
 h2.home-titel {
     color: white;
+    font-family: Arial, Helvetica, sans-serif !important;
     font-size: 16px;
     margin-bottom: 5px;
     line-height: 1.4em; }
@@ -269,8 +376,8 @@ p.home-text {
         h2.home-titel {
             font-size: 24px; }
         p.home-text {
-            font-size: 20px;
-            line-height: 1.6em; }
+            font-size: 18px;
+            line-height: 1.4em; }
 
     .fa-arrow-right {
         transform: scale(1.4);

@@ -6,7 +6,7 @@
 
                 {% if is_granted("ROLE_CANDIDATE") %}
                     {% if app.user.voornaam %}
-                        Je bent ingelogd als: {{ app.user.voornaam }}.
+                        Je bent ingelogd als: {{ app.user.voornaam }} {{ app.user.naam }}.
                     {% else %}
                         Je bent ingelogd als: {{ app.user.username }}.
                     {% endif %}
