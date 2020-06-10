@@ -2,14 +2,6 @@
 
 {% block title %} :: Mijn Vacatures{% endblock %}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-{% endblock %}
-
-{% block javascripts %}
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-{% endblock %}
-
 
 {% block body %}
 
@@ -40,9 +32,10 @@
             {% for vacature in user.vacatures %}
                 <tr>
                     <td>{{ vacature.plaatsingsdatum|date("d-m-Y") }}</td>
-                    <td><a href="{{ path('vacature_detail', {'id': vacature.id }) }}">
+                    <td><a href="{{ path('vacature_detail', { 'id': vacature.id }) }}">
                         {{ vacature.vacaturetitel }}</a></td>
-                    <td class="sollicitanten">{{ vacature.sollicitaties|length }}</td>
+                    <td class="sollicitanten"><a href="{{ path('sollicitaties_werkgever', { 'user_id': app.user.id, 'vacature_id': vacature.id }) }}">
+                        {{ vacature.sollicitaties|length }}</a></td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -53,9 +46,11 @@
         <div class="button-container voeg-vacatures-toe">
             <a class="button-small" href="">Voeg vacatures toe</a>
         </div>
+        {% if user.vacatures is not empty %}
         <div class="button-container">
-            <a class="button-small" href="{{ path('sollicitaties_werkgever', {'id': app.user.id}) }}">Bekijk alle sollicitaties</a>
+            <a class="button-small" href="{{ path('alle_sollicitaties_werkgever', { 'id': app.user.id}) }}">Bekijk alle sollicitaties</a>
         </div>
+        {% endif %}
 
     </div>
 </div>
@@ -65,29 +60,16 @@
     $(document).ready( function() {
 
         $('#tabel-vacatures-werkgever').DataTable({
-            dom: 'rtifp',
+            dom: 'rtip',
             pagingType: "numbers",
-            pageLength: 8,
-            lengthChange: false,
-            language: {
-                "info":           "Resultaten _START_ t/m _END_ (_TOTAL_ vacatures)",
-                "infoFiltered":   "(gefilterd uit _MAX_ resultaten)",
-                "loadingRecords": "Laden...",
-                "processing":     "Verwerken...",
-                "search":         "Zoeken",
-                "zeroRecords":    "Geen vacatures gevonden op basis van deze zoekresultaten",
-                "paginate": {
-                    "first":      "Eerste",
-                    "last":       "Laatste",
-                    "next":       "Volgende",
-                    "previous":   "Vorige"
+            pageLength: 10,
+            language: {"info": "Vacatures _START_ t/m _END_ (uit _TOTAL_ vacatures)" },
+            "fnDrawCallback": function(oSettings) {
+                if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
+                    $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+                    $(oSettings.nTableWrapper).find('.dataTables_info').hide();    
                 }
             },
-            // "fnDrawCallback": function(oSettings) {
-            //     if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
-            //         $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
-            //     }
-            // },
         });
         
     });

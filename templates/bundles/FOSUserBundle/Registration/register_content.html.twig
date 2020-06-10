@@ -1,8 +1,33 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+<div class="grid-x login-page">
+    <div class="cell small-4 medium-3 large-6 login-img-container">
+        <img class="login-hex" src="{{ asset('assets/img/hexagon.svg') }}">        
+        <img class="excl-mark" src="{{ asset('assets/img/excl-mark.png') }}">
     </div>
-{{ form_end(form) }}
+    <div class="cell small-8 medium-9 large-6">
+
+        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+        {{ form_widget(form) }}
+        <div class="register-submit-wrapper">
+            <label for="_submit">
+                <i class="fas fa-arrow-right fa-2x orange register-submit-arrow"></i>
+            <input class="bebas orange register-submit" type="submit" value="{{ 'registration.submit'|trans }}" />
+            </label>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function() {
+        
+        $("label").addClass('login-label');
+        $("input").addClass('login-input');
+        $(".register-submit").removeClass('login-input');
+
+    });
+
+</script>

@@ -21,8 +21,7 @@ h2 {
 a {
     color: #F15A24 !important; }
 label {
-    color: #333333 !important; 
-    font-size: 0.9rem !important}
+    color: #333333 !important;}
 
 .orange {
     color: #F15A24; }
@@ -45,23 +44,44 @@ a.button-large {
     border: none; }
     .tables-layout thead th {
         background-color: white;
-        font-size: 14px;
+        font-size: 1rem;
         text-transform: uppercase;
         padding: 0 0 0 8px !important; }
 .tables-layout tbody {
     border: none; }
     .tables-layout tr td {
-        font-size: 14px;
+        font-size: 1rem;
         height: 40px;
         background-color: white;
         border-bottom: 1px solid #333333;
         vertical-align: bottom; }
         .tables-layout td.level {
             text-transform: uppercase;
-        } 
-.dataTables_filter input {
-    margin-left: 0 !important;
-} 
+        }
+
+.dataTables_info {
+    display: inline-block;
+    font-size: 0.875rem;
+}
+
+.pagination,
+.pagination .current {
+    display: inline-block;
+    background-color: #F15A24 !important;
+    border-radius: 5px;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.875rem;
+}
+.pagination a {
+    color: #333333 !important;
+}
+
+@media (max-width: 400px) {
+    .pagination,
+    .pagination .current {
+        padding: 0.3rem 0.4rem;
+    }
+}
 
     
 @media (min-width: 640px) {
@@ -70,8 +90,10 @@ a.button-large {
         font-size: 1.5em;
         padding: 10px;
     }
-        .tables-layout tr td {
-            height: 30px; }
+
+    .tables-layout tr td {
+        height: 30px;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -81,10 +103,153 @@ a.button-large {
     .tables-layout tr td {
         height: 40px;
         font-size: 16px; }
+
+    .pagination,
+    .pagination .current {
+        padding: 0.5rem 0.6rem;
+        font-size: 1rem;
+    }
 }
 
 /****************************
-    OVERZICHTPAGINA'S
+        LOGIN & REGISTER
+****************************/
+
+.login-page {
+    padding: 0 5%;
+}
+
+.login-img-container {
+    position: relative; }
+    img.login-hex {
+        position: absolute;
+        top: 3%;
+        left: 10%;
+        max-width: 60%; }
+    img.excl-mark {
+        position: absolute;
+        top: 0;
+        left: 30%;
+        max-width: 20%; }
+    
+label.login-label {
+    font-size: 0.5rem;
+    font-weight: bold;
+    text-transform: lowercase;
+}
+input.login-input, input.login-input:focus {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1.5px solid #F15A24;
+    box-shadow: none;
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0.1rem;
+    height: 1.8rem; }
+    input.login-password {
+        font-size: 20px; }
+
+a.login-reset {
+    font-size: 0.5rem;
+}
+
+.submit-icon {
+    position: relative; }
+    .submit-icon>input {
+        display: none; }
+    .submit-icon>label {
+        position: absolute;
+        right: 3%; }
+
+.register-submit-wrapper {
+    position: relative; }
+    .register-submit-wrapper>label {
+        height: 10px; }
+        .register-submit-arrow {
+            transform: scale(2);
+            position: absolute;
+            top: 60%; }
+    .register-submit {
+        background-color: transparent;
+        border: none;
+        font-size: 26px;
+        position: absolute;
+        top: 10%;
+        left: 10%; }
+
+@media (min-width: 400px) {
+    
+    .register-submit {
+        left: 8%;
+    }
+}
+@media (min-width: 640px) {
+
+    .login-page {
+        padding-right: 20%;
+    }
+    
+    label.login-label,
+    a.login-reset {
+        font-size: 0.6rem;
+    }
+
+    .submit-icon>label {
+        right: 5%; }
+
+    .register-submit {
+        left: 5%;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .login-title {
+        font-size: 3rem !important;
+    }
+
+    img.login-hex {
+        left: 42.5%;
+        max-width: 30%; }
+    img.excl-mark {
+        left: 55%;
+        max-width: 8%; }
+
+    label.login-label,
+    a.login-reset {
+        font-size: 0.7rem;
+    }
+    .submit-icon>label {
+        right: 20%;
+        top: 10%;
+    }
+
+    .register-submit {
+        left: 7%;
+        top: 14%;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    img.login-hex {
+        left: 70%;
+        max-width: 100px;
+    }
+    img.excl-mark {
+        left: 77%;
+        max-width: 30px;
+    }
+
+    .register-submit {
+        left: 5%;
+    }
+}
+
+/****************************
+       OVERZICHTPAGINA'S
 ****************************/
 .photo-container {
     text-align: center; }
@@ -114,6 +279,45 @@ h1.overview-title {
 }
 
 /****************************
+    SOLLICITATIES VACATURE
+****************************/
+
+
+td.uitnodiging-werkgever {
+    padding-bottom: 0;
+    position: relative;
+    width: 80px; }
+    i.undo-inv {
+        font-size: 1.25rem;
+        position: absolute;
+        right: 5%;
+        top: 35%;
+    }
+
+@media (min-width: 640px) {
+    #tabel-sollicitaties-vacature_wrapper {
+        width: 80%;
+    }
+}
+
+@media (min-width: 1024px) {
+    
+        i.undo-inv {
+            font-size: 1rem;
+            top: 35%;
+        }
+}
+
+@media (min-width: 1400px) {
+
+    #tabel-sollicitaties-vacature_wrapper {
+        width: 60%; }
+        td.uitnodiging-werkgever {
+            width: 50px;
+        }
+}
+
+/****************************
     VACATURES WERKGEVER
 ****************************/
 #tabel-vacatures-werkgever {
@@ -125,7 +329,21 @@ h1.overview-title {
         text-align: center; }
 
 .voeg-vacatures-toe {
-    margin-top: 30px;
+    margin-top: 50px;
+}
+
+@media (min-width: 640px) {
+
+    #tabel-vacatures-werkgever {
+        width: 90%;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    #tabel-vacatures-werkgever {
+        width: 80%;
+    }
 }
 
 /****************************

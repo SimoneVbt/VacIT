@@ -23,14 +23,15 @@ class UserService {
         $this->encoder = $encoder;
         $this->rep = $em->getRepository(User::class);
     }
-
+    
 
     public function findUser($id) {
         return $this->rep->findUser($id);
     }
 
 
-    public function createUser($params) {
+    public function createUser($params)
+    {
         $u = $this->um->findUserByEmail($params['email']);
         if (!$u) {
             $user = $this->um->createUser();

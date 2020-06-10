@@ -3,31 +3,104 @@
 {% block title %} :: Sollicitaties{% endblock %}
 
 
-
 {% block body %}
 
+<div class="grid-x">
+    <div class="cell medium-3 show-for-medium photo-container">
+        {% if user.afbeelding == "default" %}
+        <img class="photo" src="{{ asset('assets/img/users/defaultbedrijf.png') }}">
+        {% else %}
+        <img class="photo" src="{{ asset('assets/img/users/') ~ user.afbeelding }}">
+        {% endif %}
+    </div>
+    <div class="cell small-12 medium-9">
+        <h1 class="overview-title">Sollicitaties naar <br class="hide-for-medium">
+             <a href="{{ path('vacature_detail', { 'id': vacature.id }) }}">{{ vacature.vacaturetitel }}</a></h1>
+        <p>Plaatsingsdatum: {{ vacature.plaatsingsdatum|date("d-m-Y") }}</p>
+        {% if vacature.sollicitaties is empty %}
 
-    Sollicitaties bij {{ user.naam }}
+        <p>Er heeft nog niemand gesolliciteerd op deze vacature.</p>
 
-    {% for vacature in user.vacatures %}
+        {% else %}
 
-        <pre>
-            {{ vacature.vacaturetitel }}
+        <table id="tabel-sollicitaties-vacature" class="tables-layout">
+            <thead>
+                <th>Datum</th>
+                <th>Sollicitant</th>
+                <th class="uitnodiging-werkgever">Uitnodiging</th>
+            </thead>
+            <tbody>
+            {% for sollicitatie in vacature.sollicitaties %}
+                 <tr>
+                     <td>{{ sollicitatie.datum|date("d-m-Y") }}</td>
+                     <td><a href="">{{ sollicitatie.user.voornaam }} {{ sollicitatie.user.naam }}</a></td>
+                     <td class="uitnodiging-werkgever" style="font-size: 2rem;">
 
-            <pre>
+                         {% if sollicitatie.uitnodiging == NULL %}
+                         <i class="fas fa-check orange" data-value="1"></i> /
+                         <i class="fas fa-times orange" data-value="2"></i>
+                         {% endif %}
 
-                {% for sollicitatie in vacature.sollicitaties %}
+                         {% if sollicitatie.uitnodiging matches '/1/' %}
+                         <i class="fas fa-check"></i>
+                         <i class="far fa-times-circle fa-sm orange undo-inv" data-value="NULL"></i>
+                         {% endif %}
 
-                {{ sollicitatie.user.voornaam }} {{ sollicitatie.user.naam }} heeft hierop gesolliciteerd!
-                    
-                {% endfor %}
-            
-            </pre>
-            
+                         {% if sollicitatie.uitnodiging matches '/2/' %}
+                         <i class="fas fa-times"></i>
+                         <i class="far fa-times-circle fa-sm orange undo-inv" data-value="NULL"></i>
+                         {% endif %}
+                         
+                     </td>
+                 </tr>   
+            {% endfor %}
+            </tbody>
+        </table>
 
-        </pre>
-    
-    {% endfor %}
+        {% endif %}
+
+    </div>
+</div>
+
+<script>
+
+    $(document).ready( function() {
+
+        // $(".orange.far, .orange.fas").click( e => {
+        //     let value = $(this).data("value");
+
+        //     $.ajax({
+        //         url: "index.php",
+        //         method: "POST",
+        //         data: { uitnodiging: value },
+        //         succes: function(response) {
+        //             respons;
+        //         }
+        //     })
+        // });
+        
+
+        $(".orange.far, .orange.fas").hover( () => {
+            $(this).css("opacity", 0.5);
+        }, () => {
+            $(this).css("opacity", 1);
+        });
 
 
+        $('#tabel-sollicitaties-vacature').DataTable({
+            dom: 'rtip',
+            pagingType: "numbers",
+            pageLength: 10,
+            language: {"info": "Sollicitaties _START_ t/m _END_ (uit _TOTAL_ sollicitaties)" },
+            // "fnDrawCallback": function(oSettings) {
+            //     if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
+            //         $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+            //         $(oSettings.nTableWrapper).find('.dataTables_info').hide();    
+            //     }
+            // },
+        });
+
+    });
+
+</script>
 {% endblock %}

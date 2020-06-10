@@ -79,6 +79,6 @@ form:
     email: E-mail
     current_password: 'Huidig wachtwoord'
     password: Wachtwoord
-    password_confirmation: 'Wachtwoord controle'
+    password_confirmation: 'Wachtwoord (controle)'
     new_password: 'Nieuw wachtwoord'
-    new_password_confirmation: 'Wachtwoord controle'
+    new_password_confirmation: 'Wachtwoord (controle)'

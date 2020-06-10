@@ -6,14 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>VacIT{% block title %}{% endblock %}</title>
 
-        <link rel="stylesheet" href="{{ asset('assets/css/vacit-main.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/foundation/assets/css/foundation.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/datatables/datatables.min.css') }}">
         {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{ asset('assets/css/vacit-main.css') }}">
+
 
         <script src="{{ asset('assets/jquery/jquery-3.5.1.js') }}"></script>
         <script src="{{ asset('assets/foundation/assets/js/foundation.js') }}"></script>
-        {% block javascripts %}{% endblock %}
+        <script type="text/javascript" src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
+        {% block javascripts %}{% endblock %} 
     </head>
 
     <body>

@@ -26,7 +26,7 @@ class UserRepository extends ServiceEntityRepository
         $this->um = $um;
         $this->encoder = $encoder;
     }
-
+    
 
     public function findUser($id) {
         return $this->find($id);

@@ -1,28 +1,6 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
-                {% if is_granted("ROLE_CANDIDATE") %}
-                    {% if app.user.voornaam %}
-                        Je bent ingelogd als: {{ app.user.voornaam }} {{ app.user.naam }}.
-                    {% else %}
-                        Je bent ingelogd als: {{ app.user.username }}.
-                    {% endif %}
-                {% endif %}
-                {% if is_granted("ROLE_EMPLOYER") %}
-                    {% if app.user.naam %}
-                        U bent ingelogd als: {{ app.user.naam }}.
-                    {% else %}
-                        U bent ingelogd als: {{ app.user.username }}.
-                    {% endif %}
-                {% endif %}
-            
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
 
         {% if app.request.hasPreviousSession %}
             {% for type, messages in app.session.flashbag.all() %}
@@ -38,4 +16,5 @@
             {% block fos_user_content %}
             {% endblock fos_user_content %}
         </div>
+        
 {% endblock %}
