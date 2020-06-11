@@ -2,20 +2,12 @@
 
 {% block title %} :: Detail{% endblock %}
 
-{% block stylesheets %}
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-{% endblock %}
-
-{% block javascripts %}
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-{% endblock %}
-
 
 {% block body %}
 
 <div class="grid-x grid-padding-y">
     <div class="cell small-12 medium-3 large-2 detail-logos-container">
-        <img class="detail-logos" src="{{ asset('assets/img/icons/') ~ data.afbeelding ~ ('.png') }}">
+        <img class="detail-logos" src="{{ asset('assets/img/icons/') ~ data.afbeelding }}">
         {% if data.user.afbeelding == "default" %}
             <img class="detail-logos" src="{{ asset('assets/img/users/defaultbedrijf.png') }}">
         {% else %}
@@ -50,14 +42,21 @@
 </div>
 
 <div class="grid-x grid-padding-y">
-    <div class="cell medium-3 large-2 hide-for-small-only med-arrow-cell">
+    <div class="cell medium-3 large-2 med-arrow-cell show-for-medium">
         <a href=""><i class="fas fa-arrow-right detail-arrow-medium"></i></a>
     </div>
     <div class="cell small-12 medium-9 large-10">
-        <a class="bebas solliciteer-direct" href="">
+        {% if app.user %}
+        <a class="bebas solliciteer-direct" href="{{ path('vacatureoverzicht', { 'id': data.id, 'user_id': app.user.id }) }}">
             <i class="fas fa-arrow-right detail-arrow hide-for-medium"></i>
             Solliciteer direct
+        </a>    
+        {% else %}
+        <a class="bebas solliciteer-direct" href="{{ path('fos_user_security_login') }}">
+            <i class="fas fa-arrow-right detail-arrow hide-for-medium"></i>
+            Log in om te solliciteren
         </a>
+        {% endif %}
     </div>
 </div>
 
@@ -70,7 +69,7 @@
 <div class="grid-x">
     <div class="cell medium-3 large-2 hide-for-small-only"></div>
     <div class="cell small-12 medium-9 large-10">
-        <table id="tabel-meer-vacatures" class="datatables-layout">
+        <table id="tabel-meer-vacatures" class="tables-layout">
             <thead>
                 <th>Datum</th>
                 <th>Vacature</th>

@@ -29,12 +29,21 @@ class SollicitatieService {
     }
 
 
-    public function saveSollicitatie($vacId, $userId)
+    public function saveSollicitatie($params)
     {
-        $user = $us->findUser($userId);
-        $vac = $vs->findVacature($vacId);
-        $params = ["user" => $user, "vacature" => $vac];
-        
+        $id = isset($params['id']) ? $params['id'] : NULL;
+        $user = $this->us->findUser($params['user_id']);
+        $vacature = $this->vs->findVacature($params['vacature_id']);
+        $datum = new \Datetime(date_default_timezone_get());
+        $uitnodiging = isset($params['uitnodiging']) ? $params['uitnodiging'] : NULL;
+
+        $params = array(
+            "id" => $id,
+            "user" => $user,
+            "vacature" => $vacature,
+            "datum" => $datum,
+            "uitnodiging" => $uitnodiging
+        );
         return $this->rep->saveSollicitatie($params);
     }
 

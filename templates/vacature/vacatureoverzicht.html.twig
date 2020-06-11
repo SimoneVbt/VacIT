@@ -23,7 +23,7 @@
                 {% for vacature in data %}
                 <tr>
                     <td class="overview-icon-container">
-                        <img class="overview-icon" src="assets/img/icons/{{ vacature.afbeelding }}.png">
+                        <img class="overview-icon" src="{{ asset('assets/img/icons/') ~ vacature.afbeelding }}">
                     </td>
                     <td class="overview-text-container">
                         <h2 class="overview-title">{{ vacature.vacaturetitel }}</h2>

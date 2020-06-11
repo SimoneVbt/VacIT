@@ -43,7 +43,7 @@
                         <i class="fas fa-check fa-2x orange" data-order="1"></i>{% endif %}</td>
                     <td class="uitnodiging show-for-medium">
                         {% if soll.uitnodiging == 1 %}<i class="fas fa-check fa-2x orange" data-order="2"></i>{% endif %}
-                        {% if soll.uinodiging == 2 %}<i class="fas fa-times fa-2x orange" data-order="1"></i>{% endif %}</td>
+                        {% if soll.uitnodiging == 2 %}<i class="fas fa-times fa-2x orange" data-order="1"></i>{% endif %}</td>
                         <td class="candidate-soll-date">
                         {% if soll.uitnodiging %} {{ soll.datumUitgenodigd|date("d-m-Y") }}
                         {% else %} <span class="hide">n.v.t.</span>{% endif %} </td>

@@ -24,15 +24,20 @@ class SollicitatieRepository extends ServiceEntityRepository
     {
         if (isset($params['id'])) { //afdoende controle voor dubbele sollicitaties?
             $sollicitatie = $this->find($params['id']);
+            $datum = $sollicitatie->getDatum();
         } else {
             $sollicitatie = new Sollicitatie();
+            $datum = $params['datum'];
         }
 
         $sollicitatie->setUser($params['user']);
         $sollicitatie->setVacature($params['vacature']);
+        $sollicitatie->setDatum($datum);
 
-        $sollicitatie->setUitnodiging(isset($params['uitnodiging']) ? $params['uitnodiging'] : false);
-        $sollicitatie->setDatumUitgenodigd(isset($params['datum_uitgenodigd']) ? $params['datum_uitgenodigd'] : null);
+        if (isset($params['uitnodiging'])) {
+            $sollicitatie->setUitnodiging($params['uitnodiging']);
+            $sollicitatie->setDatumUitgenodigd($datum);
+        }
 
         $em = $this->getEntityManager();
         $em->persist($sollicitatie);

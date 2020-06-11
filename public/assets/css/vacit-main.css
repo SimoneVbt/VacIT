@@ -281,7 +281,14 @@ h1.overview-title {
 /****************************
     SOLLICITATIES VACATURE
 ****************************/
-
+h1.emp-vac-soll-title {
+    padding-bottom: 0;
+    line-height: 1.2em;
+}
+p.emp-vac-soll-date {
+    margin-top: -10px;
+    padding-bottom: 20px;
+}
 
 td.uitnodiging-werkgever {
     padding-bottom: 0;
@@ -301,7 +308,8 @@ td.uitnodiging-werkgever {
 }
 
 @media (min-width: 1024px) {
-    
+     td.uitnodiging-werkgever {
+            width: 50px; }
         i.undo-inv {
             font-size: 1rem;
             top: 35%;
@@ -312,9 +320,7 @@ td.uitnodiging-werkgever {
 
     #tabel-sollicitaties-vacature_wrapper {
         width: 60%; }
-        td.uitnodiging-werkgever {
-            width: 50px;
-        }
+       
 }
 
 /****************************
@@ -498,9 +504,16 @@ a.solliciteer-direct {
             padding-right: 30px;
         }
 
-    i.detail-arrow-medium {
-        font-size: 32px;
-    }
+    .med-arrow-cell {
+        position: relative;
+        height: 32px }
+        i.detail-arrow-medium {
+            position: absolute;
+            float: none;
+            font-size: 30px;
+            right: 10%;
+            top: 57.5%;
+        }
     a.solliciteer-direct {
         font-size: 32px;
     }

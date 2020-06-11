@@ -30,7 +30,7 @@ class Sollicitatie
     private $user;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $uitnodiging;
 
@@ -73,12 +73,12 @@ class Sollicitatie
         return $this;
     }
 
-    public function getUitnodiging(): ?bool
+    public function getUitnodiging(): ?int
     {
         return $this->uitnodiging;
     }
 
-    public function setUitnodiging(?bool $uitnodiging): self
+    public function setUitnodiging(?int $uitnodiging): self
     {
         $this->uitnodiging = $uitnodiging;
 

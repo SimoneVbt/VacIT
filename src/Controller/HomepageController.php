@@ -11,23 +11,24 @@ use App\Service\VacatureService;
  */
 class HomepageController extends BaseController
 {
+    private $vs;
+
+    public function __construct(VacatureService $vs)
+    {
+        $this->vs = $vs;
+    }
+
+    
     /**
      * @Route("/", name="homepage")
      * @Template()
      */
-    public function index(VacatureService $vs)
+    public function index()
     {
-        $vacatures = $vs->getAllVacaturesByDate();
+        $vacatures = $this->vs->getAllVacaturesByDate();
         return ['data' => $vacatures];
     }
 
-    /**
-     * @Route("/vacatures",  name="vacatureoverzicht")
-     * @Template()
-     */
-    public function vacatures(VacatureService $vs)
-    {
-        $vacatures = $vs->getAllVacaturesByDate();
-        return ['data' => $vacatures];
-    }
+
+
 }
