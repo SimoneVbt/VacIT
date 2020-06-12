@@ -74,7 +74,7 @@ layout:
     register: Registreer
     logged_in_as: 'Ingelogd als %username%'
 form:
-    group_name: 'Groep naam'
+    group_name: 'Groepsnaam'
     username: Gebruikersnaam
     email: E-mail
     current_password: 'Huidig wachtwoord'

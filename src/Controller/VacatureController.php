@@ -41,28 +41,4 @@ class VacatureController extends BaseController
         $vacature = $this->vs->findVacature($id);
         return ['data' => $vacature];
     }
-
-
-    /**
-     * @Route("/{id}/solliciteer/{user_id}", name="solliciteer")
-     * @Template()
-     */
-
-    public function solliciteer($id, $user_id)
-    {
-        if (isset($user_id)) {
-             //...
-        } else {
-            alert("Log in om te solliciteren op deze functie.");
-        };
-    }
-
-
-    // /** 
-    //  * @Route("/{id}/solliciteer/{user_id}/go", name="ajax_solliciteer")
-    // */
-    // public function solliciteerAjax (Request $request, $id)
-    // {
-
-    // }
 }

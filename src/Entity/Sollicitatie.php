@@ -44,6 +44,11 @@ class Sollicitatie
      */
     private $datum;
 
+    /**
+     * @ORM\Column(type="string", length=2000, nullable=true)
+     */
+    private $motivatie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -105,6 +110,18 @@ class Sollicitatie
     public function setDatum(\DateTimeInterface $datum): self
     {
         $this->datum = $datum;
+
+        return $this;
+    }
+
+    public function getMotivatie(): ?string
+    {
+        return $this->motivatie;
+    }
+
+    public function setMotivatie(?string $motivatie): self
+    {
+        $this->motivatie = $motivatie;
 
         return $this;
     }

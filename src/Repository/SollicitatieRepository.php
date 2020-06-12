@@ -36,7 +36,7 @@ class SollicitatieRepository extends ServiceEntityRepository
 
         if (isset($params['uitnodiging'])) {
             $sollicitatie->setUitnodiging($params['uitnodiging']);
-            $sollicitatie->setDatumUitgenodigd($datum);
+            $sollicitatie->setDatumUitgenodigd($params['datum']);
         }
 
         $em = $this->getEntityManager();

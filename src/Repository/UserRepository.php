@@ -39,14 +39,16 @@ class UserRepository extends ServiceEntityRepository
         if (!$u) {
             $user = $this->um->createUser();
             $user->setUsername($params['email']);
-            $user->setEmail($params['email']);
-            $user->setEnabled(true);
             $user->setRoles($params['rollen']);
+            $user->setEnabled(true);
 
             $password = $this->encoder->encodePassword($user, $params['wachtwoord']);
             $user->setPassword($password);
-            
-            //oppassen: als het bestaat, meegeven met $params, anders wordt het null
+
+        } else {
+            $user = new User();
+        }
+            $user->setEmail($params['email']);
             $user->setNaam(isset($params["naam"]) ? $params["naam"] : null);
             $user->setVoornaam(isset($params["voornaam"]) ? $params["voornaam"] : null);
             $user->setGeboortedatum(isset($params["geboortedatum"]) ? $params["geboortedatum"] : null);
@@ -60,11 +62,6 @@ class UserRepository extends ServiceEntityRepository
 
             $this->um->updateUser($user);
             return $user;
-
-        } else {
-            return ("Deze gebruiker bestaat al.");
-        }
-        
     }
     
 

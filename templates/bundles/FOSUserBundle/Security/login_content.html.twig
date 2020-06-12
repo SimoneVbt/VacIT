@@ -18,23 +18,23 @@
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
             {% endif %}
 
-            <label class="login-label" for="username">{{ 'security.login.username'|trans }}
-                <input class="login-input login-username" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
+            <label class="form-label" for="username">{{ 'security.login.username'|trans }}
+                <input class="form-input login-username" type="text" id="username" name="_username" value="{{ last_username }}" required="required" autocomplete="username" />
             </label>
 
-            <label class="login-label" for="password">{{ 'security.login.password'|trans }}
-                <input class="login-input login-password" type="password" id="password" name="_password" required="required" autocomplete="current-password" />
+            <label class="form-label" for="password">{{ 'security.login.password'|trans }}
+                <input class="form-input login-password" type="password" id="password" name="_password" required="required" autocomplete="current-password" />
             </label>
 
             <div class="grid-x">
                 <div class="cell small-6">
-                    <a class="login-reset" href="{{ path('fos_user_resetting_request') }}">Wachtwoord vergeten</a>
+                    <a class="password-reset" href="{{ path('fos_user_resetting_request') }}">Wachtwoord vergeten</a>
                 </div>
-                <div class="cell small-6 submit-icon">
-                    <label for="_submit">
+                <div class="cell small-6 login-submit-icon">
+                    <label for="submit">
                         <i class="fas fa-arrow-right fa-2x orange login-submit"></i>
                     </label>
-                    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                    <input type="submit" id="submit" name="submit" value="{{ 'security.login.submit'|trans }}" />
                 </div>
             </div>
 

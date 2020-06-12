@@ -9,10 +9,10 @@
 
         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
         {{ form_widget(form) }}
-        <div class="register-submit-wrapper">
-            <label for="_submit">
-                <i class="fas fa-arrow-right fa-2x orange register-submit-arrow"></i>
-            <input class="bebas orange register-submit" type="submit" value="{{ 'registration.submit'|trans }}" />
+        <div class="form-submit-wrapper">
+            <label for="submit">
+                <i class="fas fa-arrow-right fa-2x orange form-submit-arrow"></i>
+            <input class="bebas orange form-submit" type="submit" id="submit" value="{{ 'registration.submit'|trans }}" />
             </label>
         </div>
         {{ form_end(form) }}
@@ -24,9 +24,9 @@
 
     $(document).ready(function() {
         
-        $("label").addClass('login-label');
-        $("input").addClass('login-input');
-        $(".register-submit").removeClass('login-input');
+        $("label").addClass('form-label');
+        $("input").addClass('form-input');
+        $(".form-submit").removeClass('form-input');
 
     });
 

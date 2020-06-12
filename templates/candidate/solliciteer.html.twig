@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+<div class="grid-x">
+    <div class="cell small-4 medium-3 photo-container">
+        {% if user.afbeelding == "default" %}
+        <img class="photo" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+        {% else %}
+        <img class="photo" src="{{asset ('assets/img/users/') ~ user.afbeelding }}">
+        {% endif %}
+    </div>
+    <div class="cell small-8 medium-9">
+        <h1 class="overview-title">Sollicitatie naar <a href="{{ path('vacature_detail', { 'id': vacature.id } ) }}">{{ vacature.vacaturetitel }}</a></h1>
+        <form>
+            <label class="login-label"> Naam
+                <input class="login-input" type="text">
+            </label>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,11 +1,13 @@
 @font-face {
     font-family: 'Bebas Neue';
-    src: url("../fonts/BebasNeue.otf") format("opentype"); }
+    src: url('../fonts/bebasneue-webfont.woff2') format('woff2'),
+         url('../fonts/bebasneue-webfont.woff') format('woff'); }
 @font-face {
     font-family: 'Roboto Condensed';
-    src: url("../fonts/Roboto-Condensed.ttf") format("truetype"); }
+    src: url('../fonts/roboto-condensed-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-condensed-webfont.woff') format('woff'); }
 
-
+         
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif !important;
@@ -112,32 +114,59 @@ a.button-large {
 }
 
 /****************************
-        LOGIN & REGISTER
+        MIJN PROFIEL
 ****************************/
 
-.login-page {
-    padding: 0 5%;
+#profile-overview th,
+#profile-overview td {
+    font-size: 0.8rem;
+    background-color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 1px black;
+    box-shadow: none;
+    text-align: left;
 }
 
-.login-img-container {
-    position: relative; }
-    img.login-hex {
-        position: absolute;
-        top: 3%;
-        left: 10%;
-        max-width: 60%; }
-    img.excl-mark {
-        position: absolute;
-        top: 0;
-        left: 30%;
-        max-width: 20%; }
+.profile-overview-empty {
+    font-style: italic;
+    color: #777777;
+}
+
+
+@media (min-width: 640px) {
+
+    .profile-overview-container {
+        padding-top: 20px;
+        padding-left: 10%;
+    }
+
+    #profile-overview {
+        width: 60%;
+        font-size: 1rem;
+        margin-top: 30px;
+        margin-bottom: 60px;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    .profile-overview-container {
+        padding-top: 0;
+    }
+}
+
+/****************************
+            FORMS
+****************************/
     
-label.login-label {
+label.form-label {
     font-size: 0.5rem;
     font-weight: bold;
     text-transform: lowercase;
 }
-input.login-input, input.login-input:focus {
+input.form-input, input.form-input:focus {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -151,27 +180,15 @@ input.login-input, input.login-input:focus {
     input.login-password {
         font-size: 20px; }
 
-a.login-reset {
-    font-size: 0.5rem;
-}
-
-.submit-icon {
+.form-submit-wrapper {
     position: relative; }
-    .submit-icon>input {
-        display: none; }
-    .submit-icon>label {
-        position: absolute;
-        right: 3%; }
-
-.register-submit-wrapper {
-    position: relative; }
-    .register-submit-wrapper>label {
+    .form-submit-wrapper>label {
         height: 10px; }
-        .register-submit-arrow {
+        .form-submit-arrow {
             transform: scale(2);
             position: absolute;
             top: 60%; }
-    .register-submit {
+    .form-submit {
         background-color: transparent;
         border: none;
         font-size: 26px;
@@ -179,60 +196,143 @@ a.login-reset {
         top: 10%;
         left: 10%; }
 
+input::-webkit-calendar-picker-indicator{
+    display: none;
+}
+
+a.password-reset {
+    font-size: 0.5rem;
+}    
+
+
+.login-page {
+    padding: 0 5%;
+}
+.login-img-container {
+    position: relative; }
+    img.login-hex {
+        position: absolute;
+        top: 3%;
+        left: 10%;
+        max-width: 60%; }
+    img.excl-mark {
+        position: absolute;
+        top: 0;
+        left: 30%;
+        max-width: 20%;
+    }
+.login-submit-icon {
+    position: relative; }
+    .login-submit-icon>input {
+        display: none; }
+    .login-submit-icon>label {
+        position: absolute;
+        right: 3%; }
+
+
+.profile-label,
+.profile-input {
+    display: block;
+}
+#tekst {
+    min-height: 100px;
+    height: 20vh;
+    max-height: 200px;
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif !important;
+    color: #333333;
+    font-style: italic;
+    border-color: #333333;
+    margin-bottom: 10px; }
+    .ql-toolbar.ql-snow {
+        border-color: #333333;
+    }
+
+.profile-submit-wrapper {
+    position: relative;
+    height: 20px;
+}
+.form-submit-arrow.bijwerken-arrow {
+    top: 50%;
+}
+.form-submit.bijwerken {
+    left: 15%;
+}
+
+
 @media (min-width: 400px) {
     
-    .register-submit {
+    .form-submit {
         left: 8%;
     }
 }
 @media (min-width: 640px) {
 
-    .login-page {
-        padding-right: 20%;
-    }
-    
-    label.login-label,
-    a.login-reset {
+    label.form-label,
+    a.password-reset {
         font-size: 0.6rem;
     }
 
-    .submit-icon>label {
-        right: 5%; }
+    .login-page {
+        padding-right: 20%;
+    }
+    .login-submit-icon>label {
+        right: 5%;
+    }
 
-    .register-submit {
+    .form-submit {
         left: 5%;
     }
+    .form-submit.bijwerken {
+        left: 50%; }
+    .form-submit-arrow.bijwerken-arrow {
+        left: 45%;
+        top: 55%; }
 }
 
 @media (min-width: 1024px) {
-
-    .login-title {
-        font-size: 3rem !important;
+    
+    label.form-label,
+    a.password-reset {
+        font-size: 0.7rem;
     }
+    .form-submit {
+        left: 7%;
+        top: 14%;
+    }
+
+    .form-submit.bijwerken {
+        left: 70%; }
+    .form-submit-arrow.bijwerken-arrow {
+        left: 65%;
+        top: 55%; }
 
     img.login-hex {
         left: 42.5%;
         max-width: 30%; }
     img.excl-mark {
         left: 55%;
-        max-width: 8%; }
-
-    label.login-label,
-    a.login-reset {
-        font-size: 0.7rem;
+        max-width: 8%;
     }
-    .submit-icon>label {
+    .login-title {
+        font-size: 3rem !important;
+    }
+    .login-submit-icon>label {
         right: 20%;
         top: 10%;
-    }
-
-    .register-submit {
-        left: 7%;
-        top: 14%;
     }
 }
 
 @media (min-width: 1400px) {
+
+    .form-submit {
+        left: 5%;
+    }
+
+    .form-submit.bijwerken {
+        left: 80%; }
+    .form-submit-arrow.bijwerken-arrow {
+        left: 77%;
+        top: 55%; }
 
     img.login-hex {
         left: 70%;
@@ -241,11 +341,7 @@ a.login-reset {
     img.excl-mark {
         left: 77%;
         max-width: 30px;
-    }
-
-    .register-submit {
-        left: 5%;
-    }
+    } 
 }
 
 /****************************
@@ -258,7 +354,6 @@ a.login-reset {
 
 h1.overview-title {
     font-size: 2.5rem !important;
-    text-transform: uppercase;
     padding-top: 10px;
     padding-bottom: 20px;
 }
@@ -279,7 +374,7 @@ h1.overview-title {
 }
 
 /****************************
-    SOLLICITATIES VACATURE
+  SOLLICITATIES OP VACATURE
 ****************************/
 h1.emp-vac-soll-title {
     padding-bottom: 0;

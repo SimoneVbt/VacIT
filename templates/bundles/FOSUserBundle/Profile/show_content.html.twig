@@ -1,15 +1,168 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 
-<!-- check userdetails: als nog niet alle essentiële gegevens ingevuld zijn, aanmoedigen deze in te vullen -->
-
-
-<div>
-    <div class="button-container">
-        <a class="button-small" href={{ path('fos_user_profile_edit') }}>Bewerk je profiel</a>
+<div class="grid-x grid-padding-x profile-overview-container">
+    <div class="cell medium-3 show-for-medium photo-container">
+        {% if user.afbeelding == "default" %}
+            {% if is_granted("ROLE_CANDIDATE") %}
+            <img class="photo" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+            {% else %}
+            <img class="photo" src="{{ asset('assets/img/users/defaultbedrijf.png') }}">
+            {% endif %}
+        {% else %}
+        <img class="photo" src="{{ asset('assets/img/users/') ~ user.afbeelding }}">
+        {% endif %}
     </div>
-    <div class="button-container">
-        <a class="button-small" href={{ path('fos_user_resetting_request') }}>Verander je wachtwoord</a>
+
+    <div class="cell small-12 medium-9">
+
+        <h1 class="orange profile-title">Mijn profiel</h1>
+
+        <table id="profile-overview" class="tables-layout">
+            {% if is_granted("ROLE_CANDIDATE") %}
+            <tr>
+                <th>Voornaam:</th>
+                <td>
+                    {% if app.user.voornaam is empty %}
+                    <span class="profile-overview-empty">onbekend</span>
+                    {% else %}
+                    {{ app.user.voornaam }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Achternaam:</th>
+            {% else %}
+                <th>Naam organisatie:</th>
+            {% endif %}
+                <td>
+                    {% if app.user.naam is empty %}
+                    <span class="profile-overview-empty">onbekend</span>
+                    {% else %}
+                    {{ app.user.naam }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>E-mail:</th>
+                <td>{{ app.user.email }}</td>
+            </tr>
+            {% if is_granted("ROLE_CANDIDATE") %}
+            <tr>
+                <th>Geboortedatum:</th>
+                <td>
+                    {% if app.user.geboortedatum is empty %}
+                    <span class="profile-overview-empty">onbekend</span>
+                    {% else %}
+                    {{ app.user.geboortedatum|date('d-m-Y') }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>Telefoonnummer:</th>
+                <td>
+                    {% if app.user.telefoonnummer is empty %}
+                    <span class="profile-overview-empty">onbekend</span>
+                    {% else %}
+                    {{ app.user.telefoonnummer }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Adres:</th>
+                <td>
+                    {% if app.user.adres is empty %}
+                    <span class="profile-overview-empty">onbekend</span>
+                    {% else %}
+                    {{ app.user.adres }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Postcode:</th>
+                <td>
+                    {% if app.user.postcode is empty %}
+                    <span class="profile-overview-empty">onbekend</span>
+                    {% else %}
+                    {{ app.user.postcode }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {% if is_granted("ROLE_CANDIDATE") %}
+                    Woonplaats:
+                    {% else %}
+                    Vestigingsplaats
+                    {% endif %}
+                </th>
+                <td>
+                    {% if app.user.plaats is empty %}
+                    <span class="profile-overview-empty">onbekend</span>
+                    {% else %}
+                    {{ app.user.plaats }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Afbeelding:</th>
+                <td>
+                    {% if app.user.afbeelding == "default" %}
+                    <span class="profile-overview-empty">nog niet geüpload</span>
+                    {% else %}
+                    <i class="fas fa-check fa-2x orange"></i>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {% if is_granted("ROLE_CANDIDATE") %}
+                    Motivatie:
+                    {% else %}
+                    Omschrijving:
+                    {% endif %}
+                </th>
+                <td>
+                    {% if app.user.tekst is empty %}
+                    <span class="profile-overview-empty">onbekend</span>
+                    {% else %}
+                    <i class="fas fa-check fa-2x orange"></i>
+                    {% endif %}
+                </td>
+            </tr>
+            {% if is_granted("ROLE_CANDIDATE") %}
+            <tr>
+                <th>Cv</th>
+                <td>
+                    {% if app.user.cv is empty %}
+                    <span class="profile-overview-empty">nog niet geüpload</span>
+                    {% else %}
+                    <i class="fas fa-check fa-2x orange"></i>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+
+        <div>
+            <div class="button-container">
+                <a class="button-small" href="{{ path('fos_user_profile_edit') }}">Bewerk
+                                                        {% if is_granted('CANDIDATE') %}je
+                                                                                {% else %}dit
+                                                                                {% endif %}profiel
+                </a>
+            </div>
+            <div class="button-container">
+                <a class="button-small" href="{{ path('fos_user_resetting_request') }}">Verander
+                                                            {% if is_granted('CANDIDATE') %}je
+                                                                                    {% else %}uw
+                                                                                    {% endif %}wachtwoord
+                </a>
+            </div>
+        </div>
     </div>
 </div>
+
+
 
