@@ -47,7 +47,7 @@
     </div>
     <div class="cell small-12 medium-9 large-10">
         {% if app.user %}
-        <a class="bebas solliciteer-direct" href="{{ path('solliciteer', { 'id': app.user.id, 'vacature_id': data.id  }) }}">
+        <a class="bebas solliciteer-direct" href="{{ path('nieuwe_sollicitatie', { 'user_id': app.user.id, 'vacature_id': data.id  }) }}">
             <i class="fas fa-arrow-right detail-arrow hide-for-medium"></i>
             Solliciteer direct
         </a>    
@@ -79,7 +79,7 @@
             {% for vacature in data.user.vacatures %}
                 <tr>
                     <td>{{ vacature.plaatsingsdatum|date("d-m-Y") }}</td>
-                    <td><a href="{{ path('vacature_detail', {'id': vacature.id }) }}">
+                    <td><a href="{{ path('vacature_detail', {'vacature_id': vacature.id }) }}">
                         {{ vacature.vacaturetitel }}</a>
                     </td>
                     <td><span style="text-transform: uppercase;">{{ vacature.werkniveau }}</span></td>

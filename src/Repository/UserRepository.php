@@ -46,7 +46,7 @@ class UserRepository extends ServiceEntityRepository
             $user->setPassword($password);
 
         } else {
-            $user = new User();
+            $user = $u;
         }
             $user->setEmail($params['email']);
             $user->setNaam(isset($params["naam"]) ? $params["naam"] : null);
@@ -56,8 +56,8 @@ class UserRepository extends ServiceEntityRepository
             $user->setAdres(isset($params["adres"]) ? $params["adres"] : null);
             $user->setPostcode(isset($params["postcode"]) ? $params["postcode"] : null);
             $user->setPlaats(isset($params["plaats"]) ? $params["plaats"] : null);
-            $user->setAfbeelding(isset($params["afbeelding"]) ? $params["afbeelding"] : null);
-            $user->setMotivatie(isset($params["motivatie"]) ? $params["motivatie"] : null);
+            $user->setAfbeelding(isset($params["afbeelding"]) ? $params["afbeelding"] : "default");
+            $user->setTekst(isset($params["tekst"]) ? $params["tekst"] : null);
             $user->setCv(isset($params["cv"]) ? $params["cv"] : null);
 
             $this->um->updateUser($user);

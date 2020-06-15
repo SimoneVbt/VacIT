@@ -30,6 +30,13 @@ class UserService {
     }
 
 
+    public function saveUser($params)
+    {
+        $params["geboortedatum"] = new \DateTime($params["geboortedatum"]);
+        return $this->rep->saveUser($params);
+    }
+
+
     public function createUser($params)
     {
         $u = $this->um->findUserByEmail($params['email']);

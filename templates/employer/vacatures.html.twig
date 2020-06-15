@@ -32,7 +32,7 @@
             {% for vacature in user.vacatures %}
                 <tr>
                     <td>{{ vacature.plaatsingsdatum|date("d-m-Y") }}</td>
-                    <td><a href="{{ path('vacature_detail', { 'id': vacature.id }) }}">
+                    <td><a href="{{ path('vacature_detail', { 'vacature_id': vacature.id }) }}">
                         {{ vacature.vacaturetitel }}</a></td>
                     <td class="sollicitanten"><a href="{{ path('sollicitaties_werkgever', { 'user_id': app.user.id, 'vacature_id': vacature.id }) }}">
                         {{ vacature.sollicitaties|length }}</a></td>
@@ -44,11 +44,11 @@
         {% endif %}
 
         <div class="button-container voeg-vacatures-toe">
-            <a class="button-small" href="">Voeg vacatures toe</a>
+            <a class="button-small" href="{{ path('nieuwe_vacature', { 'user_id': app.user.id  }) }}">Voeg vacatures toe</a>
         </div>
         {% if user.vacatures is not empty %}
         <div class="button-container">
-            <a class="button-small" href="{{ path('alle_sollicitaties_werkgever', { 'id': app.user.id}) }}">Bekijk alle sollicitaties</a>
+            <a class="button-small" href="{{ path('alle_sollicitaties_werkgever', { 'user_id': app.user.id}) }}">Bekijk alle sollicitaties</a>
         </div>
         {% endif %}
 

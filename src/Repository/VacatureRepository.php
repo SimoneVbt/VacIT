@@ -33,20 +33,19 @@ class VacatureRepository extends ServiceEntityRepository
     public function saveVacature($params) {
         if (isset($params['id'])) {
             $vacature = $this->find($params['id']);
+            $vacature->setDatumBijgewerkt($params["datum"]);
         } else {
             $vacature = new Vacature();
+            $vacature->setPlaatsingsdatum($params["datum"]);
         }
 
-        $vacature->setUser($params['user']); //moet user-object zijn, niet id
+        $vacature->setUser($params['user']);
+        $vacature->setVacaturetitel($params['vacaturetitel']);
+        $vacature->setVacaturetekst($params['vacaturetekst']);
+        $vacature->setWerkniveau($params['werkniveau']);
+        $vacature->setStandplaats($params['standplaats']);
 
-        date_default_timezone_set('Europe/Amsterdam');
-        $vacature->setPlaatsingsdatum(isset($params['datum']) ? $params['datum'] : new \Datetime (date_default_timezone_get()) );
-        $vacature->setPlaatsingsdatum(isset($params['datum_bijgewerkt']) ? new \Datetime (date_default_timezone_get()) : null);
-
-        $vacature->setVacaturetitel($params['titel']);
-        $vacature->setVacaturetekst($params['tekst']);
         $vacature->setAfbeelding(isset($params['afbeelding']) ? $params['afbeelding'] : null);
-        $vacature->setWerkniveau($params['niveau']);
 
         $em = $this->getEntityManager();
         $em->persist($vacature);

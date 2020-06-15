@@ -1,0 +1,151 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+{% endblock %}
+
+
+{% block body %}
+<div class="grid-x grid-padding-x">
+    <div class="cell medium-3 photo-container show-for-medium">
+        {% if user.afbeelding == "default" %}
+        <img class="photo" src="{{ asset('assets/img/users/defaultbedrijf.png') }}">
+        {% else %}
+        <img class="photo" src="{{asset ('assets/img/users/') ~ user.afbeelding }}">
+        {% endif %}
+    </div>
+    <div class="cell small-12 medium-9">
+        <h1 class="overview-title">Nieuwe vacature voor <br class="hide-for-medium">
+            <a href="">{{ user.naam }}</a></h1>
+        
+        <form name="nieuwe_vacature" id="nieuwe_vacatures">
+            <div class="grid-x">
+
+                <div class="cell small-12">
+
+                    <label class="form-label vacature-label" for="vacaturetitel">Functietitel</label>
+                    <input type="text" name="vacaturetitel" id="vacaturetitel" required
+                            class="form-input vacature-input" maxLength="50">
+
+                </div>
+            
+            </div>
+
+            <div class="grid-x">
+
+                <div class="cell small-12 medium-4">
+
+                    <label class="form-label vacature-label" for="werkniveau">Werkniveau</label>
+                    <select name="werkniveau" id="werkniveau" required
+                            class="form-select vacature-input vacature-input-werkniveau">
+                        <option value="" disabled selected style="display: none;"> Kies het werkniveau </option>
+                        <option value="assistent">Assistent</option>
+                        <option value="trainee">Trainee</option>
+                        <option value="junior">Junior</option>
+                        <option value="medior">Medior</option>
+                        <option value="senior">Senior</option>
+                        <option value="principal">Principal</option>
+                        <option value="medewerker">Medewerker</option>
+                    </select>
+
+                </div>
+
+                <div class="cell small-12 medium-4">
+
+                    <label class="form-label vacature-label" for="standplaats">Standplaats</label>
+                    <input type="text" name="standplaats" id="standplaats" required
+                            class="form-input vacature-input vacature-input-standplaats" maxLength="50">
+
+                </div>
+
+                <div class="cell small-12 medium-4">
+
+                    <label class="form-label vacature-label" for="afbeelding">Icoon</label>
+                    <select name="afbeelding" id="afbeelding" required
+                        class="form-select vacature-input">
+                        <option value="" disabled selected style="display: none;"> Kies een icoon </option>
+                        <option value="default">DEFAULT (leeg)</option>
+                        {% for icon in icons|slice(2) %}
+                            <option value="{{ icon }}">{{ icon|slice(0, -4)|capitalize }}</option>
+                        {% endfor %}
+                            
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="grid-x">
+
+                <div class="cell small-12" class="nieuwe-vacature-tekst">
+                    <h2 class="orange">Tekst</h2>
+
+                    <label for="vacaturetekst">
+                        <div id="quill_vacaturetekst" class="quill_tekst"></div>
+                        <input name="vacaturetekst" id="vacaturetekst" type="hidden" required>
+                    </label>
+
+                </div>
+
+            </div> 
+
+            <div class="grid-x">
+
+                <div class="cell small-12 medium-8">
+                    <p class="nieuwe-vacature-profiel">De omschrijving van uw bedrijf wordt automatisch toegevoegd.<br> Deze kunt u aanpassen in uw <a href="{{ path('fos_user_profile_show') }}">profieloverzicht</a>.</p>
+                </div>
+
+                <div class="cell small-12 medium-4">
+                    <div class="vacature-submit-wrapper">
+                        <label for="submit">
+                            <i class="fas fa-arrow-right orange form-submit-arrow vacature-opslaan-arrow"></i>
+                        <input class="bebas orange form-submit vacature-opslaan" id="submit" type="submit" value="opslaan">
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+
+    let quill = new Quill('#quill_vacaturetekst', {
+        theme: 'snow',
+        modules: {
+            toolbar: [
+                [{'header': [1, 2, false]}],
+                ['bold', 'italic', 'underline'],
+                [{'list': 'ordered'}, {'list': 'bullet'}],
+                ['blockquote', 'link', 'image'],
+                [{ 'indent': '-1'}, { 'indent': '+1' }]
+            ]
+        },
+        placeholder: "Plaats hier uw vacaturetekst"        
+    });
+
+    $(document).ready( function() {
+
+        $("#nieuwe_vacature").submit(function(e) {
+
+            $("#vacaturetekst").val($("#quill_vacaturetekst").text());
+
+            $.ajax({
+                url:"{{ path('ajax_vacature', { 'user_id': user.id }) }}",
+                method: "POST",
+                data: $('#nieuwe_vacature').serialize(),
+                // success: function() {
+                //     window.location.href = "{{ path('fos_user_profile_show') }}";
+                // }
+            });
+            
+        });
+
+    });
+
+</script>
+{% endblock %}

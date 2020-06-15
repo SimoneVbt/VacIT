@@ -33,12 +33,12 @@ class VacatureController extends BaseController
 
 
     /**
-     * @Route("/{id}", name="vacature_detail")
+     * @Route("/{vacature_id}", name="vacature_detail")
      * @Template()
      */
-    public function vacatureDetail($id)
+    public function vacatureDetail($vacature_id)
     {
-        $vacature = $this->vs->findVacature($id);
+        $vacature = $this->vs->findVacature($vacature_id);
         return ['data' => $vacature];
     }
 }

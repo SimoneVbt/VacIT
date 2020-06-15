@@ -35,7 +35,7 @@
             {% for soll in user.sollicitaties %}
                 <tr>
                     <td class="candidate-soll-date show-for-medium">{{ soll.vacature.plaatsingsdatum|date("d-m-Y") }}</td>
-                    <td class="candidate-soll-vacancy"><a href="{{ path('vacature_detail', {'id': soll.vacature.id }) }}">
+                    <td class="candidate-soll-vacancy"><a href="{{ path('vacature_detail', {'vacature_id': soll.vacature.id }) }}">
                         {{ soll.vacature.vacaturetitel }}</a></td>
                     <td class="candidate-soll-company">{{ soll.vacature.user.naam }}</td>
                     <td class="uitnodiging hide-for-medium">

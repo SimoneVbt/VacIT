@@ -166,7 +166,8 @@ label.form-label {
     font-weight: bold;
     text-transform: lowercase;
 }
-input.form-input, input.form-input:focus {
+input.form-input, input.form-input:focus,
+select.form-select {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -179,6 +180,12 @@ input.form-input, input.form-input:focus {
     height: 1.8rem; }
     input.login-password {
         font-size: 20px; }
+
+select.form-select {
+    -webkit-appearance: menulist;
+       -moz-appearance: menulist;
+            appearance: menulist;
+}
 
 .form-submit-wrapper {
     position: relative; }
@@ -231,10 +238,12 @@ a.password-reset {
 
 
 .profile-label,
-.profile-input {
+.profile-input,
+.vacature-label,
+.vacature-input {
     display: block;
 }
-#tekst {
+.quill_tekst {
     min-height: 100px;
     height: 20vh;
     max-height: 200px;
@@ -247,16 +256,32 @@ a.password-reset {
         border-color: #333333;
     }
 
-.profile-submit-wrapper {
+.profile-submit-wrapper,
+.vacature-submit-wrapper {
     position: relative;
     height: 20px;
-}
-.form-submit-arrow.bijwerken-arrow {
-    top: 50%;
 }
 .form-submit.bijwerken {
     left: 15%;
 }
+.form-submit.vacature-opslaan {
+    left: 5%;
+}
+.form-submit-arrow.bijwerken-arrow,
+.form-submit-arrow.vacature-opslaan-arrow {
+    top: 50%;
+}
+
+
+.nieuwe-vacature-tekst {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.nieuwe-vacature-profiel {
+    font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif !important;
+    font-size: 0.7rem;
+}
+
 
 
 @media (min-width: 400px) {
@@ -280,13 +305,21 @@ a.password-reset {
     }
 
     .form-submit {
-        left: 5%;
-    }
+        left: 5%; }
     .form-submit.bijwerken {
         left: 50%; }
-    .form-submit-arrow.bijwerken-arrow {
+    .form-submit.vacature-opslaan {
+        left: 55%;
+    }
+    .form-submit-arrow.bijwerken-arrow,
+    .form-submit-arrow.vacature-opslaan-arrow {
         left: 45%;
         top: 55%; }
+
+    .vacature-input-standplaats,
+    .vacature-input-werkniveau {
+        width: 90%;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -305,6 +338,11 @@ a.password-reset {
     .form-submit-arrow.bijwerken-arrow {
         left: 65%;
         top: 55%; }
+    .form-submit-arrow.vacature-opslaan-arrow {
+        left: 48%;
+        top: 55%;
+    }
+
 
     img.login-hex {
         left: 42.5%;
@@ -333,6 +371,13 @@ a.password-reset {
     .form-submit-arrow.bijwerken-arrow {
         left: 77%;
         top: 55%; }
+        
+    .form-submit.vacature-opslaan {
+        left: 75%; }
+    .form-submit-arrow.vacature-opslaan-arrow {
+        left: 70%;
+        top: 55%;
+    }
 
     img.login-hex {
         left: 70%;

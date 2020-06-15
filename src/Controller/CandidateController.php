@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use App\Service\UserService;
 use App\Service\VacatureService;
 
@@ -23,15 +24,16 @@ class CandidateController extends BaseController
     }
 
 
+
     /**
-    * @Route("/{id}/sollicitaties", name="sollicitaties_kandidaat")
+    * @Route("/{user_id}/sollicitaties", name="sollicitaties_kandidaat")
     * @Template()
     */
-   public function sollicitaties($id)
+   public function sollicitaties($user_id)
    {
-        $user = $this->us->findUser($id);
+        $user = $this->us->findUser($user_id);
 
-        if ($this->checkUser($user, $id)) {
+        if ($this->checkUser($user, $user_id)) {
             return ['user' => $user];
         }
        
@@ -39,25 +41,17 @@ class CandidateController extends BaseController
 
 
     /**
-     * @Route("/{id}/solliciteer/{vacature_id}", name="solliciteer")
+     * @Route("/{user_id}/nieuwe_sollicitatie/{vacature_id}", name="nieuwe_sollicitatie")
      * @Template()
      */
 
-    public function solliciteer($id, $vacature_id)
+    public function nieuweSollicitatie($user_id, $vacature_id)
     {
-        $user = $this->us->findUser($id);
-        if ($this->checkUser($user, $id)) {
+        $user = $this->us->findUser($user_id);
+        if ($this->checkUser($user, $user_id)) {
 
             $vacature = $this->vs->findVacature($vacature_id);
             return ['user' => $user, 'vacature' => $vacature];
         }   
-        
-        // /** 
-        //  * @Route("/{id}/solliciteer/{user_id}/go", name="ajax_solliciteer")
-        // */
-        // public function solliciteerAjax (Request $request, $id)
-        // {
-    
-        // }
     }
 }
