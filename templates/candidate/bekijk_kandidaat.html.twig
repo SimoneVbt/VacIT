@@ -1,0 +1,132 @@
+{% extends "base.html.twig" %}
+
+{% block title %} :: {{ user.voornaam }} {{ user.naam }}{% endblock %}
+
+{% block body %}
+<div class="grid-x">
+    <div class="cell small-12 medium-3 photo-container">
+        {% if user.afbeelding == "default" %}
+        <img class="photo display-profile-photo" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+        {% else %}
+        <img class="photo display-profile-photo" src="{{ asset('assets/img/users/') ~ user.afbeelding }}">
+        {% endif %}
+    </div>
+    <div class="cell small-12 medium-9">
+
+        <div class="grid-x grid-padding-x display-profile-row">
+
+            <div class="cell small-4">
+                <label class="form-label profile-label" for="voornaam">Voornaam</label>
+                <div class="display-profile"> {{ user.voornaam }}</div>
+            </div>
+            <div class="cell small-8">
+                <label class="form-label profile-label" for="naam">Achternaam</label>
+                <div class="display-profile">{{ user.naam }}</div>
+            </div>
+
+        </div>
+
+        <div class="grid-x grid-padding-x display-profile-row">
+
+            <div class="cell small-12">
+                <label class="form-label profile-label" for="email">E-mail</label>
+                <div class="display-profile">{{ user.email }}</div>
+            </div>
+
+        </div>
+
+        <div class="grid-x grid-padding-x display-profile-row">
+
+            <div class="cell small-4">
+                <label class="form-label profile-label" for="geboortedatum">Geboortedatum</label>
+                <div class="display-profile">{{ user.geboortedatum|date('d-m-Y') }}</div>
+            </div>
+            <div class="cell small-8">
+
+                <label class="form-label profile-label" for="telefoonnummer">Telefoonnummer</label>
+                <div class="display-profile">{{ user.telefoonnummer }}</div>
+            </div>   
+
+        </div>
+
+        <div class="grid-x grid-padding-x display-profile-row">
+
+            <div class="cell small-12">
+                <label class="form-label profile-label" for="adres">Adres</label>
+                <div class="display-profile">{{ user.adres }}</div>
+            </div>
+
+        </div>
+
+        <div class="grid-x grid-padding-x display-profile-row">
+
+            <div class="cell small-4">
+                <label class="form-label profile-label" for="postcode">Postcode</label>
+                <div class="display-profile">{{ user.postcode }}</div>
+            </div>
+            <div class="cell small-8">
+                <label class="form-label profile-label" for="plaats">Woonplaats</label>
+                <div class="display-profile">{{ user.plaats }}</div>
+            </div>
+
+        </div>
+
+        <div class="grid-x grid-padding-x display-profile-row">
+
+            <div class="cell small-12">
+                <h2 class=" display-profile-subtitle orange"> Motivatie</h2>
+                <p class="display-profile-box">
+                    {% if user.tekst %}
+                        {{ user.tekst }}
+                    {% else %}
+                        {% if user.id == app.user.id %}
+                            Je hebt nog geen motivatie opgegeven. Werkgevers zijn eerder geneigd om kandidaten met een sterke motivatie aan te nemen!
+                        {% else %}
+                            Deze kandidaat heeft nog geen motivatie opgegeven.
+                        {% endif %}
+                    {% endif %}
+                </p>
+            </div>
+
+        </div>
+
+        <!-- <div class="grid-x grid-padding-x display-profile-row">
+
+            <div class="cell small-6">CV</div>
+
+        </div>  -->
+        
+    {% if user.id == app.user.id %}
+
+    <div class="display-profile-buttons">
+        <div class="button-container">
+            <a class="button-small" href="{{ path('fos_user_profile_edit') }}">Bewerk je profiel</a>
+        </div>
+        <div class="button-container">
+            <a class="button-small" href="{{ path('fos_user_resetting_request') }}">Verander je wachtwoord</a>
+        </div>
+    </div>
+
+    {% endif %}
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    $(document).ready( function () {
+
+        $(".display-profile").each( function () {
+            if ($.trim($(this).html())=='') {
+                $(this).html("<em>onbekend</em>")
+            } 
+        })
+
+    });
+
+</script>
+{% endblock %}

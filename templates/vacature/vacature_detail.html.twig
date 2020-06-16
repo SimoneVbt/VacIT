@@ -63,7 +63,7 @@
 <div class="grid-x grid-padding-y">
     <div class="cell medium-3 large-2 hide-for-small-only"></div>
     <div class="cell small-12 medium-9 large-10">
-        <p class="bebas meer-vacatures">Meer vacatures van <a href="">{{ data.user.naam }}:</a></p>
+        <p class="bebas meer-vacatures">Meer vacatures van <a href="{{ path('bekijk_werkgever', { 'emp_id': data.user.id }) }}">{{ data.user.naam }}:</a></p>
     </div>
 </div>
 <div class="grid-x">

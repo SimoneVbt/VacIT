@@ -19,16 +19,10 @@
         <h1 class="orange profile-title">Mijn profiel</h1>
 
         <table id="profile-overview" class="tables-layout">
-            {% if is_granted("ROLE_CANDIDATE") %}
             <tr>
+            {% if is_granted("ROLE_CANDIDATE") %}
                 <th>Voornaam:</th>
-                <td>
-                    {% if app.user.voornaam is empty %}
-                    <span class="profile-overview-empty">onbekend</span>
-                    {% else %}
-                    {{ app.user.voornaam }}
-                    {% endif %}
-                </td>
+                <td>{{ app.user.voornaam }}</td>
             </tr>
             <tr>
                 <th>Achternaam:</th>
@@ -50,44 +44,20 @@
             {% if is_granted("ROLE_CANDIDATE") %}
             <tr>
                 <th>Geboortedatum:</th>
-                <td>
-                    {% if app.user.geboortedatum is empty %}
-                    <span class="profile-overview-empty">onbekend</span>
-                    {% else %}
-                    {{ app.user.geboortedatum|date('d-m-Y') }}
-                    {% endif %}
-                </td>
+                <td>{{ app.user.geboortedatum|date('d-m-Y') }}</td>
             </tr>
             {% endif %}
             <tr>
                 <th>Telefoonnummer:</th>
-                <td>
-                    {% if app.user.telefoonnummer is empty %}
-                    <span class="profile-overview-empty">onbekend</span>
-                    {% else %}
-                    {{ app.user.telefoonnummer }}
-                    {% endif %}
-                </td>
+                <td>{{ app.user.telefoonnummer }}</td>
             </tr>
             <tr>
                 <th>Adres:</th>
-                <td>
-                    {% if app.user.adres is empty %}
-                    <span class="profile-overview-empty">onbekend</span>
-                    {% else %}
-                    {{ app.user.adres }}
-                    {% endif %}
-                </td>
+                <td>{{ app.user.adres }}</td>
             </tr>
             <tr>
                 <th>Postcode:</th>
-                <td>
-                    {% if app.user.postcode is empty %}
-                    <span class="profile-overview-empty">onbekend</span>
-                    {% else %}
-                    {{ app.user.postcode }}
-                    {% endif %}
-                </td>
+                <td>{{ app.user.postcode }}</td>
             </tr>
             <tr>
                 <th>
@@ -97,13 +67,7 @@
                     Vestigingsplaats
                     {% endif %}
                 </th>
-                <td>
-                    {% if app.user.plaats is empty %}
-                    <span class="profile-overview-empty">onbekend</span>
-                    {% else %}
-                    {{ app.user.plaats }}
-                    {% endif %}
-                </td>
+                <td>{{ app.user.plaats }}</td>
             </tr>
             <tr>
                 <th>Afbeelding:</th>
@@ -164,5 +128,16 @@
     </div>
 </div>
 
+<script>
 
+$(document).ready( function () {
 
+    $("td").each( function () {
+        if ($.trim($(this).html())=='') {
+            $(this).html("onbekend").addClass("profile-overview-empty");
+        } 
+    })
+
+});
+
+</script>

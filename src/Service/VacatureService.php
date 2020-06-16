@@ -30,6 +30,12 @@ class VacatureService {
         return $this->rep->getAllVacaturesByDate();
     }
 
+    
+    public function removeVacature($id)
+    {
+        return $this->rep->removeVacature($id);
+    }
+
 
     public function saveVacature($params)
     {

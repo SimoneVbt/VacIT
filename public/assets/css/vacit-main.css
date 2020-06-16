@@ -114,8 +114,32 @@ a.button-large {
 }
 
 /****************************
-        MIJN PROFIEL
+        BEKIJK PROFIEL
 ****************************/
+
+.display-profile-row {
+    padding: 0.3rem 0; }
+    .display-profile {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1.5px solid #F15A24;
+        font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+        height: 1.8rem; }
+    .display-profile-box {
+        border: none;
+        font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif;
+        font-style: italic;
+        font-size: 1rem;
+        height: auto; }
+    .display-profile-subtitle {
+        padding-top: 20px; }
+    .display-profile-photo {
+        padding-bottom: 10px; }
+    .display-profile-buttons {
+        text-align: center; }
 
 #profile-overview th,
 #profile-overview td {
@@ -136,6 +160,11 @@ a.button-large {
 
 
 @media (min-width: 640px) {
+
+    .display-profile-buttons {
+        text-align: left;
+        padding-left: 12px;
+    }
 
     .profile-overview-container {
         padding-top: 20px;
@@ -250,7 +279,7 @@ a.password-reset {
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif !important;
     color: #333333;
     font-style: italic;
-    border-color: #333333;
+    border-color: #333333 !important;
     margin-bottom: 10px; }
     .ql-toolbar.ql-snow {
         border-color: #333333;

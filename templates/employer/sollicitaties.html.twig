@@ -33,26 +33,26 @@
             {% for sollicitatie in vacature.sollicitaties %}
                  <tr>
                      <td>{{ sollicitatie.datum|date("d-m-Y") }}</td>
-                     <td><a href="">{{ sollicitatie.user.voornaam }} {{ sollicitatie.user.naam }}</a></td>
+                     <td><a href="{{ path('bekijk_kandidaat', { 'cand_id': sollicitatie.user.id }) }}">{{ sollicitatie.user.voornaam }} {{ sollicitatie.user.naam }}</a></td>
                      <td class="uitnodiging-werkgever" style="font-size: 2rem;">
 
                          {% if sollicitatie.uitnodiging == NULL or sollicitatie.uitnodiging matches '/0/' %}
                          <i class="fas fa-check orange"
-                            data-value="1" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}" data-vac="{{ vacature.id }}"></i> /
+                            data-value="1" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}"></i> /
                          <i class="fas fa-times orange"
-                            data-value="2" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}" data-vac="{{ vacature.id }}"></i>
+                            data-value="2" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}"></i>
                          {% endif %}
 
                          {% if sollicitatie.uitnodiging matches '/1/' %}
                          <i class="fas fa-check"></i>
                          <i class="far fa-times-circle fa-sm orange undo-inv"
-                            data-value="0" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}" data-vac="{{ vacature.id }}"></i>
+                            data-value="0" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}"></i>
                          {% endif %}
 
                          {% if sollicitatie.uitnodiging matches '/2/' %}
                          <i class="fas fa-times"></i>
                          <i class="far fa-times-circle fa-sm orange undo-inv"
-                            data-value="0" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}" data-vac="{{ vacature.id }}"></i>
+                            data-value="0" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}"></i>
                          {% endif %}
                          
                      </td>
@@ -73,7 +73,6 @@
         $(".orange.far, .orange.fas").click( function() {
             let id = $(this).data("soll");
             let cand = $(this).data("cand");
-            let vac = $(this).data("vac");
             let value = $(this).data("value");
 
             $.ajax({
@@ -81,7 +80,6 @@
                 method: "POST",
                 data: { id: id,
                         user_id: cand,
-                        vacature_id: vac,
                         uitnodiging: value },
                 succes: function(response) { console.log(response); },
                 error: function (request, status, error) { console.log(request.responseText); }

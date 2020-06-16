@@ -32,28 +32,9 @@ class UserService {
 
     public function saveUser($params)
     {
-        $params["geboortedatum"] = new \DateTime($params["geboortedatum"]);
-        return $this->rep->saveUser($params);
-    }
-
-
-    public function createUser($params)
-    {
-        $u = $this->um->findUserByEmail($params['email']);
-        if (!$u) {
-            $user = $this->um->createUser();
-            $user->setUsername($params['email']);
-            $user->setEmail($params['email']);
-            $user->setEnabled(true);
-
-            $password = $this->encoder->encodePassword($user, $params['password']);
-            $user->setPassword($password);
-
-            $this->um->updateUser($user);
-            return $user;
-
-        } else {
-            return ("Deze gebruiker bestaat al.");
+        if (isset($params["geboortedatum"])) {
+            $params["geboortedatum"] = new \DateTime($params["geboortedatum"]);
         }
+        return $this->rep->saveUser($params);
     }
 }

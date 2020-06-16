@@ -23,6 +23,17 @@ class EmployerController extends BaseController
         $this->vs = $vs;
     }
 
+    
+    /**
+     * @Route("/{emp_id}/profiel", name="bekijk_werkgever")
+     * @Template()
+     */
+    public function bekijkWerkgever($emp_id)
+    {
+        $emp = $this->us->findUser($emp_id);
+        return ['user' => $emp];
+    }
+
 
     /**
      * @Route("/{user_id}/vacatures/{vacature_id}/sollicitaties", name="sollicitaties_werkgever")
@@ -31,9 +42,9 @@ class EmployerController extends BaseController
     public function sollicitaties($user_id, $vacature_id)
     {
         $user = $this->us->findUser($user_id);
-        $vacature = $this->vs->findVacature($vacature_id);
-
         if ($this->checkUser($user, $user_id)) {
+
+            $vacature = $this->vs->findVacature($vacature_id);
             return ["user" => $user, "vacature" => $vacature];
         }
     }
@@ -46,7 +57,42 @@ class EmployerController extends BaseController
     public function alleSollicitaties($user_id)
     {
         $user = $this->us->findUser($user_id);
+        if ($this->checkUser($user, $user_id)) {
+            return ['user' => $user];
+        }
+    }
 
+
+    /**
+     * @Route("/{user_id}/vacatures/bewerk/{vacature_id}", name="bewerk_vacature")
+     * @Template()
+     */
+    public function bewerkVacature($user_id, $vacature_id, ParameterBagInterface $param)
+    {
+        $user = $this->us->findUser($user_id);
+        if ($this->checkUser($user, $user_id)) {
+
+            $vacature = $this->vs->findVacature($vacature_id);
+            $iconsDir = $param->get('webDir').'/assets/img/icons/';
+            $icons = scandir($iconsDir);
+
+            return [
+                "user" => $user,
+                "vacature" => $vacature, 
+                "icons" => $icons
+            ];
+        }
+    }
+
+    
+    /**
+     * @Route("/{user_id}/vacatures/verwijder", name="verwijder_vacature")
+     * @Template()
+     */
+
+    public function verwijderVacature($user_id)
+    {
+        $user = $this->us->findUser($user_id);
         if ($this->checkUser($user, $user_id)) {
             return ['user' => $user];
         }
@@ -57,12 +103,12 @@ class EmployerController extends BaseController
      * @Route("/{user_id}/vacatures/nieuw", name="nieuwe_vacature")
      * @Template()
      */
-    public function nieuweVacature($user_id, ParameterBagInterface $parameterBag)
+    public function nieuweVacature($user_id, ParameterBagInterface $param)
     {
         $user = $this->us->findUser($user_id);
         if ($this->checkUser($user, $user_id)) {
 
-            $iconsDir = $parameterBag->get('webDir').'/assets/img/icons/';
+            $iconsDir = $param->get('webDir').'/assets/img/icons/';
             $icons = scandir($iconsDir);
             return ['user' => $user, "icons" => $icons];
         }
@@ -76,7 +122,6 @@ class EmployerController extends BaseController
     public function vacatures($user_id)
     {
         $user = $this->us->findUser($user_id);
-
         if ($this->checkUser($user, $user_id)) {
             return ['user' => $user];
         }

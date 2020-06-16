@@ -24,6 +24,17 @@ class CandidateController extends BaseController
     }
 
 
+    /**
+     * @Route("/{cand_id}/profiel", name="bekijk_kandidaat")
+     * @Template()
+     */
+    public function bekijkKandidaat($cand_id)
+    {
+        $cand = $this->us->findUser($cand_id);
+        return ['user' => $cand];
+    }
+
+
 
     /**
     * @Route("/{user_id}/sollicitaties", name="sollicitaties_kandidaat")

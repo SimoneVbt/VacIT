@@ -137,7 +137,7 @@
                     <div class="profile-submit-wrapper">
                         <label for="submit">
                             <i class="fas fa-arrow-right orange form-submit-arrow bijwerken-arrow"></i>
-                        <input class="bebas orange form-submit bijwerken" id="submit" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+                        <input class="bebas orange form-submit bijwerken" id="submit" type="button" value="{{ 'profile.edit.submit'|trans }}" />
                     </div>
                 </div>
 
@@ -169,7 +169,7 @@
 
     $(document).ready( function() {
 
-        $("#form_bewerk_profiel").submit(function(e) {
+        $("#submit").click(function(e) {
 
             $("#tekst").val($("#quill_tekst").text());
 
@@ -177,9 +177,9 @@
                 url:"{{ path('ajax_profiel', { 'user_id': app.user.id }) }}",
                 method: "POST",
                 data: $('#form_bewerk_profiel').serialize(),
-                // success: function() {
-                //     window.location.href = "{{ path('fos_user_profile_show') }}";
-                // }
+                success: function() {
+                    window.location.href = "{{ path('bekijk_kandidaat', { 'cand_id': app.user.id }) }}";
+                }
             });
              
         });

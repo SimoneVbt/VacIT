@@ -37,7 +37,8 @@
                     <td class="candidate-soll-date show-for-medium">{{ soll.vacature.plaatsingsdatum|date("d-m-Y") }}</td>
                     <td class="candidate-soll-vacancy"><a href="{{ path('vacature_detail', {'vacature_id': soll.vacature.id }) }}">
                         {{ soll.vacature.vacaturetitel }}</a></td>
-                    <td class="candidate-soll-company">{{ soll.vacature.user.naam }}</td>
+                    <td class="candidate-soll-company"><a href="{{ path('bekijk_werkgever', { 'emp_id': soll.vacature.user.id }) }}">
+                        {{ soll.vacature.user.naam }}</a></td>
                     <td class="uitnodiging hide-for-medium">
                         {% if soll.uitnodiging %}
                         <i class="fas fa-check fa-2x orange" data-order="1"></i>{% endif %}</td>

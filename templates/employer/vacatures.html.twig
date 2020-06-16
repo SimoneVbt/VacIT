@@ -14,7 +14,7 @@
         {% endif %}
     </div>
     <div class="cell small-12 medium-9">
-        <h1 class="overview-title">Vacatures bij <span class="orange">{{ user.naam }}</span></h1>
+        <h1 class="overview-title">Vacatures bij <a href="{{ path('bekijk_werkgever', { 'emp_id': app.user.id }) }}">{{ user.naam }}</a></h1>
 
         {% if user.vacatures is empty %}
 
@@ -26,7 +26,11 @@
             <thead>
                 <th>Datum</th>
                 <th>Vacature</th>
-                <th class="sollicitanten">Sollicitanten</th>
+                <th class="sollicitanten">
+                    <span class="hide-for-medium">Soll.</span>
+                    <span class="show-for-medium">Sollicitanten</span>
+                </th>
+                <th></th>
             </thead>
             <tbody>
             {% for vacature in user.vacatures %}
@@ -36,6 +40,7 @@
                         {{ vacature.vacaturetitel }}</a></td>
                     <td class="sollicitanten"><a href="{{ path('sollicitaties_werkgever', { 'user_id': app.user.id, 'vacature_id': vacature.id }) }}">
                         {{ vacature.sollicitaties|length }}</a></td>
+                    <td style="text-align: right;"><a href="{{ path('bewerk_vacature', { 'user_id': app.user.id, 'vacature_id': vacature.id  }) }}">Bewerk</a></td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -44,11 +49,16 @@
         {% endif %}
 
         <div class="button-container voeg-vacatures-toe">
-            <a class="button-small" href="{{ path('nieuwe_vacature', { 'user_id': app.user.id  }) }}">Voeg vacatures toe</a>
+            <a class="button-small" href="{{ path('nieuwe_vacature', { 'user_id': app.user.id  }) }}">Voeg een vacature toe</a>
+            
         </div>
         {% if user.vacatures is not empty %}
         <div class="button-container">
             <a class="button-small" href="{{ path('alle_sollicitaties_werkgever', { 'user_id': app.user.id}) }}">Bekijk alle sollicitaties</a>
+        </div>
+        <div class="button-container">
+            <a class="button-small" style="background-color: #F15A24; border-color: #F15A24;"
+                href="{{ path('verwijder_vacature', { 'user_id': app.user.id}) }}">Verwijder een vacature</a>
         </div>
         {% endif %}
 

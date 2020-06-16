@@ -30,14 +30,53 @@ class AjaxController extends BaseController
         $this->ss = $ss;
     }
 
+
+    /**
+     * @Route("/{user_id}/bewerk_vacature/{vacature_id}", name="ajax_bewerk_vacature")
+     */
+    public function bewerkVacature(Request $request, $user_id, $vacature_id)
+    {
+        $user = $this->us->findUser($user_id);
+        if ($this->checkUser($user, $user_id)) {
+
+            $params = $request->request->all();
+            $params["user_id"] = $user_id;
+            $params["id"] = $vacature_id;
+
+            $result = $this->vs->saveVacature($params);
+            return new Response("De vacature is bijgewerkt.");
+        }    
+    }
+
+
+    /**
+     * @Route("/{user_id}/verwijder_vacature/{vacature_id}", name="ajax_verwijder_vacature")
+     */
+    public function verwijderVacature(Request $request, $user_id, $vacature_id)
+    {
+        $user = $this->us->findUser($user_id);
+        if ($this->checkUser($user, $user_id)) {
+
+            $result = $this->vs->removeVacature($vacature_id);
+            return new Response("De vacature is verwijderd.");
+        }
+    }
+
+
     /**
      * @Route("/{user_id}/nieuwe_vacature", name="ajax_vacature")
      */
     public function nieuweVacature(Request $request, $user_id)
     {
-        $params = $request->request->all();
-        $result = $this->vs->saveVacature($params);
-        return new Response("De vacature is geplaatst!");
+        $user = $this->us->findUser($user_id);
+        if ($this->checkUser($user, $user_id)) {
+            
+            $params = $request->request->all();
+            $params["user_id"] = $user_id;
+
+            $result = $this->vs->saveVacature($params);
+            return new Response("De vacature is geplaatst!");
+        }
     }
     
 
@@ -50,6 +89,8 @@ class AjaxController extends BaseController
         if ($this->checkUser($user, $user_id)) {
 
             $params = $request->request->all();
+            $params["vacature_id"] = $vacature_id;
+
             $result = $this->ss->saveSollicitatie($params);
             return new Response("De uitnodiging/afwijzing is verstuurd.");
             

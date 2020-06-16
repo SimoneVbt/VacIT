@@ -39,7 +39,7 @@ class UserRepository extends ServiceEntityRepository
         if (!$u) {
             $user = $this->um->createUser();
             $user->setUsername($params['email']);
-            $user->setRoles($params['rollen']);
+            $user->setRoles($params['roles']);
             $user->setEnabled(true);
 
             $password = $this->encoder->encodePassword($user, $params['wachtwoord']);
