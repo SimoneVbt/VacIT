@@ -32,6 +32,25 @@ class AjaxController extends BaseController
 
 
     /**
+     * @Route("/{user_id}/solliciteer/{vacature_id}", name="ajax_sollicitatie")
+     */
+    public function nieuweSollicitatie(Request $request, $user_id, $vacature_id)
+    {
+        $user = $this->us->findUser($user_id);
+        if ($this->checkUser($user, $user_id)) {
+
+            $params = $request->request->all();
+            $params["user_id"] = $user_id;
+            $params["vacature_id"] = $vacature_id;
+
+            $result = $this->ss->saveSollicitatie($params);
+            return new Response("De sollicitatie is verstuurd.");
+        }
+    }
+
+
+
+    /**
      * @Route("/{user_id}/bewerk_vacature/{vacature_id}", name="ajax_bewerk_vacature")
      */
     public function bewerkVacature(Request $request, $user_id, $vacature_id)

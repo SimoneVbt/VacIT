@@ -36,13 +36,15 @@ class SollicitatieService {
         $vacature = $this->vs->findVacature($params['vacature_id']);
         $datum = new \Datetime(date_default_timezone_get());
         $uitnodiging = isset($params['uitnodiging']) ? $params['uitnodiging'] : NULL;
+        $motivatie = isset($params['motivatie']) ? $params['motivatie'] : NULL;
 
         $params = array(
             "id" => $id,
             "user" => $user,
             "vacature" => $vacature,
             "datum" => $datum,
-            "uitnodiging" => $uitnodiging
+            "uitnodiging" => $uitnodiging,
+            "motivatie" => $motivatie
         );
         return $this->rep->saveSollicitatie($params);
     }

@@ -84,7 +84,6 @@ a.button-large {
         padding: 0.3rem 0.4rem;
     }
 }
-
     
 @media (min-width: 640px) {
 
@@ -110,6 +109,62 @@ a.button-large {
     .pagination .current {
         padding: 0.5rem 0.6rem;
         font-size: 1rem;
+    }
+}
+
+/****************************
+        MOTIVATIE
+****************************/
+
+.photo-container-motivatie {
+    text-align: center; }
+    img.photo-motivatie {
+        padding-top: 20px;
+        max-width: 50%;
+    }
+
+h1.motivatie-titel {
+    font-size: 1.5rem !important;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+p.motivatie-tekst {
+    min-height: 30vh;
+    padding: 10px 20px;
+    border: 1px solid #F15A24;
+    font-style: italic;
+}
+
+@media (min-width: 640px) {
+
+    h1.motivatie-titel {
+        font-size: 2rem !important;
+    }
+
+    img.photo-motivatie {
+        padding-top: 10px;
+    }
+
+    p.motivatie-tekst {
+        width: 90%;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    img.photo-motivatie {
+        max-width: 60%;
+    }
+
+    h1.motivatie-titel {
+        font-size: 2.5rem !important;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    img.photo-motivatie {
+        max-width: 40%;
     }
 }
 
@@ -284,20 +339,20 @@ a.password-reset {
     .ql-toolbar.ql-snow {
         border-color: #333333;
     }
+    
 
-.profile-submit-wrapper,
-.vacature-submit-wrapper {
+.submit-wrapper {
     position: relative;
     height: 20px;
 }
 .form-submit.bijwerken {
     left: 15%;
 }
-.form-submit.vacature-opslaan {
+.form-submit.opslaan {
     left: 5%;
 }
 .form-submit-arrow.bijwerken-arrow,
-.form-submit-arrow.vacature-opslaan-arrow {
+.form-submit-arrow.opslaan-arrow {
     top: 50%;
 }
 
@@ -306,7 +361,7 @@ a.password-reset {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.nieuwe-vacature-profiel {
+.quill-subtext {
     font-family: 'Roboto Condensed', Arial, Helvetica, sans-serif !important;
     font-size: 0.7rem;
 }
@@ -337,11 +392,11 @@ a.password-reset {
         left: 5%; }
     .form-submit.bijwerken {
         left: 50%; }
-    .form-submit.vacature-opslaan {
+    .form-submit.opslaan {
         left: 55%;
     }
     .form-submit-arrow.bijwerken-arrow,
-    .form-submit-arrow.vacature-opslaan-arrow {
+    .form-submit-arrow.opslaan-arrow {
         left: 45%;
         top: 55%; }
 
@@ -367,7 +422,7 @@ a.password-reset {
     .form-submit-arrow.bijwerken-arrow {
         left: 65%;
         top: 55%; }
-    .form-submit-arrow.vacature-opslaan-arrow {
+    .form-submit-arrow.opslaan-arrow {
         left: 48%;
         top: 55%;
     }
@@ -387,6 +442,10 @@ a.password-reset {
         right: 20%;
         top: 10%;
     }
+
+    .quill_soll {
+        max-width: 800px;
+    }
 }
 
 @media (min-width: 1400px) {
@@ -401,9 +460,9 @@ a.password-reset {
         left: 77%;
         top: 55%; }
         
-    .form-submit.vacature-opslaan {
+    .form-submit.opslaan {
         left: 75%; }
-    .form-submit-arrow.vacature-opslaan-arrow {
+    .form-submit-arrow.opslaan-arrow {
         left: 70%;
         top: 55%;
     }
@@ -447,8 +506,9 @@ h1.overview-title {
     }
 }
 
+
 /****************************
-  SOLLICITATIES OP VACATURE
+  SOLLICITATIEOVERZICHTEN
 ****************************/
 h1.emp-vac-soll-title {
     padding-bottom: 0;
@@ -459,36 +519,110 @@ p.emp-vac-soll-date {
     padding-bottom: 20px;
 }
 
+.soll-date {
+    width: 80px; }
+.soll-company,
+.soll-candidate {
+    width: 100px !important; }
+.soll-signs, .slash {
+    font-size: 1.6rem;
+}
+    
+
+.uitnodiging-werkgever {
+    text-align: center; 
+    width: 80px;
+}
+
 td.uitnodiging-werkgever {
     padding-bottom: 0;
-    position: relative;
-    width: 80px; }
+    position: relative; }
     i.undo-inv {
-        font-size: 1.25rem;
+        font-size: 1rem;
         position: absolute;
         right: 5%;
-        top: 35%;
+        top: 50%;
     }
 
+#tabel-sollicitaties-kandidaat {
+    border-bottom: none; }
+    #tabel-sollicitaties-kandidaat thead th {
+        border-bottom: none; }
+    #tabel-sollicitaties-kandidaat tr td {
+        font-size: 0.8rem; 
+    }
+
+.cand-soll-button-container {
+    margin-top: 30px;
+}
+
+
 @media (min-width: 640px) {
-    #tabel-sollicitaties-vacature_wrapper {
-        width: 80%;
+
+    .soll-date {
+        width: auto; }
+    .soll-company,
+    .soll-candidate {
+        width: 80px !important; }
+    .soll-signs, .slash {
+        font-size: 2em;
+    }
+
+    .uitnodiging,
+    .motivatie {
+        text-align: center; 
+    }
+
+    .uitnodiging-werkgever {
+        text-align: initial; }
+        i.undo-inv {
+            font-size: 1.25rem;
+            right: 5%;
+            top: 35%;
+        }
+
+    #tabel-sollicitaties-kandidaat {
+        margin-bottom: 10px;
+    }
+    #tabel-sollicitaties-vacature_wrapper,
+    #tabel-alle-sollicitaties_wrapper {
+        width: 90%;
+    }
+
+    .cand-soll-button-container {
+        margin-top: 50px;
     }
 }
 
+
 @media (min-width: 1024px) {
-     td.uitnodiging-werkgever {
+
+    .soll-company,
+    .soll-candidate {
+        width: 200px !important;
+    }
+    
+     .uitnodiging-werkgever {
             width: 50px; }
         i.undo-inv {
             font-size: 1rem;
             top: 35%;
         }
+    
+    #tabel-sollicitaties-kandidaat_wrapper {
+        width: 90%; }
+        #tabel-sollicitaties-kandidaat tr td {
+            font-size: 1rem; 
+        }
 }
+
 
 @media (min-width: 1400px) {
 
-    #tabel-sollicitaties-vacature_wrapper {
-        width: 60%; }
+    #tabel-sollicitaties-vacature_wrapper,
+    #tabel-alle-sollicitaties_wrapper {
+        width: 60%;
+    }
        
 }
 
@@ -501,7 +635,8 @@ td.uitnodiging-werkgever {
         border-bottom: none; }
     .sollicitanten {
         width: 20%;
-        text-align: center; }
+        text-align: center;
+    }
 
 .voeg-vacatures-toe {
     margin-top: 50px;
@@ -521,46 +656,6 @@ td.uitnodiging-werkgever {
     }
 }
 
-/****************************
-    SOLLICITATIES KANDIDAAT
-*****************************/
-
-#tabel-sollicitaties-kandidaat {
-    border-bottom: none; }
-    #tabel-sollicitaties-kandidaat thead th {
-        border-bottom: none; }
-    .candidate-soll-date {
-        width: 80px; }
-    .candidate-soll-company {
-        width: 100px; }
-    .uitnodiging {
-        text-align: center; }
-
-.cand-soll-button-container {
-    margin-top: 30px;
-}
-
-@media (min-width: 640px) {
-
-    #tabel-sollicitaties-kandidaat {
-        margin-bottom: 10px; }
-        .candidate-soll-date {
-            width: auto; }
-        .candidate-soll-company {
-            width: 110px;
-        }
-
-    .cand-soll-button-container {
-        margin-top: 50px;
-    }
-}
-
-@media (min-width: 1024px) {
-
-    .candidate-soll-company {
-        width: auto;
-    }
-}
 
 /****************************
         DETAILPAGINA

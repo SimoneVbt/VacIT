@@ -108,9 +108,8 @@
                     </h2>
                     <label for="tekst">
                         <div id="quill_tekst" class="quill_tekst">
-                            {{ app.user.tekst }}
+                            {{ app.user.tekst|raw }}
                         </div>
-                        <input name="tekst" id="tekst" type="hidden">
                     </label>
                 </div>
 
@@ -134,7 +133,7 @@
                 </div>
                 
                 <div class="cell small-6">
-                    <div class="profile-submit-wrapper">
+                    <div class="submit-wrapper">
                         <label for="submit">
                             <i class="fas fa-arrow-right orange form-submit-arrow bijwerken-arrow"></i>
                         <input class="bebas orange form-submit bijwerken" id="submit" type="button" value="{{ 'profile.edit.submit'|trans }}" />
@@ -161,22 +160,23 @@
 
     let quill = new Quill('#quill_tekst', {
         theme: 'snow',
-        modules: {
-            toolbar: [['bold', 'italic']]
-        },
+        modules: {  toolbar: [['bold', 'italic']] },
         placeholder: placeholder        
     });
+
 
     $(document).ready( function() {
 
         $("#submit").click(function(e) {
 
-            $("#tekst").val($("#quill_tekst").text());
+            let data = $('#form_bewerk_profiel').serializeArray();
+            let tekst = quill.root.innerHTML;
+            data.push({ 'name': "tekst", 'value': tekst });
 
             $.ajax({
                 url:"{{ path('ajax_profiel', { 'user_id': app.user.id }) }}",
                 method: "POST",
-                data: $('#form_bewerk_profiel').serialize(),
+                data: data,
                 success: function() {
                     window.location.href = "{{ path('bekijk_kandidaat', { 'cand_id': app.user.id }) }}";
                 }

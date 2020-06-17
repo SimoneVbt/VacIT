@@ -31,6 +31,7 @@ class SollicitatieRepository extends ServiceEntityRepository
 
         $sollicitatie->setUser($params['user']);
         $sollicitatie->setVacature($params['vacature']);
+        $sollicitatie->setMotivatie($params['motivatie']);
         
         if (isset($params['uitnodiging'])) {
             $sollicitatie->setUitnodiging($params['uitnodiging']);

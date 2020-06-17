@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} :: Sollicitaties{% endblock %}
+{% block title %} :: sollicitaties {{ vacature.vacaturetitel }} {% endblock %}
 
 
 {% block body %}
@@ -26,36 +26,58 @@
         <table id="tabel-sollicitaties-vacature" class="tables-layout">
             <thead>
                 <th>Datum</th>
-                <th>Sollicitant</th>
-                <th class="uitnodiging-werkgever">Uitnodiging</th>
+                <th>
+                    <span class="hide-for-medium">Soll.</span>
+                    <span class="show-for-medium">Sollicitant</span>
+                </th>
+                <th class="motivatie">
+                    <span class="hide-for-medium">Mot.</span>
+                    <span class="show-for-medium">Motivatie</span>
+                </th>
+                <th class="uitnodiging-werkgever">
+                    <span class="hide-for-medium">Uitn.</span>
+                    <span class="show-for-medium">Uitnodiging</span></th>
             </thead>
             <tbody>
             {% for sollicitatie in vacature.sollicitaties %}
                  <tr>
                      <td>{{ sollicitatie.datum|date("d-m-Y") }}</td>
-                     <td><a href="{{ path('bekijk_kandidaat', { 'cand_id': sollicitatie.user.id }) }}">{{ sollicitatie.user.voornaam }} {{ sollicitatie.user.naam }}</a></td>
-                     <td class="uitnodiging-werkgever" style="font-size: 2rem;">
+                     <td><a href="{{ path('bekijk_kandidaat', { 'cand_id': sollicitatie.user.id }) }}">
+                         {{ sollicitatie.user.voornaam }} {{ sollicitatie.user.naam }}</a></td>
+
+                     <td class="motivatie">
+                        {% if sollicitatie.motivatie %}
+                            <a href="{{ path('motivatie_kandidaat', { 'cand_id': sollicitatie.user.id, 'emp_id': app.user.id, 'sollicitatie_id': sollicitatie.id }) }}">
+                            <i class="fas fa-check soll-signs"></i></a>
+                        {% else %}
+                            <i class="fas fa-times soll-signs"></i>
+                        {% endif %}
+                    </td>
+
+                     <td class="uitnodiging-werkgever">
 
                          {% if sollicitatie.uitnodiging == NULL or sollicitatie.uitnodiging matches '/0/' %}
-                         <i class="fas fa-check orange"
-                            data-value="1" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}"></i> /
-                         <i class="fas fa-times orange"
-                            data-value="2" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}"></i>
+                         <i class="fas fa-check orange soll-signs"
+                            data-value="1" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}" data-mot="{{ sollicitatie.motivatie }}"></i>
+                        <span class="slash">/</span>
+                         <i class="fas fa-times orange soll-signs"
+                            data-value="2" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}" data-mot="{{ sollicitatie.motivatie }}"></i>
                          {% endif %}
 
                          {% if sollicitatie.uitnodiging matches '/1/' %}
-                         <i class="fas fa-check"></i>
+                         <i class="fas fa-check soll-signs"></i>
                          <i class="far fa-times-circle fa-sm orange undo-inv"
-                            data-value="0" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}"></i>
+                            data-value="0" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}" data-mot="{{ sollicitatie.motivatie }}"></i>
                          {% endif %}
 
                          {% if sollicitatie.uitnodiging matches '/2/' %}
-                         <i class="fas fa-times"></i>
+                         <i class="fas fa-times soll-signs"></i>
                          <i class="far fa-times-circle fa-sm orange undo-inv"
-                            data-value="0" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}"></i>
+                            data-value="0" data-soll="{{ sollicitatie.id }}" data-cand="{{ sollicitatie.user.id }}" data-mot="{{ sollicitatie.motivatie }}"></i>
                          {% endif %}
-                         
+                    
                      </td>
+
                  </tr>   
             {% endfor %}
             </tbody>
@@ -74,13 +96,15 @@
             let id = $(this).data("soll");
             let cand = $(this).data("cand");
             let value = $(this).data("value");
+            let mot = $(this).data("mot");
 
             $.ajax({
                 url: "{{ path('ajax_uitnodiging', { 'user_id': app.user.id, 'vacature_id': vacature.id  }) }}",
                 method: "POST",
                 data: { id: id,
                         user_id: cand,
-                        uitnodiging: value },
+                        uitnodiging: value,
+                        mot: mot },
                 succes: function(response) { console.log(response); },
                 error: function (request, status, error) { console.log(request.responseText); }
             })

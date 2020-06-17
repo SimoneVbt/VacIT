@@ -13,12 +13,16 @@ class BaseController extends AbstractController
         
     }
 
-    public function checkUser($user, $id) {
+    public function checkUser($user, $id, $multiple = false) {
         $userObj = $this->getUser();
         if ($userObj->getId() == $id) {
             return true;
         } else {
-            throw new AccessDeniedException ('U heeft geen toegang tot deze pagina.');
+            if ($multiple) {
+                return false;
+            } else {
+                throw new AccessDeniedException ('U heeft geen toegang tot deze pagina.');
+            }
         }
     }
 }

@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %} :: motivatie {{ soll.user.voornaam }} {{ soll.user.naam }}{% endblock %}
+
+
+{% block body %}
+    <div class="grid-x">
+        <div class="cell small-4 medium-2 photo-container-motivatie">
+
+            {% if soll.user.afbeelding == "default" %}
+            <img class="photo-motivatie" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+            {% else %}
+            <img class="photo-motivatie" src="{{ asset('assets/img/users/') ~ soll.user.afbeelding }}">
+            {% endif %}
+
+        </div>
+        <div class="cell small-8 medium-10">
+
+            <h1 class="motivatie-titel">
+                Motivatie van <br class="hide-for-medium">
+                <a href="{{ path('bekijk_kandidaat', { 'cand_id': soll.user.id }) }}">{{ soll.user.voornaam }} {{ soll.user.naam }}</a> <br>
+                voor de vacature <br class="hide-for-medium">
+                <a href="{{ path('vacature_detail', { 'vacature_id': soll.vacature.id }) }}">{{ soll.vacature.vacaturetitel }}</a>
+            </h1>
+
+        </div>
+    </div>
+
+    <div class="grid-x grid-padding-x medium-padding-collapse">
+        <div class="cell medium-2 show-for-medium"></div>
+        <div class="cell small-12 medium-10 motivatie-tekst-container">
+
+                {% if soll.motivatie is empty %}
+                        <p>Deze kandidaat heeft geen extra motivatie opgegeven.</p>
+                {% else %}
+                    {{ soll.motivatie|raw }}
+                {% endif %}
+
+            
+
+        </div>
+    </div>
+
+    <script>
+        
+        $(document).ready( function() {
+
+            $(".motivatie-tekst-container p").addClass("motivatie-tekst");
+
+        });
+    </script>
+{% endblock %}

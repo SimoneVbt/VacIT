@@ -63,7 +63,7 @@
                 <h2 class=" display-profile-subtitle orange">Omschrijving werkgever</h2>
                 <p class="display-profile-box">
                     {% if user.tekst %}
-                        {{ user.tekst }}
+                        {{ user.tekst|raw }}
                     {% else %}
                         {% if user.id == app.user.id %}
                             U heeft nog geen omschrijving van uw bedrijf/organisatie gegeven.

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} :: Mijn Sollicitaties{% endblock %}
+{% block title %} :: mijn sollicitaties{% endblock %}
 
 
 {% block body %}
@@ -24,30 +24,50 @@
 
         <table id="tabel-sollicitaties-kandidaat" class="tables-layout">
             <thead>
-                <th class="candidate-soll-date show-for-medium">Datum</th>
-                <th class="candidate-soll-vacancy">Vacature</th>
-                <th class="candidate-soll-company">Bedrijf</th>
-                <th class="hide-for-medium">Uitg.</th>
-                <th class="show-for-medium uitnodiging">Uitgenodigd</th>
-                <th class="candidate-soll-date">Sinds</th>
+                <th class="soll-date show-for-medium">Datum</th>
+                <th class="soll-vacancy">
+                    <span class="hide-for-medium">Vac.</span>
+                    <span class="show-for-medium">Vacature</span>
+                </th>
+                <th class="soll-company">Bedrijf</th>
+                <th class="motivatie">
+                    <span class="hide-for-medium">Mot.</span>
+                    <span class="show-for-medium">Motivatie</span>
+                </th>
+                <th class="uitnodiging">
+                    <span class="hide-for-medium">Uitg.</span>
+                    <span class="show-for-medium">Uitgenodigd</span>
+                </th>
+                <th class="soll-date">Sinds</th>
             </thead>
             <tbody>
             {% for soll in user.sollicitaties %}
                 <tr>
-                    <td class="candidate-soll-date show-for-medium">{{ soll.vacature.plaatsingsdatum|date("d-m-Y") }}</td>
+                    <td class="candidate-soll-date show-for-medium">
+                        {{ soll.vacature.plaatsingsdatum|date("d-m-Y") }}
+                    </td>
                     <td class="candidate-soll-vacancy"><a href="{{ path('vacature_detail', {'vacature_id': soll.vacature.id }) }}">
-                        {{ soll.vacature.vacaturetitel }}</a></td>
+                        {{ soll.vacature.vacaturetitel }}</a>
+                    </td>
                     <td class="candidate-soll-company"><a href="{{ path('bekijk_werkgever', { 'emp_id': soll.vacature.user.id }) }}">
-                        {{ soll.vacature.user.naam }}</a></td>
-                    <td class="uitnodiging hide-for-medium">
-                        {% if soll.uitnodiging %}
-                        <i class="fas fa-check fa-2x orange" data-order="1"></i>{% endif %}</td>
-                    <td class="uitnodiging show-for-medium">
+                        {{ soll.vacature.user.naam }}</a>
+                    </td>
+                    <td class="motivatie">
+                        {% if soll.motivatie %}
+                        <a href="{{ path('motivatie_kandidaat', { 'cand_id': app.user.id, 'emp_id': soll.user.id, 'sollicitatie_id': soll.id }) }}">
+                            <i class="fas fa-check soll-signs"></i></a>
+                        {% else %}
+                            <i class="fas fa-times soll-signs"></i>
+                        {% endif %}
+                    </td>
+                    <td class="uitnodiging">
                         {% if soll.uitnodiging == 1 %}<i class="fas fa-check fa-2x orange" data-order="2"></i>{% endif %}
-                        {% if soll.uitnodiging == 2 %}<i class="fas fa-times fa-2x orange" data-order="1"></i>{% endif %}</td>
-                        <td class="candidate-soll-date">
+                        {% if soll.uitnodiging == 2 %}<i class="fas fa-times fa-2x orange" data-order="1"></i>{% endif %}
+                    </td>
+                    <td class="soll-date">
                         {% if soll.uitnodiging %} {{ soll.datumUitgenodigd|date("d-m-Y") }}
-                        {% else %} <span class="hide">n.v.t.</span>{% endif %} </td>
+                        {% else %} <span class="hide">n.v.t.</span>{% endif %}
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -70,7 +90,7 @@
     $(document).ready( function() {
 
         $('#tabel-sollicitaties-kandidaat').DataTable({
-            order: [[3, "desc"]],
+            order: [[5, "asc"]],
             pageLength: 8,
             lengthChange: false,
             searching: false,

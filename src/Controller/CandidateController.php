@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use App\Service\UserService;
 use App\Service\VacatureService;
+use App\Service\SollicitatieService;
 
 /**
  * @Route("/kandidaat")
@@ -15,12 +17,35 @@ class CandidateController extends BaseController
 {
     private $us;
     private $vs;
+    private $ss;
 
     public function __construct(UserService $us,
-                                VacatureService $vs)
+                                VacatureService $vs,
+                                SollicitatieService $ss)
     {
         $this->us = $us;
         $this->vs = $vs;
+        $this->ss = $ss;
+    }
+
+
+    /**
+     * @Route("/{cand_id}/motivatie/{emp_id}/{sollicitatie_id}", name="motivatie_kandidaat")
+     * @Template()
+     */
+    public function motivatie($cand_id, $emp_id, $sollicitatie_id)
+    {
+        $cand = $this->us->findUser($cand_id);
+        $emp = $this->us->findUser($emp_id);
+
+        if ($this->checkUser($cand, $cand_id, true) || $this->checkUser($emp, $emp_id, true)) {
+
+            $soll = $this->ss->findSollicitatie($sollicitatie_id);
+            return ['soll' => $soll];
+
+        } else {
+            throw new AccessDeniedException ('U heeft geen toegang tot deze pagina.');
+        }
     }
 
 

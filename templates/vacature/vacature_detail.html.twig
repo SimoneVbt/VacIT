@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} :: Detail{% endblock %}
+{% block title %} :: {{ data.vacaturetitel }}{% endblock %}
 
 
 {% block body %}
@@ -15,9 +15,9 @@
         {% endif %}
     </div>
     <div class="cell small-12 medium-9 large-10 detail-text-container">
-        <div class="detail-date">{{ data.plaatsingsdatum|date("d M Y") }}</div>
+        <div class="detail-date">{{ data.plaatsingsdatum|date("d-m-Y") }}</div>
         {% if data.datumBijgewerkt %}
-        <div> Laatst bijgewerkt op: {{ data.datumBijgewerkt|date("d M Y") }}</div>
+        <div class="detail-date"> Laatst bijgewerkt op: {{ data.datumBijgewerkt|date("d-m-Y") }}</div>
         {% endif %}
 
         <h1 class="detail-titel">{{ data.vacaturetitel }} voor {{ data.user.naam }} </h1>
@@ -34,9 +34,9 @@
             </div>
         </div>
         
-        <p class="detail-text">{{ data.vacaturetekst|nl2br }}</p>
+        <p class="detail-text">{{ data.vacaturetekst|raw }}</p>
         <h2 class="detail-about">Over {{ data.user.naam }}</h2>
-        <p class="detail-text">{{ data.user.tekst|nl2br }}</p>
+        <p class="detail-text">{{ data.user.tekst|raw }}</p>
 
     </div>
 </div>

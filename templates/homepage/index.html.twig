@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %} :: Home{% endblock %}
+{% block title %} :: HOME{% endblock %}
 
 {% block stylesheets %}
 <link rel="stylesheet" href="{{ asset('assets/vegas/vegas.min.css') }}">
@@ -60,7 +60,7 @@
                     <div class="cell small-12 large-9">
                         <div class="home-date">{{ vacature.plaatsingsdatum|date("d M Y") }}</div>
                         <a href="{{ path('vacature_detail', {'vacature_id': vacature.id }) }}"><h2 class="home-titel">{{ vacature.vacaturetitel }}</h2></a>
-                        <p class="home-text">{{ vacature.vacaturetekst }}</p>
+                        <p class="home-text">{{ vacature.vacaturetekst|striptags }}</p>
                     </div>
                     <div class="cell small-12 large-3 arrow">
                         <a href="{{ path('vacature_detail', {'vacature_id': vacature.id }) }}"><i class="fas fa-arrow-right fa-3x home-arrow"></i></a>

@@ -77,7 +77,7 @@
                 <h2 class=" display-profile-subtitle orange"> Motivatie</h2>
                 <p class="display-profile-box">
                     {% if user.tekst %}
-                        {{ user.tekst }}
+                        {{ user.tekst|raw }}
                     {% else %}
                         {% if user.id == app.user.id %}
                             Je hebt nog geen motivatie opgegeven. Werkgevers zijn eerder geneigd om kandidaten met een sterke motivatie aan te nemen!
