@@ -5,13 +5,18 @@
     <div class="cell medium-3 show-for-medium photo-container">
         {% if app.user.afbeelding == "default" %}
             {% if is_granted("ROLE_CANDIDATE") %}
-            <img class="photo" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+            <img class="photo" src="{{ asset('assets/img/defaultkandidaat.png') }}">
             {% else %}
-            <img class="photo" src="{{ asset('assets/img/users/defaultbedrijf.png') }}">
+            <img class="photo" src="{{ asset('assets/img/defaultwerkgever.png') }}">
             {% endif %}
         {% else %}
-        <img class="photo" src="{{ asset('assets/img/users/') ~ app.user.afbeelding }}">
+        <img class="photo" src="{{ asset('uploads/img/') ~ app.user.afbeelding }}">
         {% endif %}
+
+        <?php
+            print_r($_POST);
+            print_r($_FILES);
+        ?>
     </div>
 
     <div class="cell small-12 medium-9">
@@ -24,20 +29,20 @@
 
                 {% if is_granted("ROLE_CANDIDATE") %}
                 <div class="cell small-4">
-                    <label class="form-label profile-label" for="voornaam">Voornaam</label>
-                    <input type="text" class="form-input profile-input" id="voornaam"
+                    <label class="form-label block" for="voornaam">Voornaam</label>
+                    <input type="text" class="form-input block" id="voornaam"
                             name="voornaam" maxLength="50" value="{{ app.user.voornaam }}">
                 </div>
                 <div class="cell small-8">
-                    <label class="form-label profile-label" for="naam">Achternaam</label>
-                    <input type="text" class="form-input profile-input" id="naam"
+                    <label class="form-label block" for="naam">Achternaam</label>
+                    <input type="text" class="form-input block" id="naam"
                             name="naam" maxLength="50" value="{{ app.user.naam }}">
                 </div>
 
                 {% else %}
                 <div class="cell small-12">
-                    <label class="form-label profile-label" for="naam">Naam organisatie</label>
-                    <input type="text" class="form-input profile-input" id="naam"
+                    <label class="form-label block" for="naam">Naam organisatie</label>
+                    <input type="text" class="form-input block" id="naam"
                             name="naam" maxLength="50" value="{{ app.user.naam }}">
                 </div>
                 {% endif %}
@@ -47,8 +52,8 @@
             <div class="grid-x grid-padding-x">
 
                 <div class="cell small-12">
-                    <label class="form-label profile-label" for="email">E-mail</label>
-                    <input type="text" class="form-input profile-input" id="email"
+                    <label class="form-label block" for="email">E-mail</label>
+                    <input type="text" class="form-input block" id="email"
                             name="email" required="required" value="{{ app.user.email }}">
                 </div>
 
@@ -58,17 +63,22 @@
 
                 {% if is_granted("ROLE_CANDIDATE") %}
                 <div class="cell small-4">
-                    <label class="form-label profile-label" for="geboortedatum">Geboortedatum</label>
-                    <input type="date" class="form-input profile-input" id="geboortedatum"
-                            name="geboortedatum" min="1900-01-01" max="{{ 'now'|date('Y-m-d') }}" value="{{ app.user.geboortedatum|date('Y-m-d') }}">
+                    <label class="form-label block" for="geboortedatum">Geboortedatum</label>
+                    <input type="date" class="form-input block"
+                            id="geboortedatum" name="geboortedatum"
+                            min="1900-01-01" max="{{ 'now'|date('Y-m-d') }}" 
+                            {% if app.user.geboortedatum %}
+                                value="{{ app.user.geboortedatum|date('Y-m-d') }}"
+                            {% endif %}
+                    >
                 </div>
                 <div class="cell small-8">
                 {% else %}
 
                 <div class="cell small-12">
                 {% endif %}
-                    <label class="form-label profile-label" for="telefoonnummer">Telefoonnummer</label>
-                    <input type="text" class="form-input profile-input" id="telefoonnummer"
+                    <label class="form-label block" for="telefoonnummer">Telefoonnummer</label>
+                    <input type="text" class="form-input block" id="telefoonnummer"
                             name="telefoonnummer" max-length="20" value="{{ app.user.telefoonnummer }}">
                 </div>   
 
@@ -77,8 +87,8 @@
             <div class="grid-x grid-padding-x">
 
                 <div class="cell small-12">
-                    <label class="form-label profile-label" for="adres">Adres</label>
-                    <input type="text" class="form-input profile-input" id="adres"
+                    <label class="form-label block" for="adres">Adres</label>
+                    <input type="text" class="form-input block" id="adres"
                             name="adres" maxLength="50" value="{{ app.user.adres }}">
                 </div>
 
@@ -87,13 +97,13 @@
             <div class="grid-x grid-padding-x">
 
                 <div class="cell small-4">
-                    <label class="form-label profile-label" for="postcode">Postcode</label>
-                    <input type="text" class="form-input profile-input" id="postcode"
+                    <label class="form-label block" for="postcode">Postcode</label>
+                    <input type="text" class="form-input block" id="postcode"
                             name="postcode" maxLength="10" value="{{ app.user.postcode }}">
                 </div>
                 <div class="cell small-8">
-                    <label class="form-label profile-label" for="plaats">{% if is_granted("ROLE_CANDIDATE") %} Woonplaats                                                                                                    {% else %} Vestigingsplaats {% endif %}</label>
-                    <input type="text" class="form-input profile-input" id="plaats"
+                    <label class="form-label block" for="plaats">{% if is_granted("ROLE_CANDIDATE") %} Woonplaats                                                                                                    {% else %} Vestigingsplaats {% endif %}</label>
+                    <input type="text" class="form-input block" id="plaats"
                             name="plaats" maxLength="50" value="{{ app.user.plaats }}">
                 </div>
 
@@ -118,17 +128,28 @@
             <div class="grid-x grid-padding-x">
 
                 <div class="cell small-6">
+
                     {% if is_granted("ROLE_CANDIDATE") %}  
-                    <label for="cv" class="form-label profile-label">CV</label>
-                    <input type="file" name="cv" id="cv"
-                            class="form-input profile-input"
-                            value = "{{ app.user.cv }}"
-                            accept=".pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx">
+                    <label for="cv" class="form-label block upload" style="font-size: 0.8rem; line-height: 1rem;">
+                        CV
+                            {% if app.user.cv %}
+                                <div class="orange" style="display: inline">al geüpload</div>
+                            {% endif %}
+                    </label>
+
+                    <input type="file" name="cv_upload" id="cv"
+                            class="block"
+                            accept=".pdf, .doc, .docx">
                     {% endif %}
-                    <label for="afbeelding" class="form-label profile-label">Afbeelding</label>
-                    <input type="file" name="afbeelding" id="afbeelding"
-                            class="form-input profile-input"
-                            value = "{{ app.user.afbeelding }}"
+
+                    <label for="afbeelding" class="form-label block" style="font-size: 0.8rem; line-height: 1rem;">
+                        Afbeelding
+                            {% if app.user.afbeelding %}
+                                <div class="orange" style="display: inline">al geüpload</div>
+                            {% endif %}
+                    </label>
+                    <input type="file" name="afbeelding_upload" id="afbeelding"
+                            class="block"
                             accept="image/*">
                 </div>
                 
@@ -136,7 +157,7 @@
                     <div class="submit-wrapper">
                         <label for="submit">
                             <i class="fas fa-arrow-right orange form-submit-arrow bijwerken-arrow"></i>
-                        <input class="bebas orange form-submit bijwerken" id="submit" type="button" value="{{ 'profile.edit.submit'|trans }}" />
+                        <input class="bebas orange form-submit bijwerken" id="submit" type="submit" value="{{ 'profile.edit.submit'|trans }}" />
                     </div>
                 </div>
 
@@ -167,19 +188,27 @@
 
     $(document).ready( function() {
 
-        $("#submit").click(function(e) {
+        $("form").submit( function(e) {
+            
+            e.preventDefault();
 
-            let data = $('#form_bewerk_profiel').serializeArray();
+            // let data = $('#form_bewerk_profiel').serializeArray();
+            let form = $('form').get(0); 
             let tekst = quill.root.innerHTML;
-            data.push({ 'name': "tekst", 'value': tekst });
 
+            let data = new FormData(form);
+            data.append("tekst", tekst);
+            
             $.ajax({
                 url:"{{ path('ajax_profiel', { 'user_id': app.user.id }) }}",
                 method: "POST",
                 data: data,
-                success: function() {
+                success: function(response) {
                     window.location.href = "{{ path('bekijk_kandidaat', { 'cand_id': app.user.id }) }}";
-                }
+                }, error: function(data) { alert("Helaas!") },
+                cache: false,
+                contentType: false,
+                processData: false
             });
              
         });

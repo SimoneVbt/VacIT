@@ -32,9 +32,12 @@ class UserService {
 
     public function saveUser($params)
     {
-        if (isset($params["geboortedatum"])) {
-            $params["geboortedatum"] = new \DateTime($params["geboortedatum"]);
+        $params["geboortedatum"] = empty($params["geboortedatum"]) ? NULL : new \DateTime($params["geboortedatum"]);
+
+        if ($params["tekst"] == "<p><br></p>") {
+            $params["tekst"] = NULL;
         }
+        
         return $this->rep->saveUser($params);
     }
 }

@@ -5,12 +5,12 @@
     <div class="cell medium-3 show-for-medium photo-container">
         {% if user.afbeelding == "default" %}
             {% if is_granted("ROLE_CANDIDATE") %}
-            <img class="photo" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+            <img class="photo" src="{{ asset('assets/img/defaultkandidaat.png') }}">
             {% else %}
-            <img class="photo" src="{{ asset('assets/img/users/defaultbedrijf.png') }}">
+            <img class="photo" src="{{ asset('assets/img/defaultwerkgever.png') }}">
             {% endif %}
         {% else %}
-        <img class="photo" src="{{ asset('assets/img/users/') ~ user.afbeelding }}">
+        <img class="photo" src="{{ asset('uploads/img/') ~ user.afbeelding }}">
         {% endif %}
     </div>
 

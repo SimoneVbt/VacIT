@@ -56,9 +56,14 @@ class UserRepository extends ServiceEntityRepository
             $user->setAdres(isset($params["adres"]) ? $params["adres"] : null);
             $user->setPostcode(isset($params["postcode"]) ? $params["postcode"] : null);
             $user->setPlaats(isset($params["plaats"]) ? $params["plaats"] : null);
-            $user->setAfbeelding(isset($params["afbeelding"]) ? $params["afbeelding"] : "default");
             $user->setTekst(isset($params["tekst"]) ? $params["tekst"] : null);
-            $user->setCv(isset($params["cv"]) ? $params["cv"] : null);
+
+            if (isset($params['afbeelding'])) {
+                $user->setAfbeelding($params['afbeelding']);
+            }
+            if (isset($params['cv'])) {
+                $user->setCv($params['cv']);
+            }
 
             $this->um->updateUser($user);
             return $user;

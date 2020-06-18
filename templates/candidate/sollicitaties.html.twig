@@ -8,9 +8,9 @@
 <div class="grid-x">
     <div class="cell medium-3 show-for-medium photo-container">
         {% if user.afbeelding == "default" %}
-        <img class="photo" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+        <img class="photo" src="{{ asset('assets/img/defaultkandidaat.png') }}">
         {% else %}
-        <img class="photo" src="{{ asset('assets/img/users/') ~ user.afbeelding }}">
+        <img class="photo" src="{{ asset('uploads/img/') ~ user.afbeelding }}">
         {% endif %}
     </div>
     <div class="cell small-12 medium-9">
@@ -30,11 +30,11 @@
                     <span class="show-for-medium">Vacature</span>
                 </th>
                 <th class="soll-company">Bedrijf</th>
-                <th class="motivatie">
+                <th class="center">
                     <span class="hide-for-medium">Mot.</span>
                     <span class="show-for-medium">Motivatie</span>
                 </th>
-                <th class="uitnodiging">
+                <th class="center">
                     <span class="hide-for-medium">Uitg.</span>
                     <span class="show-for-medium">Uitgenodigd</span>
                 </th>
@@ -52,7 +52,7 @@
                     <td class="candidate-soll-company"><a href="{{ path('bekijk_werkgever', { 'emp_id': soll.vacature.user.id }) }}">
                         {{ soll.vacature.user.naam }}</a>
                     </td>
-                    <td class="motivatie">
+                    <td class="center">
                         {% if soll.motivatie %}
                         <a href="{{ path('motivatie_kandidaat', { 'cand_id': app.user.id, 'emp_id': soll.user.id, 'sollicitatie_id': soll.id }) }}">
                             <i class="fas fa-check soll-signs"></i></a>
@@ -60,7 +60,7 @@
                             <i class="fas fa-times soll-signs"></i>
                         {% endif %}
                     </td>
-                    <td class="uitnodiging">
+                    <td class="center">
                         {% if soll.uitnodiging == 1 %}<i class="fas fa-check fa-2x orange" data-order="2"></i>{% endif %}
                         {% if soll.uitnodiging == 2 %}<i class="fas fa-times fa-2x orange" data-order="1"></i>{% endif %}
                     </td>

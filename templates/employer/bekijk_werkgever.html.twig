@@ -6,9 +6,9 @@
 <div class="grid-x">
     <div class="cell small-12 medium-3 photo-container">
         {% if user.afbeelding == "default" %}
-        <img class="photo display-profile-photo" src="{{ asset('assets/img/users/defaultbedrijf.png') }}">
+        <img class="photo display-profile-photo" src="{{ asset('assets/img/defaultwerkgever.png') }}">
         {% else %}
-        <img class="photo display-profile-photo" src="{{ asset('assets/img/users/') ~ user.afbeelding }}">
+        <img class="photo display-profile-photo" src="{{ asset('uploads/img/') ~ user.afbeelding }}">
         {% endif %}
     </div>
     <div class="cell small-12 medium-9">

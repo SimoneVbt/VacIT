@@ -75,8 +75,21 @@
 
 
                 <div class="cell auto body">
+                    
                     <main>
-                        
+
+                    {% for error in app.flashes('error') %}
+                        <div class=" flash flash-error">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                    {% for success in app.flashes('success') %}
+                        <div class="flash flash-success">
+                            {{ success }}
+                        </div>
+                    {% endfor %}
+            
+
                         {% block body %}{% endblock %}
                         
                     </main>

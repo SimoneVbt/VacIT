@@ -57,7 +57,7 @@ class User extends BaseUser
     private $plaats;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=10)
      */
     private $afbeelding = "default";
 
@@ -67,7 +67,7 @@ class User extends BaseUser
     private $tekst;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=10, nullable=true)
      */
     private $cv;
 

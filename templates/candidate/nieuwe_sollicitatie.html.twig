@@ -16,9 +16,9 @@
 <div class="grid-x">
     <div class="cell small-4 medium-3 large-2 photo-container-motivatie" style="max-height: 100px;">
         {% if user.afbeelding == "default" %}
-        <img class="photo-motivatie" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+        <img class="photo-motivatie" src="{{ asset('assets/img/defaultkandidaat.png') }}">
         {% else %}
-        <img class="photo-motivatie" src="{{ asset('assets/img/users/') ~ user.afbeelding }}">
+        <img class="photo-motivatie" src="{{ asset('uploads/img/') ~ user.afbeelding }}">
         {% endif %}
     </div>
 

@@ -8,9 +8,9 @@
         <div class="cell small-4 medium-2 photo-container-motivatie">
 
             {% if soll.user.afbeelding == "default" %}
-            <img class="photo-motivatie" src="{{ asset('assets/img/users/defaultkandidaat.png') }}">
+            <img class="photo-motivatie" src="{{ asset('assets/img/defaultkandidaat.png') }}">
             {% else %}
-            <img class="photo-motivatie" src="{{ asset('assets/img/users/') ~ soll.user.afbeelding }}">
+            <img class="photo-motivatie" src="{{ asset('uploads/img/') ~ soll.user.afbeelding }}">
             {% endif %}
 
         </div>

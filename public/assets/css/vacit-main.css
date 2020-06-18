@@ -15,21 +15,25 @@ body {
 
 h1 {
     font-family: 'Bebas Neue', Arial, Helvetica, sans-serif !important;
-    font-size: 2rem !important; }
+    font-size: 2rem !important;}
 h2 {
     font-family: 'Bebas Neue', Arial, Helvetica, sans-serif !important;
     font-size: 1.5rem !important; }
-
 a {
     color: #F15A24 !important; }
 label {
-    color: #333333 !important;}
+    color: #333333 !important; }
 
+    
 .orange {
     color: #F15A24; }
 .bebas {
     font-family: 'Bebas Neue', Arial, Helvetica, sans-serif !important; }
-
+.block {
+    display: block; }
+.center {
+    text-align: center; }
+    
 
 .button-container {
     margin-top: 20px;
@@ -41,6 +45,20 @@ a.button-large {
     border: solid #333333 10px;
     border-radius: 5px; }
 
+.flash {
+    color: white;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-style: italic; }
+    .flash-success {
+        background-color: #F15A24;
+        opacity: 0.75; }
+    .flash-error {
+        background-color: #ee0f0f;
+    }
+
 
 .tables-layout thead {
     border: none; }
@@ -48,7 +66,8 @@ a.button-large {
         background-color: white;
         font-size: 1rem;
         text-transform: uppercase;
-        padding: 0 0 0 8px !important; }
+        padding: 0 0 0 8px !important;
+}
 .tables-layout tbody {
     border: none; }
     .tables-layout tr td {
@@ -79,6 +98,7 @@ a.button-large {
 }
 
 @media (max-width: 400px) {
+
     .pagination,
     .pagination .current {
         padding: 0.3rem 0.4rem;
@@ -92,12 +112,17 @@ a.button-large {
         padding: 10px;
     }
 
+    .flash {
+        width: 50%;
+    }
+
     .tables-layout tr td {
         height: 30px;
     }
 }
 
 @media (min-width: 1024px) {
+
     .tables-layout thead th {
         font-size: 16px;
         font-weight: 700; }
@@ -271,6 +296,11 @@ select.form-select {
             appearance: menulist;
 }
 
+input[type="file"] {
+    color: #333333;
+    font-size: 0.8rem;
+}
+
 .form-submit-wrapper {
     position: relative; }
     .form-submit-wrapper>label {
@@ -320,13 +350,6 @@ a.password-reset {
         position: absolute;
         right: 3%; }
 
-
-.profile-label,
-.profile-input,
-.vacature-label,
-.vacature-input {
-    display: block;
-}
 .quill_tekst {
     min-height: 100px;
     height: 20vh;
@@ -527,22 +550,13 @@ p.emp-vac-soll-date {
 .soll-signs, .slash {
     font-size: 1.6rem;
 }
-    
 
-.uitnodiging-werkgever {
-    text-align: center; 
-    width: 80px;
+i.undo-inv {
+    font-size: 1rem;
+    position: absolute;
+    right: 5%;
+    top: 50%;
 }
-
-td.uitnodiging-werkgever {
-    padding-bottom: 0;
-    position: relative; }
-    i.undo-inv {
-        font-size: 1rem;
-        position: absolute;
-        right: 5%;
-        top: 50%;
-    }
 
 #tabel-sollicitaties-kandidaat {
     border-bottom: none; }
@@ -568,18 +582,11 @@ td.uitnodiging-werkgever {
         font-size: 2em;
     }
 
-    .uitnodiging,
-    .motivatie {
-        text-align: center; 
+    i.undo-inv {
+        font-size: 1.25rem;
+        right: 5%;
+        top: 35%;
     }
-
-    .uitnodiging-werkgever {
-        text-align: initial; }
-        i.undo-inv {
-            font-size: 1.25rem;
-            right: 5%;
-            top: 35%;
-        }
 
     #tabel-sollicitaties-kandidaat {
         margin-bottom: 10px;
@@ -601,13 +608,11 @@ td.uitnodiging-werkgever {
     .soll-candidate {
         width: 200px !important;
     }
-    
-     .uitnodiging-werkgever {
-            width: 50px; }
-        i.undo-inv {
-            font-size: 1rem;
-            top: 35%;
-        }
+
+    i.undo-inv {
+        font-size: 1rem;
+        top: 35%;
+    }
     
     #tabel-sollicitaties-kandidaat_wrapper {
         width: 90%; }
