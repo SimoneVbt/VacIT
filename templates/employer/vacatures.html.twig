@@ -36,14 +36,35 @@
             {% for vacature in user.vacatures %}
                 <tr>
                     <td class="soll-date">
-                        {{ vacature.plaatsingsdatum|date("d-m-Y") }}</td>
-                    <td><a href="{{ path('vacature_detail', { 'vacature_id': vacature.id }) }}">
-                        {{ vacature.vacaturetitel }}</a></td>
-                    <td class="sollicitanten"><a href="{{ path('sollicitaties_werkgever', { 'user_id': app.user.id, 'vacature_id': vacature.id }) }}">
-                        {{ vacature.sollicitaties|length }}
-                        <span class="show-for-medium">{% if vacature.sollicitaties|length > 0 %} (overzicht) {% endif %}</span></a></td>
-                    <td style="text-align: right;"><a href="{{ path('bewerk_vacature', { 'user_id': app.user.id, 'vacature_id': vacature.id  }) }}">
-                        Bewerk <span class="show-for-medium">vacature</span></a></td>
+                        {{ vacature.plaatsingsdatum|date("d-m-Y") }}
+                    </td>
+
+                    <td>
+                        <a href="{{ path('vacature_detail', { 'vacature_id': vacature.id }) }}" target="_blank">
+                            {{ vacature.vacaturetitel }}
+                        </a>
+                    </td>
+
+                    <td class="sollicitanten">
+                        <a href="{{ path('sollicitaties_werkgever', { 'user_id': app.user.id, 'vacature_id': vacature.id }) }}">
+
+                            {{ vacature.sollicitaties|length }}
+
+                            <span class="show-for-medium">
+                                {% if vacature.sollicitaties|length > 0 %}
+                                    (overzicht)
+                                {% endif %}
+                            </span>
+
+                        </a>
+                    </td>
+
+                    <td style="text-align: right;">
+                        <a href="{{ path('bewerk_vacature', { 'user_id': app.user.id, 'vacature_id': vacature.id  }) }}">
+                            Bewerk <span class="show-for-medium">vacature</span>
+                        </a>
+                    </td>
+                    
                 </tr>
             {% endfor %}
             </tbody>
@@ -74,6 +95,7 @@
 
         $('#tabel-vacatures-werkgever').DataTable({
             dom: 'rtip',
+            order: [[0, "desc"]],
             pagingType: "numbers",
             pageLength: 10,
             language: {"info": "Vacatures _START_ t/m _END_ (uit _TOTAL_ vacatures)" },

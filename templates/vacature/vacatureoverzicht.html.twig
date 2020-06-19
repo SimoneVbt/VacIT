@@ -12,28 +12,54 @@
             <thead>
                 <th></th>
                 <th>Vacature</th>
-                <th>Geplaatst</th>
+                <th>
+                    <span class="hide-for-medium">Datum</span>
+                    <span class="show-for-medium">Geplaatst</span>
+                </th>
                 <th class="show-for-small hide-for-medium">Omschrijving</th>
                 <th>Niveau</th>
                 <th>Bedrijf</th>
-                <th>Standplaats</th>
+                <th>
+                    <span class="hide-for-medium-only">Standplaats</span>
+                    <span class="show-for-medium-only">Plaats</span>
+                </th>
             </thead>
             <tbody>
                 
                 {% for vacature in data %}
                 <tr>
-                    <td class="overview-icon-container">
-                        <img class="overview-icon" src="{{ asset('assets/img/icons/') ~ vacature.afbeelding }}">
+                    <td class="overview-icon-container" style="vertical-align: middle;">
+                        <img class="overview-icon hex" src="{{ asset('assets/img/icons/') ~ vacature.afbeelding }}">
                     </td>
-                    <td class="overview-text-container">
-                        <h2 class="overview-title">{{ vacature.vacaturetitel }}</h2>
+                    
+                    <td class="overview-text-container" style="vertical-align: middle;">
+                        <a href="{{ path('vacature_detail', { 'vacature_id': vacature.id }) }}">
+                            <h2 class="overview-title">{{ vacature.vacaturetitel }}</h2>
+                        </a>
                         <p class="overview-text show-for-medium">{{ vacature.vacaturetekst }}</p>
                     </td>
-                    <td>{{ vacature.plaatsingsdatum|date("d M Y") }}</td>
-                    <td class="show-for-small hide-for-medium"><p class="overview-text">{{ vacature.vacaturetekst }}</p></td>
-                    <td>{{ vacature.werkniveau }}</td>
-                    <td>{{ vacature.user.naam }}</td>
-                    <td>{{vacature.standplaats }}</td>
+
+                    <td style="vertical-align: middle;">
+                        {{ vacature.plaatsingsdatum|date("d-m-Y") }}
+                    </td>
+
+                    <td class="show-for-small hide-for-medium">
+                        <p class="overview-text">{{ vacature.vacaturetekst }}</p>
+                    </td>
+
+                    <td style="vertical-align: middle;">
+                        {{ vacature.werkniveau }}
+                    </td>
+
+                    <td style="vertical-align: middle;">
+                        <a href="{{ path('bekijk_werkgever', { 'emp_id': vacature.user.id }) }}">
+                            {{ vacature.user.naam }}
+                        </a>
+                    </td>
+                    
+                    <td style="vertical-align: middle;">
+                        {{vacature.standplaats }}
+                    </td>
                 </tr>    
 
                 {% endfor %}
@@ -48,12 +74,13 @@
     <script>
 
     $(document).ready( function() {
+
+        $.fn.dataTable.moment('DD-MM-YYYY');
     
         $('#tabel-vacatures').DataTable({
-            scrollX: true,
             responsive: true,
-            order: [[2, "asc"]],
-            "row-border": false,
+            order: [[2, "desc"]],
+            pageLength: 10,
             language: {
                 "emptyTable":     "Geen vacatures beschikbaar",
                 "info":           "Resultaten _START_ t/m _END_ van _TOTAL_ vacatures",
@@ -69,6 +96,11 @@
                     "last":       "Laatste",
                     "next":       "Volgende",
                     "previous":   "Vorige"
+                }
+            },
+            "fnDrawCallback": function(oSettings) {
+                if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
+                    $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
                 }
             },
         }).responsive.recalc();

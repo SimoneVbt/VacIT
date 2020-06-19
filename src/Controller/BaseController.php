@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-// use Symfony\Component\Security\Http\Authorization\AccessDeniedHandlerInterface;
+
 
 class BaseController extends AbstractController
 {

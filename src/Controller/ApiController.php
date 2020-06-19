@@ -7,16 +7,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 use App\Service\UserService;
 use App\Service\VacatureService;
 use App\Service\SollicitatieService;
 
 /**
- * @Route("/ajax")
+ * @Route("/api")
  */
-
-class AjaxController extends BaseController
+class ApiController extends BaseController
 {
     private $us;
     private $vs;
@@ -33,6 +33,26 @@ class AjaxController extends BaseController
 
 
     /**
+     * @Route("/download/image/{filename}", name="download_image")
+     */
+    public function downloadImage($filename)
+
+    {
+        $file ='uploads/img/'.$filename;
+        return new BinaryFileResponse($file);
+    }
+
+    /**
+     * @Route("/download/cv/{filename}", name="download_cv")
+     */
+    public function downloadCv($filename)
+    {
+        $file = 'uploads/cv/'.$filename;
+        return new BinaryFileResponse($file);
+    }
+
+
+    /**
      * @Route("/{user_id}/solliciteer/{vacature_id}", name="ajax_sollicitatie")
      */
     public function nieuweSollicitatie(Request $request, $user_id, $vacature_id)
@@ -45,7 +65,7 @@ class AjaxController extends BaseController
             $params["vacature_id"] = $vacature_id;
 
             $result = $this->ss->saveSollicitatie($params);
-            $this->addFlash('Je sollicitatie is succesvol verstuurd!');
+            $this->addFlash('success', 'Je sollicitatie is succesvol verstuurd!');
             return new Response("De sollicitatie is verstuurd.");
         }
     }
@@ -65,7 +85,7 @@ class AjaxController extends BaseController
             $params["id"] = $vacature_id;
 
             $result = $this->vs->saveVacature($params);
-            $this->addFlash('De vacature is bijgewerkt.');
+            $this->addFlash('success', 'De vacature is bijgewerkt.');
             return new Response("De vacature is bijgewerkt.");
         }    
     }
@@ -133,24 +153,30 @@ class AjaxController extends BaseController
 
             $params = $request->request->all();
 
-            if (!empty($_FILES["cv_upload"]) && $_FILES["cv_upload"] != "") {
+            if (!empty($_FILES["cv_upload"]["name"])) {
                 $upload = $this->uploadCv($user_id);
-                if ($upload != "") {
-                    $params["cv"] = $upload;
-                }
+                $params["cv"] = $upload ? $upload: null;
+                
             }
-            if (!empty($_FILES["afbeelding_upload"])) {
+            if (!empty($_FILES["afbeelding_upload"]["name"])) {
                 $upload = $this->uploadImage($user_id);
-                if ($upload != "") {
-                    $params["afbeelding"] = $upload;
-                }
+                $params["afbeelding"] = $upload ? $upload : null;
             }
 
             $result = $this->us->saveUser($params);
             $this->addFlash('success', 'Dit profiel is succesvol bijgewerkt!');
-            dump($_FILES);
+
             return new Response("Het profiel is bijgewerkt.");
         }
+    }
+
+    /**
+     * @Route("/test/{user_id}", name="test")
+     */
+    public function test($user_id)
+    {
+        var_dump($_FILES);
+        return new Response ('done');
     }
 
 

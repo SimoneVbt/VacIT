@@ -45,6 +45,19 @@ a.button-large {
     border: solid #333333 10px;
     border-radius: 5px; }
 
+
+.photo-container {
+    text-align: center; }
+    img.photo {
+        width: 40%;
+        max-width: 100px;
+        max-height: 100px; }
+    img.hex {
+        clip-path: polygon(25% 10%, 75% 10%, 100% 51%, 75% 90%, 25% 90%, 0 50%);
+            -webkit-clip-path: polygon(25% 10%, 75% 10%, 100% 51%, 75% 90%, 25% 90%, 0 50%); 
+    }
+
+
 .flash {
     color: white;
     width: 80%;
@@ -53,8 +66,7 @@ a.button-large {
     text-align: center;
     font-style: italic; }
     .flash-success {
-        background-color: #F15A24;
-        opacity: 0.75; }
+        background-color: #F15A24; }
     .flash-error {
         background-color: #ee0f0f;
     }
@@ -111,6 +123,12 @@ a.button-large {
         font-size: 1.5em;
         padding: 10px;
     }
+    
+    img.photo {
+        width: 80%;
+        max-width: 120px;
+        max-height: 120px;
+    }
 
     .flash {
         width: 50%;
@@ -122,6 +140,12 @@ a.button-large {
 }
 
 @media (min-width: 1024px) {
+
+    img.photo {
+        width: 70%;
+        max-width: 140px;
+        max-height: 140px;
+    }
 
     .tables-layout thead th {
         font-size: 16px;
@@ -137,16 +161,16 @@ a.button-large {
     }
 }
 
+@media (min-width: 1400px) {
+
+    img.photo {
+        width: 50%;
+    }
+}
+
 /****************************
         MOTIVATIE
 ****************************/
-
-.photo-container-motivatie {
-    text-align: center; }
-    img.photo-motivatie {
-        padding-top: 20px;
-        max-width: 50%;
-    }
 
 h1.motivatie-titel {
     font-size: 1.5rem !important;
@@ -166,10 +190,6 @@ p.motivatie-tekst {
         font-size: 2rem !important;
     }
 
-    img.photo-motivatie {
-        padding-top: 10px;
-    }
-
     p.motivatie-tekst {
         width: 90%;
     }
@@ -177,19 +197,8 @@ p.motivatie-tekst {
 
 @media (min-width: 1024px) {
 
-    img.photo-motivatie {
-        max-width: 60%;
-    }
-
     h1.motivatie-titel {
         font-size: 2.5rem !important;
-    }
-}
-
-@media (min-width: 1400px) {
-
-    img.photo-motivatie {
-        max-width: 40%;
     }
 }
 
@@ -300,6 +309,9 @@ input[type="file"] {
     color: #333333;
     font-size: 0.8rem;
 }
+input[type="submit"] {
+    cursor: pointer;
+}
 
 .form-submit-wrapper {
     position: relative; }
@@ -308,7 +320,7 @@ input[type="file"] {
         .form-submit-arrow {
             transform: scale(2);
             position: absolute;
-            top: 60%; }
+            top: 50%; }
     .form-submit {
         background-color: transparent;
         border: none;
@@ -374,10 +386,11 @@ a.password-reset {
 .form-submit.opslaan {
     left: 5%;
 }
-.form-submit-arrow.bijwerken-arrow,
-.form-submit-arrow.opslaan-arrow {
-    top: 50%;
-}
+.form-submit.solliciteer {
+    left: 25%; }
+    .solliciteer-arrow {
+        left: 15%;
+    }
 
 
 .nieuwe-vacature-tekst {
@@ -413,13 +426,13 @@ a.password-reset {
 
     .form-submit {
         left: 5%; }
-    .form-submit.bijwerken {
+    .form-submit.bijwerken,
+    .form-submit.solliciteer {
         left: 50%; }
     .form-submit.opslaan {
-        left: 55%;
-    }
-    .form-submit-arrow.bijwerken-arrow,
-    .form-submit-arrow.opslaan-arrow {
+        left: 55%; }
+
+    .form-submit-arrow{
         left: 45%;
         top: 55%; }
 
@@ -440,9 +453,11 @@ a.password-reset {
         top: 14%;
     }
 
-    .form-submit.bijwerken {
+    .form-submit.bijwerken,
+    .form-submit.solliciteer {
         left: 70%; }
-    .form-submit-arrow.bijwerken-arrow {
+    .form-submit-arrow.bijwerken-arrow,
+    .form-submit-arrow.solliciteer-arrow {
         left: 65%;
         top: 55%; }
     .form-submit-arrow.opslaan-arrow {
@@ -503,10 +518,6 @@ a.password-reset {
 /****************************
        OVERZICHTPAGINA'S
 ****************************/
-.photo-container {
-    text-align: center; }
-    img.photo {
-        max-width: 20%; }
 
 h1.overview-title {
     font-size: 2.5rem !important;
@@ -519,10 +530,6 @@ h1.overview-title {
 }
 
 @media (min-width: 640px) {
-
-    img.photo {
-        max-width: 40%;
-    }
 
     .overview-button-container {
         text-align: initial;
@@ -665,18 +672,6 @@ i.undo-inv {
 /****************************
         DETAILPAGINA
 ****************************/
-.detail-logos-container {
-    text-align: center;    
-}
-img.detail-logos {
-    width: 80%;
-    max-width: 100px;
-    display: inline-block;
-    padding-left: 5px;
-    padding-right: 5px;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 div.detail-date {
     font-weight: 600;
@@ -730,10 +725,6 @@ a.solliciteer-direct {
 
 @media (min-width: 640px) {
 
-    img.detail-logos {
-        max-width: 140px;
-    }
-
     div.detail-date {
         font-size: 14px;
         font-weight: 500; }
@@ -762,9 +753,6 @@ a.solliciteer-direct {
 }
 
 @media (min-width: 1024px) {
-    img.detail-logos {
-        max-width: 160px;
-    }
 
     .detail-level,
     .detail-location {
@@ -800,18 +788,45 @@ a.solliciteer-direct {
     max-width: 100vw;
 }
 #tabel-vacatures {
-    overflow: inherit;
-}
+    overflow: inherit; }
+    #tabel-vacatures_length,
+    #tabel-vacatures_filter {
+        margin-bottom: 80px;
+    }
 
 img.overview-icon {
-    max-width: 80px;
+    max-width: 50px;
 }
+
 .overview-text {
     overflow: hidden;
     text-overflow: ellipsis;
     display:-webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 3;
+}
+
+@media (min-width: 640px) {
+
+    img.overview-icon {
+        max-width: 80px;
+    }
+
+    .overview-text {
+        -webkit-line-clamp: 2;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    #tabel-vacatures_length,
+    #tabel-vacatures_filter {
+        margin-bottom: 60px;
+    }
+    
+    img.overview-icon {
+        max-width: 100px;
+    }
 }
 
 /**************************** 

@@ -5,118 +5,132 @@
 
 {% block body %}
 
-<div class="grid-x">
-    <div class="cell medium-3 show-for-medium photo-container">
-        {% if user.afbeelding == "default" %}
-        <img class="photo" src="{{ asset('assets/img/defaultkandidaat.png') }}">
-        {% else %}
-        <img class="photo" src="{{ asset('uploads/img/') ~ user.afbeelding }}">
-        {% endif %}
-    </div>
-    <div class="cell small-12 medium-9">
-        <h1 class="overview-title orange">Mijn sollicitaties</h1>
-
-        {% if user.sollicitaties is empty %}
-
-        <p>Je hebt nog niet gesolliciteerd!</p>
-
-        {% else %}
-
-        <table id="tabel-sollicitaties-kandidaat" class="tables-layout">
-            <thead>
-                <th class="soll-date show-for-medium">Datum</th>
-                <th class="soll-vacancy">
-                    <span class="hide-for-medium">Vac.</span>
-                    <span class="show-for-medium">Vacature</span>
-                </th>
-                <th class="soll-company">Bedrijf</th>
-                <th class="center">
-                    <span class="hide-for-medium">Mot.</span>
-                    <span class="show-for-medium">Motivatie</span>
-                </th>
-                <th class="center">
-                    <span class="hide-for-medium">Uitg.</span>
-                    <span class="show-for-medium">Uitgenodigd</span>
-                </th>
-                <th class="soll-date">Sinds</th>
-            </thead>
-            <tbody>
-            {% for soll in user.sollicitaties %}
-                <tr>
-                    <td class="candidate-soll-date show-for-medium">
-                        {{ soll.vacature.plaatsingsdatum|date("d-m-Y") }}
-                    </td>
-                    <td class="candidate-soll-vacancy"><a href="{{ path('vacature_detail', {'vacature_id': soll.vacature.id }) }}">
-                        {{ soll.vacature.vacaturetitel }}</a>
-                    </td>
-                    <td class="candidate-soll-company"><a href="{{ path('bekijk_werkgever', { 'emp_id': soll.vacature.user.id }) }}">
-                        {{ soll.vacature.user.naam }}</a>
-                    </td>
-                    <td class="center">
-                        {% if soll.motivatie %}
-                        <a href="{{ path('motivatie_kandidaat', { 'cand_id': app.user.id, 'emp_id': soll.user.id, 'sollicitatie_id': soll.id }) }}">
-                            <i class="fas fa-check soll-signs"></i></a>
-                        {% else %}
-                            <i class="fas fa-times soll-signs"></i>
-                        {% endif %}
-                    </td>
-                    <td class="center">
-                        {% if soll.uitnodiging == 1 %}<i class="fas fa-check fa-2x orange" data-order="2"></i>{% endif %}
-                        {% if soll.uitnodiging == 2 %}<i class="fas fa-times fa-2x orange" data-order="1"></i>{% endif %}
-                    </td>
-                    <td class="soll-date">
-                        {% if soll.uitnodiging %} {{ soll.datumUitgenodigd|date("d-m-Y") }}
-                        {% else %} <span class="hide">n.v.t.</span>{% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-            
-
-
-        {% endif %}
-
-        <div class="button-container overview-button-container cand-soll-button-container">
-            <a class="button-small" href="{{ path('vacatureoverzicht') }}">Bekijk de meest recente vacatures</a>
+    <div class="grid-x">
+        <div class="cell medium-3 show-for-medium photo-container">
+            {% if user.afbeelding == "default" %}
+            <img class="photo hex" src="{{ asset('assets/img/defaultkandidaat.png') }}">
+            {% else %}
+            <img class="photo hex" src="{{ asset('uploads/img/') ~ user.afbeelding }}">
+            {% endif %}
         </div>
-            
+        <div class="cell small-12 medium-9">
+            <h1 class="overview-title orange">Mijn sollicitaties</h1>
+
+            {% if user.sollicitaties is empty %}
+
+            <p>Je hebt nog niet gesolliciteerd!</p>
+
+            {% else %}
+
+            <table id="tabel-sollicitaties-kandidaat" class="tables-layout">
+                <thead>
+                    <th class="soll-date show-for-medium">Datum</th>
+                    <th class="soll-vacancy">
+                        <span class="hide-for-medium">Vac.</span>
+                        <span class="show-for-medium">Vacature</span>
+                    </th>
+                    <th class="soll-company">Bedrijf</th>
+                    <th class="center">
+                        <span class="hide-for-medium">Mot.</span>
+                        <span class="show-for-medium">Motivatie</span>
+                    </th>
+                    <th class="center">
+                        <span class="hide-for-medium">Uitg.</span>
+                        <span class="show-for-medium">Uitgenodigd</span>
+                    </th>
+                    <th class="soll-date">Sinds</th>
+                </thead>
+                <tbody>
+                {% for soll in user.sollicitaties %}
+                    <tr>
+
+                        <td class="candidate-soll-date show-for-medium">
+                            {{ soll.datum|date("d-m-Y") }}
+                        </td>
+
+                        <td class="candidate-soll-vacancy">
+                            <a href="{{ path('vacature_detail', {'vacature_id': soll.vacature.id }) }}">
+                                {{ soll.vacature.vacaturetitel }}
+                            </a>
+                        </td>
+
+                        <td class="candidate-soll-company">
+                            <a href="{{ path('bekijk_werkgever', { 'emp_id': soll.vacature.user.id }) }}">
+                                {{ soll.vacature.user.naam }}
+                            </a>
+                        </td>
+
+                        <td class="center">
+                            {% if soll.motivatie %}
+                            <a href="{{ path('motivatie_kandidaat', { 'cand_id': app.user.id, 'emp_id': soll.user.id, 'sollicitatie_id': soll.id }) }}">
+                                <i class="fas fa-check soll-signs"></i>
+                            </a>
+                            {% else %}
+                                <i class="fas fa-times soll-signs"></i>
+                            {% endif %}
+                        </td>
+
+                        <td class="center">
+                            {% if soll.uitnodiging == 1 %}<i class="fas fa-check fa-2x orange" data-order="2"></i>{% endif %}
+                            {% if soll.uitnodiging == 2 %}<i class="fas fa-times fa-2x orange" data-order="1"></i>{% endif %}
+                        </td>
+
+                        <td class="soll-date">
+                            {% if soll.uitnodiging %} {{ soll.datumUitgenodigd|date("d-m-Y") }}
+                            {% else %} <span class="hide">n.v.t.</span>{% endif %}
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+                
+
+
+            {% endif %}
+
+            <div class="button-container overview-button-container cand-soll-button-container">
+                <a class="button-small" href="{{ path('vacatureoverzicht') }}">Bekijk de meest recente vacatures</a>
+            </div>
+                
+        </div>
     </div>
-</div>
 
 
-<script>
+    <script>
 
-    $(document).ready( function() {
+        $(document).ready( function() {
 
-        $('#tabel-sollicitaties-kandidaat').DataTable({
-            order: [[5, "asc"]],
-            pageLength: 8,
-            lengthChange: false,
-            searching: false,
-            language: {
-                "info":           "Resultaten _START_ t/m _END_ (_TOTAL_ sollicitaties)",
-                "infoFiltered":   "(gefilterd uit _MAX_ resultaten)",
-                "loadingRecords": "Laden...",
-                "processing":     "Verwerken...",
-                "search":         "Zoeken",
-                "zeroRecords":    "Geen sollicitaties gevonden op basis van deze zoekresultaten",
-                "paginate": {
-                    "first":      "Eerste",
-                    "last":       "Laatste",
-                    "next":       "Volgende",
-                    "previous":   "Vorige"
-                }
-            },
-            "fnDrawCallback": function(oSettings) {
-                if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
-                    $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
-                }
-            },
+            $.fn.dataTable.moment('DD-MM-YYYY');
+
+            $('#tabel-sollicitaties-kandidaat').DataTable({
+                order: [[0, "desc"]],
+                pageLength: 8,
+                lengthChange: false,
+                searching: false,
+                language: {
+                    "info":           "Resultaten _START_ t/m _END_ (_TOTAL_ sollicitaties)",
+                    "infoFiltered":   "(gefilterd uit _MAX_ resultaten)",
+                    "loadingRecords": "Laden...",
+                    "processing":     "Verwerken...",
+                    "search":         "Zoeken",
+                    "zeroRecords":    "Geen sollicitaties gevonden op basis van deze zoekresultaten",
+                    "paginate": {
+                        "first":      "Eerste",
+                        "last":       "Laatste",
+                        "next":       "Volgende",
+                        "previous":   "Vorige"
+                    }
+                },
+                "fnDrawCallback": function(oSettings) {
+                    if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
+                        $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+                    }
+                },
+            });
+
         });
 
-    });
-
-</script>
+    </script>
 
 {% endblock %}

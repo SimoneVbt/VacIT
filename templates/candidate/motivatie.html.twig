@@ -4,22 +4,23 @@
 
 
 {% block body %}
-    <div class="grid-x">
-        <div class="cell small-4 medium-2 photo-container-motivatie">
+
+    <div class="grid-x grid-padding-x medium-padding-collapse">
+        <div class="cell small-12 medium-3 photo-container">
 
             {% if soll.user.afbeelding == "default" %}
-            <img class="photo-motivatie" src="{{ asset('assets/img/defaultkandidaat.png') }}">
+            <img class="photo hex" src="{{ asset('assets/img/defaultkandidaat.png') }}">
             {% else %}
-            <img class="photo-motivatie" src="{{ asset('uploads/img/') ~ soll.user.afbeelding }}">
+            <img class="photo hex" src="{{ asset('uploads/img/') ~ soll.user.afbeelding }}">
             {% endif %}
 
         </div>
-        <div class="cell small-8 medium-10">
+        <div class="cell small-12 medium-9">
 
             <h1 class="motivatie-titel">
-                Motivatie van <br class="hide-for-medium">
+                Motivatie van
                 <a href="{{ path('bekijk_kandidaat', { 'cand_id': soll.user.id }) }}">{{ soll.user.voornaam }} {{ soll.user.naam }}</a> <br>
-                voor de vacature <br class="hide-for-medium">
+                voor de vacature
                 <a href="{{ path('vacature_detail', { 'vacature_id': soll.vacature.id }) }}">{{ soll.vacature.vacaturetitel }}</a>
             </h1>
 
@@ -27,8 +28,8 @@
     </div>
 
     <div class="grid-x grid-padding-x medium-padding-collapse">
-        <div class="cell medium-2 show-for-medium"></div>
-        <div class="cell small-12 medium-10 motivatie-tekst-container">
+        <div class="cell auto show-for-medium"></div>
+        <div class="cell small-12 medium-9 motivatie-tekst-container">
 
                 {% if soll.motivatie is empty %}
                         <p>Deze kandidaat heeft geen extra motivatie opgegeven.</p>
@@ -49,4 +50,5 @@
 
         });
     </script>
+    
 {% endblock %}

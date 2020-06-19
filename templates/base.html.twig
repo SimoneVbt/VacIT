@@ -13,9 +13,11 @@
         <link rel="stylesheet" href="{{ asset('assets/css/vacit-main.css') }}">
 
 
-        <script src="{{ asset('assets/jquery/jquery-3.5.1.js') }}"></script>
-        <script src="{{ asset('assets/foundation/assets/js/foundation.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/jquery/jquery-3.5.1.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/foundation/assets/js/foundation.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+        <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.21/sorting/datetime-moment.js"></script>
         {% block javascripts %}{% endblock %} 
     </head>
 
