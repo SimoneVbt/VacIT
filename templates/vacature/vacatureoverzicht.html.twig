@@ -36,7 +36,7 @@
                         <a href="{{ path('vacature_detail', { 'vacature_id': vacature.id }) }}">
                             <h2 class="overview-title">{{ vacature.vacaturetitel }}</h2>
                         </a>
-                        <p class="overview-text show-for-medium">{{ vacature.vacaturetekst }}</p>
+                        <p class="overview-text show-for-medium">{{ vacature.vacaturetekst|striptags }}</p>
                     </td>
 
                     <td style="vertical-align: middle;">
@@ -74,8 +74,6 @@
     <script>
 
     $(document).ready( function() {
-
-        $.fn.dataTable.moment('DD-MM-YYYY');
     
         $('#tabel-vacatures').DataTable({
             responsive: true,

@@ -61,6 +61,12 @@ class ApiController extends BaseController
         if ($this->checkUser($user, $user_id)) {
 
             $params = $request->request->all();
+
+            if ($this->ss->checkSollicitatie($user_id, $vacature_id)) {
+                $this->addFlash('error', 'Je hebt al op deze vacature gesolliciteerd');
+                return new Response('Deze gebruiker heeft al op deze vacature gesolliciteerd.');
+            }
+
             $params["user_id"] = $user_id;
             $params["vacature_id"] = $vacature_id;
 
@@ -85,7 +91,7 @@ class ApiController extends BaseController
             $params["id"] = $vacature_id;
 
             $result = $this->vs->saveVacature($params);
-            $this->addFlash('success', 'De vacature is bijgewerkt.');
+            $this->addFlash('success', 'De vacature is succesvol bijgewerkt.');
             return new Response("De vacature is bijgewerkt.");
         }    
     }
@@ -100,7 +106,7 @@ class ApiController extends BaseController
         if ($this->checkUser($user, $user_id)) {
 
             $result = $this->vs->removeVacature($vacature_id);
-            $this->addFlash('success', 'De vacature is verwijderd.');
+            $this->addFlash('success', 'De vacature is succesvol verwijderd.');
             return new Response("De vacature is verwijderd.");
         }
     }
@@ -186,10 +192,6 @@ class ApiController extends BaseController
         $target_file = $target_dir . basename($_FILES["cv_upload"]["name"]); 
         $extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        if (file_exists($target_file)) {
-            $this->addFlash('error', 'Dit bestand is al geüpload.');
-            return false;
-        }
         if ($extension != "pdf" && $extension != "doc" && $extension != "docx") {
             $this->addFlash('error', 'Upload een pdf-, doc- of docx-bestand.');
             return false;
@@ -203,9 +205,12 @@ class ApiController extends BaseController
         
         if (move_uploaded_file($_FILES["cv_upload"]["tmp_name"], $new_filename)) {
             $this->addFlash('success', "Upload cv geslaagd!");
+            return ("cv".$user_id.".".$extension);
         };
 
-        return ("cv".$user_id.".".$extension);
+        $this->addFlash('error', 'Er is iets mis gegaan. Neem contact op met de beheerder van deze website.');
+        return false;
+        
     }
 
 
@@ -215,10 +220,6 @@ class ApiController extends BaseController
         $target_file = $target_dir . basename($_FILES["afbeelding_upload"]["name"]); 
         $extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        if (file_exists($target_file)) {
-            $this->addFlash('error', 'Deze afbeelding is al geüpload.');
-            return false;
-        }
         if ($extension != "png" && $extension != "jpg" && $extension != "jpeg") {
             $this->addFlash('error', 'Upload een jpg-, jpeg- of png-bestand.');
             return false;
@@ -232,8 +233,10 @@ class ApiController extends BaseController
 
         if (move_uploaded_file($_FILES["afbeelding_upload"]["tmp_name"], $new_filename)) {
             $this->addFlash('success', "Upload afbeelding geslaagd!");
+            return ("img".$user_id.".".$extension);
         };
 
-        return ("img".$user_id.".".$extension);
+        $this->addFlash('error', 'Er is iets mis gegaan. Neem contact op met de beheerder van deze website.');
+        return false;
     }
 }

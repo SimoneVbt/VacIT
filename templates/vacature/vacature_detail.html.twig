@@ -5,110 +5,150 @@
 
 {% block body %}
 
-<div class="grid-x grid-padding-y">
-    <div class="cell small-12 medium-3 large-2 photo-container">
-        <img class="photo hex" src="{{ asset('assets/img/icons/') ~ data.afbeelding }}">
-        {% if data.user.afbeelding == "default" %}
-            <img class="photo" src="{{ asset('assets/img/defaultwerkgever.png') }}">
-        {% else %}
-            <img class="photo" src="{{ asset('uploads/img/') ~ data.user.afbeelding }}">
-        {% endif %}
-    </div>
-    <div class="cell small-12 medium-9 large-10 detail-text-container">
-        <div class="detail-date">{{ data.plaatsingsdatum|date("d-m-Y") }}</div>
-        {% if data.datumBijgewerkt %}
-        <div class="detail-date"> Laatst bijgewerkt op: {{ data.datumBijgewerkt|date("d-m-Y") }}</div>
-        {% endif %}
-
-        <h1 class="detail-titel">{{ data.vacaturetitel }} voor {{ data.user.naam }} </h1>
-
-        <div class="grid-x bebas detail-subheading">
-            <div class="cell small-6 medium-6">
-                <div class="detail-level"><span class="orange">niveau:</span> {{ data.werkniveau }}</div>
-            </div>
-            <div class="cell small-6 medium-6">
-                <div class="detail-location">
-                    <i class="fas fa-map-marker-alt orange"></i>
-                    {{ data.standplaats }}
-                </div>
-            </div>
-        </div>
-        
-        <p class="detail-text">{{ data.vacaturetekst|raw }}</p>
-        <h2 class="detail-about">Over {{ data.user.naam }}</h2>
-        <p class="detail-text">{{ data.user.tekst|raw }}</p>
-
-    </div>
-</div>
-
-{% if is_granted("ROLE_EMPLOYER") == false %}
-
     <div class="grid-x grid-padding-y">
-        <div class="cell medium-3 large-2 med-arrow-cell show-for-medium">
-            <a href=""><i class="fas fa-arrow-right detail-arrow-medium"></i></a>
-        </div>
-        <div class="cell small-12 medium-9 large-10">
-            {% if app.user %}
-            <a class="bebas solliciteer-direct" href="{{ path('nieuwe_sollicitatie', { 'user_id': app.user.id, 'vacature_id': data.id  }) }}">
-                <i class="fas fa-arrow-right detail-arrow hide-for-medium"></i>
-                Solliciteer direct
-            </a>    
+
+        <div class="cell small-12 medium-3 large-2 photo-container">
+            <img class="photo hex" src="{{ asset('assets/img/icons/') ~ data.afbeelding }}">
+            {% if data.user.afbeelding == "default" %}
+                <img class="photo" src="{{ asset('assets/img/defaultwerkgever.png') }}">
             {% else %}
-            <a class="bebas solliciteer-direct" href="{{ path('fos_user_security_login') }}">
-                <i class="fas fa-arrow-right detail-arrow hide-for-medium"></i>
-                Log in om te solliciteren
-            </a>
+                <img class="photo" src="{{ asset('uploads/img/') ~ data.user.afbeelding }}">
             {% endif %}
         </div>
+
+        <div class="cell small-12 medium-9 large-10 detail-text-container">
+
+            <div class="detail-date">{{ data.plaatsingsdatum|date("d-m-Y") }}</div>
+            {% if data.datumBijgewerkt %}
+            <div class="detail-date"> Laatst bijgewerkt op: {{ data.datumBijgewerkt|date("d-m-Y") }}</div>
+            {% endif %}
+
+            <h1 class="detail-titel">{{ data.vacaturetitel }} voor {{ data.user.naam }} </h1>
+
+            <div class="grid-x bebas detail-subheading">
+                <div class="cell small-6 medium-6">
+                    <div class="detail-level"><span class="orange">niveau:</span> {{ data.werkniveau }}</div>
+                </div>
+                <div class="cell small-6 medium-6">
+                    <div class="detail-location">
+                        <i class="fas fa-map-marker-alt orange"></i>
+                        {{ data.standplaats }}
+                    </div>
+                </div>
+            </div>
+            
+            <p class="detail-text">{{ data.vacaturetekst|raw }}</p>
+            <h2 class="detail-about">Over {{ data.user.naam }}</h2>
+            <p class="detail-text">{{ data.user.tekst|raw }}</p>
+
+        </div>
+
     </div>
 
-{% endif %}
+    {% if is_granted("ROLE_EMPLOYER") == false %}
 
-<div class="grid-x grid-padding-y">
-    <div class="cell medium-3 large-2 hide-for-small-only"></div>
-    <div class="cell small-12 medium-9 large-10">
-        <p class="bebas meer-vacatures">Meer vacatures van <a href="{{ path('bekijk_werkgever', { 'emp_id': data.user.id }) }}">{{ data.user.naam }}:</a></p>
-    </div>
-</div>
-<div class="grid-x">
-    <div class="cell medium-3 large-2 hide-for-small-only"></div>
-    <div class="cell small-12 medium-9 large-10">
-        <table id="tabel-meer-vacatures" class="tables-layout">
-            <thead>
-                <th>Datum</th>
-                <th>Vacature</th>
-                <th>Niveau</th>
-            </thead>
-            <tbody>
-            {% for vacature in data.user.vacatures %}
-                <tr>
-                    <td>{{ vacature.plaatsingsdatum|date("d-m-Y") }}</td>
-                    <td><a href="{{ path('vacature_detail', {'vacature_id': vacature.id }) }}">
-                        {{ vacature.vacaturetitel }}</a>
-                    </td>
-                    <td><span style="text-transform: uppercase;">{{ vacature.werkniveau }}</span></td>
-                </tr>
+        {% set duplicate = false %}
+
+        {% if app.user %}
+            {% for soll in data.sollicitaties %}
+
+                {% if soll.user == app.user %}
+
+                    {% set duplicate = true %}
+
+                {% endif %}
+
             {% endfor %}
-            </tbody>
-        </table>
+        {% endif %}
+
+        <div class="grid-x grid-padding-y">
+
+            <div class="cell medium-3 large-2 med-arrow-cell show-for-medium">
+                {% if app.user and duplicate %}
+                    <i class="fas fa-check detail-arrow-medium orange"></i>
+                {% else %}
+                    <i class="fas fa-arrow-right detail-arrow-medium"></i>
+                {% endif %}
+            </div>
+
+            <div class="cell small-12 medium-9 large-10">
+
+                {% if app.user and duplicate == false %}
+                    <a class="bebas solliciteer-direct" href="{{ path('nieuwe_sollicitatie', { 'user_id': app.user.id, 'vacature_id': data.id  }) }}">
+                        <i class="fas fa-arrow-right detail-arrow hide-for-medium"></i>
+                        Solliciteer direct
+                    </a>   
+                {% elseif app.user and duplicate %}
+                    <a class="bebas solliciteer-direct" href="{{ path('sollicitaties_kandidaat', { 'user_id': app.user.id }) }}">
+                        <i class="fas fa-check detail-arrow hide-for-medium"></i>
+                        Sollicitatie verstuurd
+                    </a>
+                {% else %}
+                    <a class="bebas solliciteer-direct" href="{{ path('fos_user_security_login') }}">
+                        <i class="fas fa-arrow-right detail-arrow hide-for-medium"></i>
+                        Log in om te solliciteren
+                    </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+    <div class="grid-x grid-padding-y">
+        <div class="cell medium-3 large-2 hide-for-small-only"></div>
+        <div class="cell small-12 medium-9 large-10">
+            <p class="bebas meer-vacatures">Meer vacatures van <a href="{{ path('bekijk_werkgever', { 'emp_id': data.user.id }) }}">{{ data.user.naam }}:</a></p>
+        </div>
     </div>
-</div>
+
+    <div class="grid-x">
+        <div class="cell medium-3 large-2 hide-for-small-only"></div>
+        <div class="cell small-12 medium-9 large-10">
+            <table id="tabel-meer-vacatures" class="tables-layout">
+                <thead>
+                    <th>Datum</th>
+                    <th>Vacature</th>
+                    <th>Niveau</th>
+                </thead>
+                <tbody>
+
+                {% for vacature in data.user.vacatures %}
+                    <tr>
+                        <td>{{ vacature.plaatsingsdatum|date("d-m-Y") }}</td>
+                        <td><a href="{{ path('vacature_detail', {'vacature_id': vacature.id }) }}">
+                            {{ vacature.vacaturetitel }}</a>
+                        </td>
+                        <td><span style="text-transform: uppercase;">{{ vacature.werkniveau }}</span></td>
+                    </tr>
+                {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
-<script>
+    <script>
 
-    $(document).ready( function() {
+        $(document).ready( function() {
 
-        $('#tabel-meer-vacatures').DataTable({
-            paging: false,
-            ordering: false,
-            searching: false,
-            info: false,
-            pageLength: 5,
-            order: [[0, "desc"]],
+            $('#tabel-meer-vacatures').DataTable({
+                paging: false,
+                searching: false,
+                info: false,
+                pageLength: 5,
+                order: [[0, "desc"]],
+                columns: [
+                    { "orderable": false },
+                    { "orderable": false },
+                    { "orderable": false },
+                ]
+            });
+
         });
+        
+    </script>
 
-    });
-    
-</script>
 {% endblock %}

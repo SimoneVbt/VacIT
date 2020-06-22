@@ -704,8 +704,7 @@ i.detail-arrow {
 }
 i.detail-arrow-medium {
     font-size: 26px;
-    padding-top: 3px;
-    display: inline;
+    padding-top: 5px;
 }
 a.solliciteer-direct {
     font-size: 26px;
@@ -717,11 +716,10 @@ a.solliciteer-direct {
     padding-top: 15px;
 }
 
-#tabel-meer-vacatures {
-    border-bottom: none; }
-    #tabel-meer-vacatures thead th {
-        border-bottom: none;
-    }
+#tabel-meer-vacatures>thead>tr>th.sorting_desc {
+    background: white;
+    cursor: auto;
+}
 
 @media (min-width: 640px) {
 
@@ -743,7 +741,7 @@ a.solliciteer-direct {
     }
 
     .detail-text-container,
-    #tabel-meer-vacatures {
+    #tabel-meer-vacatures_wrapper {
         padding-right: 20px;
     }
 

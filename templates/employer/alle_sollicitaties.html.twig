@@ -108,22 +108,22 @@
 
     <script>
 
-    $(document).ready( function() {
+        $(document).ready( function() {
 
-        $('#tabel-alle-sollicitaties').DataTable({
-            dom: 'rtip',
-            pagingType: "numbers",
-            pageLength: 10,
-            language: {"info": "Sollicitaties _START_ t/m _END_ (uit _TOTAL_ sollicitaties)" },
-            "fnDrawCallback": function(oSettings) {
-                if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
-                    $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
-                    $(oSettings.nTableWrapper).find('.dataTables_info').hide();    
-                }
-            },
+            $('#tabel-alle-sollicitaties').DataTable({
+                dom: 'rtip',
+                pagingType: "numbers",
+                pageLength: 10,
+                language: {"info": "Sollicitaties _START_ t/m _END_ (uit _TOTAL_ sollicitaties)" },
+                "fnDrawCallback": function(oSettings) {
+                    if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
+                        $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+                        $(oSettings.nTableWrapper).find('.dataTables_info').hide();    
+                    }
+                },
+            });
+
         });
-
-    });
 
     </script>
 

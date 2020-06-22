@@ -20,9 +20,19 @@ class SollicitatieRepository extends ServiceEntityRepository
     }
 
 
+    public function checkSollicitatie($user_id, $vacature_id)
+    {
+        $check = $this->findBy(
+            ["user" => $user_id,
+            "vacature" => $vacature_id]
+        );
+        return $result = $check ? true : false;
+    }
+
+
     public function saveSollicitatie($params)
     {
-        if (isset($params['id'])) { //afdoende controle voor dubbele sollicitaties?
+        if (isset($params['id'])) {
             $sollicitatie = $this->find($params['id']);
         } else {
             $sollicitatie = new Sollicitatie();

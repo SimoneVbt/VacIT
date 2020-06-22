@@ -2,174 +2,170 @@
 
 {% block title %} :: bewerk vacature{% endblock %}
 
-{% block stylesheets %}
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-{% endblock %}
-{% block javascripts %}
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-{% endblock %}
+{% block stylesheets %}<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">{% endblock %}
+{% block javascripts %}<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>{% endblock %}
 
 
 {% block body %}
-<div class="grid-x grid-padding-x">
-    <div class="cell medium-3 photo-container show-for-medium">
-        {% if user.afbeelding == "default" %}
-        <img class="photo" src="{{ asset('assets/img/defaultwerkgever.png') }}">
-        {% else %}
-        <img class="photo" src="{{asset ('public/img/') ~ user.afbeelding }}">
-        {% endif %}
-    </div>
-    <div class="cell small-12 medium-9">
-        <h1 class="overview-title">Nieuwe vacature voor <br class="hide-for-medium">
-            <a href="">{{ user.naam }}</a></h1>
-        
-        <form name="nieuwe_vacature" id="nieuwe_vacatures">
-            <div class="grid-x">
 
-                <div class="cell small-12">
-
-                    <label class="form-label vacature-label" for="vacaturetitel">Functietitel</label>
-                    <input type="text" name="vacaturetitel" id="vacaturetitel" required
-                            class="form-input vacature-input" maxLength="50" value="{{ vacature.vacaturetitel }}">
-
-                </div>
+    <div class="grid-x grid-padding-x">
+        <div class="cell medium-3 photo-container show-for-medium">
+            {% if user.afbeelding == "default" %}
+            <img class="photo" src="{{ asset('assets/img/defaultwerkgever.png') }}">
+            {% else %}
+            <img class="photo" src="{{ asset('uploads/img/') ~ user.afbeelding }}">
+            {% endif %}
+        </div>
+        <div class="cell small-12 medium-9">
+            <h1 class="overview-title">Nieuwe vacature voor <br class="hide-for-medium">
+                <a href="">{{ user.naam }}</a></h1>
             
-            </div>
+            <form name="nieuwe_vacature" id="nieuwe_vacatures">
+                <div class="grid-x">
 
-            <div class="grid-x">
+                    <div class="cell small-12">
 
-                <div class="cell small-12 medium-4">
+                        <label class="form-label vacature-label" for="vacaturetitel">Functietitel</label>
+                        <input type="text" name="vacaturetitel" id="vacaturetitel" required
+                                class="form-input vacature-input" maxLength="50" value="{{ vacature.vacaturetitel }}">
 
-                    <label class="form-label vacature-label" for="werkniveau">Werkniveau</label>
-                    <select name="werkniveau" id="werkniveau" data-value="{{ vacature.werkniveau }}" required
-                            class="form-select vacature-input vacature-input-werkniveau">
-                        <option value="assistent">Assistent</option>
-                        <option value="trainee">Trainee</option>
-                        <option value="junior">Junior</option>
-                        <option value="medior">Medior</option>
-                        <option value="senior">Senior</option>
-                        <option value="principal">Principal</option>
-                        <option value="medewerker">Medewerker</option>
-                    </select>
-
-                </div>
-
-                <div class="cell small-12 medium-4">
-
-                    <label class="form-label vacature-label" for="standplaats">Standplaats</label>
-                    <input type="text" name="standplaats" id="standplaats" value="{{ vacature.standplaats }}" required
-                            class="form-input vacature-input vacature-input-standplaats" maxLength="50">
-
-                </div>
-
-                <div class="cell small-12 medium-4">
-
-                    <label class="form-label vacature-label" for="afbeelding">Icoon</label>
-                    <select name="afbeelding" id="afbeelding" required
-                        class="form-select vacature-input" data-value="{{ vacature.afbeelding }}">
-                        <option value="default.png">DEFAULT (leeg)</option>
-
-                        {% for icon in icons|slice(2) %}
-                            {% if icon != "default.png" %}
-                            <option value="{{ icon }}">{{ icon|slice(0, -4)|capitalize }}</option>
-                            {% endif %}
-                        {% endfor %}
-                            
-                    </select>
-
-                </div>
-
-            </div>
-
-            <div class="grid-x">
-
-                <div class="cell small-12" class="nieuwe-vacature-tekst" id="quill-container">
-                    <h2 class="orange">Tekst</h2>
-
-                    <label for="vacaturetekst">
-                        <div id="quill_vacaturetekst" class="quill_tekst" required data-value="{{ vacature.vacaturetekst }}">
-                            {{ vacature.vacaturetekst|raw }}
-                        </div>
-                    </label>
-
-                </div>
-
-            </div> 
-
-            <div class="grid-x">
-
-                <div class="cell small-12 medium-8">
-                    <p class="nieuwe-vacature-profiel">De omschrijving van uw bedrijf wordt automatisch toegevoegd.<br> Deze kunt u aanpassen in uw <a href="{{ path('fos_user_profile_show') }}">profieloverzicht</a>.</p>
-                </div>
-
-                <div class="cell small-12 medium-4">
-                    <div class="submit-wrapper">
-                        <label for="submit">
-                            <i class="fas fa-arrow-right orange form-submit-arrow opslaan-arrow"></i>
-                        <input class="bebas orange form-submit opslaan" id="submit" type="button" value="bijwerken">
                     </div>
+                
                 </div>
 
-            </div>
-        </form>
+                <div class="grid-x">
 
+                    <div class="cell small-12 medium-4">
+
+                        <label class="form-label vacature-label" for="werkniveau">Werkniveau</label>
+                        <select name="werkniveau" id="werkniveau" data-value="{{ vacature.werkniveau }}" required
+                                class="form-select vacature-input vacature-input-werkniveau">
+                            <option value="assistent">Assistent</option>
+                            <option value="trainee">Trainee</option>
+                            <option value="junior">Junior</option>
+                            <option value="medior">Medior</option>
+                            <option value="senior">Senior</option>
+                            <option value="principal">Principal</option>
+                            <option value="medewerker">Medewerker</option>
+                        </select>
+
+                    </div>
+
+                    <div class="cell small-12 medium-4">
+
+                        <label class="form-label vacature-label" for="standplaats">Standplaats</label>
+                        <input type="text" name="standplaats" id="standplaats" value="{{ vacature.standplaats }}" required
+                                class="form-input vacature-input vacature-input-standplaats" maxLength="50">
+
+                    </div>
+
+                    <div class="cell small-12 medium-4">
+
+                        <label class="form-label vacature-label" for="afbeelding">Icoon</label>
+                        <select name="afbeelding" id="afbeelding" required
+                            class="form-select vacature-input" data-value="{{ vacature.afbeelding }}">
+                            <option value="default.png">DEFAULT (leeg)</option>
+
+                            {% for icon in icons|slice(2) %}
+                                {% if icon != "default.png" %}
+                                <option value="{{ icon }}">{{ icon|slice(0, -4)|capitalize }}</option>
+                                {% endif %}
+                            {% endfor %}
+                                
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="grid-x">
+
+                    <div class="cell small-12" class="nieuwe-vacature-tekst" id="quill-container">
+                        <h2 class="orange">Tekst</h2>
+
+                        <label for="vacaturetekst">
+                            <div id="quill_vacaturetekst" class="quill_tekst" required data-value="{{ vacature.vacaturetekst }}">
+                                {{ vacature.vacaturetekst|raw }}
+                            </div>
+                        </label>
+
+                    </div>
+
+                </div> 
+
+                <div class="grid-x">
+
+                    <div class="cell small-12 medium-8">
+                        <p class="nieuwe-vacature-profiel">De omschrijving van uw bedrijf wordt automatisch toegevoegd.<br> Deze kunt u aanpassen in uw <a href="{{ path('fos_user_profile_show') }}">profieloverzicht</a>.</p>
+                    </div>
+
+                    <div class="cell small-12 medium-4">
+                        <div class="submit-wrapper">
+                            <label for="submit">
+                                <i class="fas fa-arrow-right orange form-submit-arrow opslaan-arrow"></i>
+                                <input class="bebas orange form-submit opslaan" id="submit" type="submit" value="bijwerken">
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
     </div>
-</div>
 
-<script>
+    <script>
 
-    let quill = new Quill('#quill_vacaturetekst', {
-        theme: 'snow',
-        modules: {
-            toolbar: [
-                [{'header': [1, 2, false]}],
-                ['bold', 'italic', 'underline'],
-                [{'list': 'ordered'}, {'list': 'bullet'}],
-                ['blockquote', 'link', 'image'],
-                [{ 'indent': '-1'}, { 'indent': '+1' }]
-            ]
-        },
-        placeholder: "Plaats hier uw vacaturetekst"        
-    });
-
-    $(document).ready( function() {
-
-        let plaats = $("#werkniveau").data("value");
-        $("#werkniveau").val(plaats);
-
-        let icoon = $("#afbeelding").data("value");
-        $("#afbeelding").val(icoon);
-
-        let tekst = quill.root.innerHTML;
-
-
-        $("#submit").click(function(e) {
-
-            let titel = $("#vacaturetitel").val();
-            let niveau = $("#werkniveau").val();
-            let plaats = $("#standplaats").val();
-            let icoon = $("#afbeelding").val();
-            let tekst = quill.getText();
-
-            $.ajax({
-                url:"{{ path('ajax_bewerk_vacature', { 'user_id': user.id, 'vacature_id': vacature.id }) }}",
-                method: "POST",
-                data: { vacaturetitel: titel,
-                        werkniveau: niveau,
-                        standplaats: plaats,
-                        afbeelding: icoon,
-                        vacaturetekst: tekst },
-                success: function() {
-                    window.location.href="{{ path('vacatures_werkgever', { user_id: user.id }) }}";
-                },
-                error: function() {
-                    alert("Er is iets fout gegaan. Neem contact op met de beheerder van de website.")
-                }
-            });
-            
+        let quill = new Quill('#quill_vacaturetekst', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{'header': [1, 2, false]}],
+                    ['bold', 'italic', 'underline'],
+                    [{'list': 'ordered'}, {'list': 'bullet'}],
+                    ['blockquote', 'link', 'image'],
+                    [{ 'indent': '-1'}, { 'indent': '+1' }]
+                ]
+            },
+            placeholder: "Plaats hier uw vacaturetekst"        
         });
 
-    });
+        
+        $(document).ready( function() {
 
-</script>
+            $("#werkniveau").val($("#werkniveau").data("value"));
+            $("#afbeelding").val($("#afbeelding").data("value"));
+
+
+            $("form").submit( function(e) {
+
+                e.preventDefault();
+
+                let form = $('form').get(0); 
+                let data = new FormData(form);
+
+                let tekst = quill.root.innerHTML;
+                data.append("vacaturetekst", tekst);
+
+                $.ajax({
+                    url:"{{ path('ajax_bewerk_vacature', { 'user_id': user.id, 'vacature_id': vacature.id }) }}",
+                    method: "POST",
+                    data: data,
+                    success: function() {
+                        window.location.href="{{ path('vacatures_werkgever', { user_id: user.id }) }}";
+                    },
+                    error: function() {
+                        alert("Er is iets fout gegaan. Neem contact op met de beheerder van de website.")
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+                
+            });
+
+        });
+
+    </script>
+
 {% endblock %}

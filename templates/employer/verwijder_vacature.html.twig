@@ -67,13 +67,14 @@
             }
 
         });
-
+        
 
         $('#tabel-vacatures-werkgever').DataTable({
             dom: 'rtip',
             pagingType: "numbers",
             pageLength: 10,
-            language: {"info": "Vacatures _START_ t/m _END_ (uit _TOTAL_ vacatures)" },
+            order: [[0, "desc"]],
+            language: { "info": "Vacatures _START_ t/m _END_ (uit _TOTAL_ vacatures)" },
             "fnDrawCallback": function(oSettings) {
                 if (oSettings._iDisplayLength > oSettings.fnRecordsDisplay()) {
                     $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();

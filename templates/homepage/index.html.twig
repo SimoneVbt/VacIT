@@ -4,144 +4,106 @@
 {% block title %} :: HOME{% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="{{ asset('assets/vegas/vegas.min.css') }}">
-<style>
-    body {
-        background-color: #F15A24;
-    }
 
-    @media (min-width: 1050px) {
-        main {
-            padding-bottom: 100px;
+    <link rel="stylesheet" href="{{ asset('assets/vegas/vegas.min.css') }}">
+    <style>
+        body {
+            background-color: #F15A24;
         }
-        .footer {
-            display: none;
+
+        @media (min-width: 1050px) {
+            main {
+                padding-bottom: 100px;
+            }
+            .footer {
+                display: none;
+            }
         }
-    }
-</style>
+    </style>
 
 {% endblock %}
 
-{% block javascripts %}
-<script src="{{ asset('assets/vegas/vegas.min.js') }}"></script>
-{% endblock %}
-
+{% block javascripts %} <script src="{{ asset('assets/vegas/vegas.min.js') }}"></script> {% endblock %}
 
 
 
 {% block body %}
 
-<div class="grid-x grid-padding-y">
+    <div class="grid-x grid-padding-y">
 
-    <div class="cell show-for-large large-4">
-        <div id="slideshow">
-            <div id="text-block">
-                <h1 class="slideshow-text"></h1><br>
-                <h2 class="slideshow-text"></h2>
-            </div>
-        </div>
-    </div>
-
-    <div class="cell large-8" id="vacancies">
-        {% set num = 1 %}
-
-        {% for vacature in data|slice(0, 5) %} 
-            
-        <div class="grid-x grid-padding-y vacancy">
-            <div class="cell small-3 large-2 icon">
-                <img src="assets/img/icons/{{ vacature.afbeelding }}"
-                     id="img{{num}}"
-                     data-title="{{ vacature.vacaturetitel }}"
-                     data-company="{{ vacature.user.naam }}"
-                     data-place="{{ vacature.standplaats }}">
-            </div>
-            <div class="cell auto">
-                <div class="grid-x">
-                    <div class="cell small-12 large-9">
-                        <div class="home-date">{{ vacature.plaatsingsdatum|date('d-m-Y') }}</div>
-                        <a href="{{ path('vacature_detail', {'vacature_id': vacature.id }) }}"><h2 class="home-titel">{{ vacature.vacaturetitel }}</h2></a>
-                        <p class="home-text">{{ vacature.vacaturetekst|striptags }}</p>
-                    </div>
-                    <div class="cell small-12 large-3 arrow">
-                        <a href="{{ path('vacature_detail', {'vacature_id': vacature.id }) }}"><i class="fas fa-arrow-right fa-3x home-arrow"></i></a>
-                    </div>
+        <div class="cell show-for-large large-4">
+            <div id="slideshow">
+                <div id="text-block">
+                    <h1 class="slideshow-text"></h1><br>
+                    <h2 class="slideshow-text"></h2>
                 </div>
             </div>
         </div>
 
-        {% set num = num + 1 %}
+        <div class="cell large-8" id="vacancies">
 
-        {% endfor %}
+            {% for vacature in data|slice(0, 5) %} 
+                
+                <div class="grid-x grid-padding-y vacancy">
+                    <div class="cell small-3 large-2 icon">
+                        <img src="assets/img/icons/{{ vacature.afbeelding }}"
+                            class="slideshow-image"
+                            data-title="{{ vacature.vacaturetitel }}"
+                            data-employer="{{ vacature.user.naam }}"
+                            data-place="{{ vacature.standplaats }}">
+                    </div>
+                    <div class="cell auto">
+                        <div class="grid-x">
+                            <div class="cell small-12 large-9">
+                                <div class="home-date">{{ vacature.plaatsingsdatum|date('d-m-Y') }}</div>
+                                <a href="{{ path('vacature_detail', {'vacature_id': vacature.id }) }}"><h2 class="home-titel">{{ vacature.vacaturetitel }}</h2></a>
+                                <p class="home-text">{{ vacature.vacaturetekst|striptags }}</p>
+                            </div>
+                            <div class="cell small-12 large-3 arrow">
+                                <a href="{{ path('vacature_detail', {'vacature_id': vacature.id }) }}"><i class="fas fa-arrow-right fa-3x home-arrow"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="grid-x grid-padding-y">
-            <div class="cell small-3 large-2"></div>
-            <div class="cell small-9 large-10">
-                <a class="button-large" href="{{ path('vacatureoverzicht') }}">Bekijk alle vacatures</a>
+            {% endfor %}
+
+            <div class="grid-x grid-padding-y">
+                <div class="cell small-3 large-2"></div>
+                <div class="cell small-9 large-10">
+                    <a class="button-large" href="{{ path('vacatureoverzicht') }}">Bekijk alle vacatures</a>
+                </div>
             </div>
         </div>
-    </div>
 
 
-<script>
-//kan een stuk mooier!
-$(document).ready( function() {
+    <script>
 
+        $(document).ready( function() {
 
+            let recentVacancies = [];
 
-    let image1 = $("#img1").attr("src");
-    let title1 = $("#img1").data("title");
-    let company1 = $("#img1").data("company");
-    let place1 = $("#img1").data("place");
+            $(".slideshow-image").each(function () {
+                recentVacancies.push(
+                    { src: $(this).attr("src"),
+                    title: $(this).data("title"),
+                    subtitle: $(this).data("employer") + ", " + $(this).data("place") },
+                );
+            });
+            
 
-    let image2 = $("#img2").attr("src");
-    let title2 = $("#img2").data("title");
-    let company2 = $("#img2").data("company");
-    let place2 = $("#img2").data("place");
+            $("#slideshow").vegas({
+                slides: recentVacancies,
+                timer: false,
+                transition: "slideLeft",
+                walk: function(index, slideSettings) {
+                    $("#text-block h1").html(recentVacancies[index].title);
+                    $("#text-block h2").html(recentVacancies[index].subtitle);
+                }
+            }) ;
 
-    let image3 = $("#img3").attr("src");
-    let title3 = $("#img3").data("title");
-    let company3 = $("#img3").data("company");
-    let place3 = $("#img3").data("place");
+        });
 
-    let image4 = $("#img4").attr("src");
-    let title4 = $("#img4").data("title");
-    let company4 = $("#img4").data("company");
-    let place4 = $("#img4").data("place");
+    </script>
 
-    let image5 = $("#img5").attr("src");
-    let title5 = $("#img5").data("title");
-    let company5 = $("#img5").data("company");
-    let place5 = $("#img5").data("place");
-
-    let recentVacancies = [
-        { src: image1,
-                title: title1,
-                subtitle: company1 + ", " + place1 },
-        { src: image2,
-                title: title2,
-                subtitle: company2 + ", " + place2 },
-        { src: image3,
-                title: title3,
-                subtitle: company3 + ", " + place3 },
-        { src: image4,
-                title: title4,
-                subtitle: company4 + ", " + place4 },
-        { src: image5,
-                title: title5,
-                subtitle: company5 + ", " + place5 },
-    ];
-
-    $("#slideshow").vegas({
-        slides: recentVacancies,
-        timer: false,
-        transition: "slideLeft",
-        walk: function(index, slideSettings) {
-            $("#text-block h1").html(recentVacancies[index].title);
-            $("#text-block h2").html(recentVacancies[index].subtitle);
-        }
-    }) ;
-
-});
-
-</script>
 {% endblock %}
